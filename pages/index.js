@@ -1,13 +1,20 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+import { fetchEntries } from '../utils/contentfulPosts'
+import Post from '../components/Post'
+
+export default function Home({posts}) {
   return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <div className="posts bg-gray-200">
+        {posts && <div>Contentful is connected</div>}
+        </div>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
@@ -63,3 +70,17 @@ export default function Home() {
     </div>
   )
 }
+
+export async function getStaticProps() {
+    const res = await fetchEntries()
+    const posts = await res.map((p) => {
+      return p.fields
+    })
+
+    return {
+      props: {
+        posts,
+      },
+    }
+  }
+
