@@ -29,9 +29,10 @@
   },
   "include": [
     "next-env.d.ts",
+    "custom.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.svg"
+    "**/*.svg",
   ],
   "exclude": [
     "node_modules"
