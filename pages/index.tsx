@@ -2,8 +2,8 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 import { fetchEntries } from '../utils/contentfulPosts'
-import Post from '../src/components/Post'
-import { Header } from '../src/components/Header/';
+import Post from '../components/Post'
+import { Header } from '../components/Header';
 
 export default function Home({posts}) {
 

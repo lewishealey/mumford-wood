@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 export interface NavLinkProps {
     href: string,
-    as: string,
-    link: string,
+    as?: string,
     children: string
 }
 

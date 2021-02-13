@@ -1,6 +1,5 @@
 const path = require('path');
 const withImages = require('next-images');
-module.exports = withImages();
 
 module.exports = withImages({
     target: 'serverless',
@@ -10,8 +9,8 @@ module.exports = withImages({
       CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
     },
     webpack(config) {
-      config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
-      config.resolve.alias['@images'] = path.join(__dirname, 'src/images');
+      config.resolve.alias['@components'] = path.join(__dirname, 'components');
+      config.resolve.alias['@images'] = path.join(__dirname, 'images');
       return config;
     },
   });
