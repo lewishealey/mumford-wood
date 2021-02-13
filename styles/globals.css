@@ -1,16 +1,21 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@font-face {
+    font-family: 'Gill Sans';
+    src: url('../assets/fonts/GillSans.woff2') format('woff2'),
+    url('../assets/fonts/GillSans.woff') format('woff');
+    font-weight: 400;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@font-face {
+    font-family: 'Trajan Pro';
+    src: url('../assets/fonts/TrajanPro-Regular.woff2') format('woff2'),
+    url('../assets/fonts/TrajanPro-Regular.woff') format('woff');
+    font-weight: 400;
 }
 
-* {
-  box-sizing: border-box;
+@font-face {
+    font-family: 'Optima';
+    src: url('../assets/fonts/Optima.woff2') format('woff2'),
+    url('../assets/fonts/Optima.woff') format('woff');
+    font-weight: 400;
 }
+

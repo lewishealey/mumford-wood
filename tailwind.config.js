@@ -102,7 +102,6 @@ module.exports = {
     },
     fontFamily: {
         logo: ['Trajan Pro', 'serif'],
-        title: ['Didot', 'serif'],
         heading: ['Optima', 'serif'],
         body: ['Gill Sans', 'sans-serif'],
     },
