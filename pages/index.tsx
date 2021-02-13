@@ -13,7 +13,7 @@ export default function Home({posts}) {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header title="Hello"/>
+      <Header/>
 
     <div className="posts bg-gray-200 m-2">
         {posts && <div>Contentful is connected</div>}
