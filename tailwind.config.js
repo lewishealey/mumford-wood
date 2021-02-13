@@ -64,6 +64,13 @@ module.exports = {
         40: '40rem',
         44: '44rem',
     },
+    borderColor: theme => ({
+        ...theme('colors'),
+         DEFAULT: theme('colors.gray.300', 'currentColor'),
+        'dark': '#222222',
+        'form': '#A5A1A1',
+        'fade': '#EFEDD8',
+    }),
     colors: {
         primary: {
             base: '#9A9779',
