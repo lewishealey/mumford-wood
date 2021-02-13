@@ -21,7 +21,7 @@ export const NavLink: React.FC<NavLinkProps> = ({
     if(asPath === href || asPath === as) {
         activeClassName = "border-dark";
     } else {
-        activeClassName = "border-none md:border-white";
+        activeClassName = "md:border-white";
     }
 
     return (
