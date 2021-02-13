@@ -6,6 +6,7 @@ import Post from '../src/components/Post'
 import { Header } from '../src/components/Header/';
 
 export default function Home({posts}) {
+
   return (
     <div className={styles.container}>
       <Head>

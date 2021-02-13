@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="18px" viewBox="0 0 24 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>bars-solid</title>
+    <g id="Mockups" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Header-/-Mobile" transform="translate(-32.000000, -41.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="bars-solid" transform="translate(32.000000, 41.000000)">
+                <path d="M0,0 L0,2 L24,2 L24,0 L0,0 Z M0,8 L0,10 L24,10 L24,8 L0,8 Z M0,16 L0,18 L24,18 L24,16 L0,16 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
