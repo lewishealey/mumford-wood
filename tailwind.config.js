@@ -101,7 +101,7 @@ module.exports = {
         pink: colors.fuchsia,
     },
     fontFamily: {
-        logo: ['Trajan Pro', 'serif'],
+        title: ['Trajan Pro', 'serif'],
         heading: ['Optima', 'serif'],
         body: ['Gill Sans', 'sans-serif'],
     },
