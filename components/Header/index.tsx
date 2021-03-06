@@ -32,10 +32,10 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={() => setMobileMenu(!mobileMenu)}>
                         <img src={mobileMenu ? TimesSolid : BarsSolid} alt="Menu" className="h-1"/>
                 </span>
-                <span className="font-logo text-white uppercase tracking-wider text-lg">Mumford & Wood</span>
+                <span className="font-title text-white uppercase tracking-wider text-lg font-normal">Mumford & Wood</span>
                 <span className="pr-1 md:hidden"><img src={Envelope} alt="Enquire" className="h-1"/></span>
             </div>
-            <span className="font-logo text-primary-base uppercase tracking-wider text-sm font-bold">EST. 1954</span>
+            <span className="font-title text-primary-base uppercase tracking-wider text-sm font-bold">EST. 1954</span>
             <div className="bg-primary-neutral h-0.5 w-full mt-1"></div>
             <div className="hidden md:flex">
                 <NavList />

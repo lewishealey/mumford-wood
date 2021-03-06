@@ -18,7 +18,9 @@
         "@components/*": ["components/*"],
         "@components": ["components"],
         "@assets/*": ["assets/*"],
-        "@assets": ["assets"]
+        "@assets": ["assets"],
+        "@lib/*": ["lib/*"],
+        "@lib": ["lib"]
       }
     },
     "include": ["next-env.d.ts", "custom.d.ts", "**/*.ts", "**/*.tsx","**/*.svg"],
