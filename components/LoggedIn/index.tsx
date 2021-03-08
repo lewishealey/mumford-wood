@@ -3,16 +3,6 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import Portal from '@components/Portal';
 import fire from '@lib/firebase';
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyApNfQ7ANfQDY2nj4TJtxhOOPrS00y9Su0",
-//     authDomain: "mumford-wood.firebaseapp.com",
-//     databaseURL: "https://mumford-wood-default-rtdb.europe-west1.firebasedatabase.app",
-//     projectId: "mumford-wood",
-//     storageBucket: "mumford-wood.appspot.com",
-//     messagingSenderId: "614169738612",
-//     appId: "1:614169738612:web:149e93d9d2cc2c41214021"
-// }
-
 // Configure FirebaseUI.
 const uiConfig = {
     // Popup signin flow rather than redirect flow.
@@ -27,9 +17,10 @@ const uiConfig = {
 
 export interface LoggedInProps {
     entity: string,
+    location: string
 }
 
-export default function LoggedIn({ entity, children }) {
+export default function LoggedIn({ entity, location, children }) {
     const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
 
   // Listen to the Firebase Auth state and set the local state.
@@ -37,6 +28,16 @@ export default function LoggedIn({ entity, children }) {
     const unregisterAuthObserver = fire.auth().onAuthStateChanged(user => {
       setIsSignedIn(!!user);
 
+      if(user) {
+        fire.firestore()
+            .collection('users')
+            .doc(fire.auth().currentUser.uid)
+            .set({
+                name: fire.auth().currentUser.displayName,
+                location,
+                date_updated: new Date()
+            });
+        }
     });
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
   }, []);
@@ -49,7 +50,7 @@ export default function LoggedIn({ entity, children }) {
     );
   }
   return (
-    <div>
+    <div className="w-full">
         <p>Welcome {fire.auth().currentUser.displayName}! You are now signed-in!</p>
         <a onClick={() => fire.auth().signOut()}>Sign-out</a>
         {children}

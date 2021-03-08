@@ -25,7 +25,7 @@ export const Header: React.FC<HeaderProps> = ({
                 &nbsp;
             </div>
         </div>
-        <div className="bg-neutral-0 w-full text-center flex justify-center flex-col pt-1 top-0 z-10 sticky shadow">
+        <div className="bg-neutral-0 w-full text-center flex justify-center flex-col pt-1 top-0 z-30 sticky shadow">
             <div className="flex justify-between md:justify-center items-center w-full">
                 <span
                     className="pl-1 md:hidden"

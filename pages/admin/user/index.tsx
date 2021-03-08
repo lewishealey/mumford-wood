@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import fire ,{ firebaseConfig } from '@lib/firebase';
-import AdminLayout from '@layouts/AdminLayout';
 
 const Index = () => {
 
@@ -32,9 +31,9 @@ const Index = () => {
 
     console.log(users)
 
-    return <AdminLayout title="Admin">
+    return <div>Admin
             <button type="submit" onClick={handleSubmit}>Save</button>
-    </AdminLayout>
+    </div>
 }
 
 export default Index

@@ -20,7 +20,11 @@
         "@assets/*": ["assets/*"],
         "@assets": ["assets"],
         "@lib/*": ["lib/*"],
-        "@lib": ["lib"]
+        "@lib": ["lib"],
+        "@forms/*": ["forms/*"],
+        "@forms": ["forms"],
+        "@layouts/*": ["layouts/*"],
+        "@layouts": ["layouts"]
       }
     },
     "include": ["next-env.d.ts", "custom.d.ts", "**/*.ts", "**/*.tsx","**/*.svg"],
