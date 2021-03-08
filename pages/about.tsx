@@ -5,13 +5,15 @@ import LoggedIn from '@components/LoggedIn';
 import Layout from 'layouts/Layout';
 import Body from '@components/Body';
 
+import Banner from '../images/aboutus-banner.jpg';
+
 
 export default function About() {
     return (
       <Layout
         layout="enquire"
         title="About"
-        image="http://www.mumfordwood.com/images/about-us/aboutus-banner.jpg">
+        image={Banner}>
 
         <h2 className="font-heading text-3xl mb-2">State-of-the-art manufacturing meets time served craftsmanship</h2>
         <Body>

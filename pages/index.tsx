@@ -5,11 +5,12 @@ import LoggedIn from '@components/LoggedIn';
 import Download from '@components/Download';
 import fire from '@lib/firebase';
 import Layout from '@layouts/Layout';
+import HomepageBanner from '../images/banner-front.jpg';
 
 
 export default function Home({posts}) {
     return (
-      <Layout image="http://www.mumfordwood.com/images/banners/Nov%202020/Brook-Bond-London1.jpg">
+      <Layout image={HomepageBanner}>
         <div className="posts bg-gray-200 m-2">
             {posts && <div>Contentful is connected</div>}
         </div>

@@ -34,7 +34,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
         {image &&
             <div className="mx-0.5 rounded-md overflow-hidden z-0">
-                <img src={image} />
+                <img src={image} className="w-full"/>
             </div>
         }
         <div className="container m-auto p-2 -mt-2 max-w-6xl bg-white border-t-4 border-primary-base border-solid z-10 relative">
