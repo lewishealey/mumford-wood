@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import Portal from '@components/Portal';
+import Portal from 'src/components/Portal';
 import fire from '@lib/firebase';
 
 // Configure FirebaseUI.

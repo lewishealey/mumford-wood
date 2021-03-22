@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
-import AdminLayout from '@layouts/AdminLayout';
+import AdminLayout from 'src/layouts/AdminLayout';
 import fire, { firebaseConfig } from '@lib/firebase';
 
 const User = () => {

@@ -17,7 +17,6 @@ export const NavLink: React.FC<NavLinkProps> = ({
 }) => {
     const { asPath } = useRouter();
     let activeClassName = "";
-    console.log(asPath,href)
     if(asPath === href || asPath === as) {
         activeClassName = "border-dark";
     } else {

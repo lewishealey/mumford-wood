@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Emblem from '@images/emblem.svg'
 import MadeInBritain from '@images/made-in-britain-white.svg'
 import NavList from '@components/NavList';
@@ -20,7 +21,9 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="flex-1 text-left">
                 <img src={MadeInBritain} alt="Made in Britain" className="h-3 mb-0.5"/>
             </div>
-            <img src={Emblem} alt="Emblem" className="h-4 mb-0.5 flex-1"/>
+            <Link href="/">
+                <a><img src={Emblem} alt="Emblem" className="h-4 mb-0.5 flex-1"/></a>
+            </Link>
             <div className="flex-1 text-right">
                 &nbsp;
             </div>

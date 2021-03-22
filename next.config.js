@@ -19,11 +19,12 @@ module.exports = withImages({
       CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
     },
     webpack(config) {
-      config.resolve.alias['@components'] = path.join(__dirname, 'components');
-      config.resolve.alias['@layouts'] = path.join(__dirname, 'layouts');
-      config.resolve.alias['@images'] = path.join(__dirname, 'images');
+      config.resolve.alias['@components'] = path.join(__dirname, './src/components');
+      config.resolve.alias['@layouts'] = path.join(__dirname, './src/layouts');
+      config.resolve.alias['@images'] = path.join(__dirname, './assets/images');
       config.resolve.alias['@lib'] = path.join(__dirname, 'lib');
-      config.resolve.alias['@forms'] = path.join(__dirname, 'forms');
+      config.resolve.alias['@forms'] = path.join(__dirname, './src/forms');
+      config.resolve.alias['@utils'] = path.join(__dirname, 'utils');
       return config;
     },
   });

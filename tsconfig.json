@@ -15,16 +15,18 @@
       "jsx": "preserve",
       "baseUrl": ".",
       "paths": {
-        "@components/*": ["components/*"],
-        "@components": ["components"],
+        "@components/*": ["src/components/*"],
+        "@components": ["src/components"],
         "@assets/*": ["assets/*"],
         "@assets": ["assets"],
         "@lib/*": ["lib/*"],
         "@lib": ["lib"],
-        "@forms/*": ["forms/*"],
-        "@forms": ["forms"],
-        "@layouts/*": ["layouts/*"],
-        "@layouts": ["layouts"]
+        "@forms/*": ["src/forms/*"],
+        "@forms": ["src/forms"],
+        "@layouts/*": ["src/layouts/*"],
+        "@layouts": ["src/layouts"],
+        "@utils/*": ["utils/*"],
+        "@utils": ["utils"]
       }
     },
     "include": ["next-env.d.ts", "custom.d.ts", "**/*.ts", "**/*.tsx","**/*.svg"],

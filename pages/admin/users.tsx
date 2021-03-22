@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import fire from '@lib/firebase';
-import AdminLayout from '@layouts/AdminLayout';
+import AdminLayout from 'src/layouts/AdminLayout';
 
 const Users = () => {
     const [users, setUsers] = useState([]);

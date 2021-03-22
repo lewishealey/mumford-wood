@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import fire ,{ firebaseConfig } from '@lib/firebase';
-import AdminLayout from '@layouts/AdminLayout';
+import AdminLayout from 'src/layouts/AdminLayout';
 
 const Index = () => {
 

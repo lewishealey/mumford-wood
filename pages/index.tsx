@@ -1,14 +1,14 @@
 import React from 'react';
-import { fetchEntries } from '../utils/contentfulPosts'
-import Post from '../components/Post'
+import { fetchEntries, fetchProducts } from '../utils/contentfulPosts'
 import LoggedIn from '@components/LoggedIn';
 import Download from '@components/Download';
 import fire from '@lib/firebase';
 import Layout from '@layouts/Layout';
-import HomepageBanner from '../images/banner-front.jpg';
+import HomepageBanner from '@images/banner-front.jpg';
 
 
 export default function Home({posts}) {
+    // console.log(posts)
     return (
       <Layout image={HomepageBanner}>
         <div className="posts bg-gray-200 m-2">
@@ -32,8 +32,10 @@ export default function Home({posts}) {
     );
   }
 
+
+
 export async function getStaticProps() {
-    const res = await fetchEntries()
+    const res = await fetchProducts()
     const posts = await res.map((p) => {
       return p.fields
     })

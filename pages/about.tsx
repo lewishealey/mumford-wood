@@ -1,20 +1,18 @@
 import React from 'react';
 import styles from '../styles/Home.module.css'
-import { Header } from '../components/Header';
+import { Header } from '@components/Header';
 import LoggedIn from '@components/LoggedIn';
-import Layout from 'layouts/Layout';
+import Layout from '@layouts/Layout';
 import Body from '@components/Body';
 
-import Banner from '../images/aboutus-banner.jpg';
+import Banner from '@images/aboutus-banner.jpg';
 
 
 export default function About() {
     return (
       <Layout
-        layout="enquire"
         title="About"
         image={Banner}>
-
         <h2 className="font-heading text-3xl mb-2">State-of-the-art manufacturing meets time served craftsmanship</h2>
         <Body>
             <p>The Mumford & Wood story began in 1954 when two woodworking apprentices, Derek Mumford and Dennis Wood, formed their own business partnership, primarily undertaking refurbishment work in and around Essex.</p>

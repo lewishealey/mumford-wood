@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import Head from 'next/head'
-import { Header } from '@components/Header';
-import { Enquire } from '@forms/Enquire';
+import { Header } from 'src/components/Header';
+import { Enquire } from 'src/forms/Enquire';
 
+//https://www.freecodecamp.org/news/how-to-add-interactive-animations-and-page-transitions-to-a-next-js-web-app-with-framer-motion/
 export interface LayoutProps {
-    layout?: string;
+    sidebar?: boolean;
     header?: boolean;
+    border?: boolean;
     title?: string;
     image?: string;
     children: any;
 }
 
 export const Layout: React.FC<LayoutProps> = ({
-    layout,
+    sidebar,
     header,
     title,
     image,
+    border = false,
     children
 }) => {
 
@@ -37,8 +40,8 @@ export const Layout: React.FC<LayoutProps> = ({
                 <img src={image} className="w-full"/>
             </div>
         }
-        <div className="container m-auto p-2 -mt-2 max-w-6xl bg-white border-t-4 border-primary-base border-solid z-10 relative">
-            {layout === "enquire" ?
+        <div className={`container m-auto max-w-6xl z-10 relative ${border && 'p-2 -mt-2 bg-white border-t-4 border-primary-base border-solid'}`}>
+            {sidebar ?
                 <div className="container m-auto flex-col px-1 md:flex-row md:gap-2 md:px-0 flex">
                     <div className="w-2/3">{children}</div>
                     <div className="w-1/3">

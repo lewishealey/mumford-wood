@@ -74,6 +74,7 @@ module.exports = {
     colors: {
         primary: {
             base: '#9A9779',
+            hover: '#807D64',
             fade: '#EFEDD8',
             neutral: '#F1F0EA'
         },
@@ -94,6 +95,7 @@ module.exports = {
             3: '#CACAC9',
             4: '#E9E9E9'
         },
+        black: colors.black,
         white: colors.white,
         gray: colors.coolGray,
         blue: colors.lightBlue,
