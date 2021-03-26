@@ -11,13 +11,6 @@ export default {
             defaultValue: 'default',
         },
     },
-    style: {
-        control: {
-            type: 'select',
-            options: ['primary', 'secondary', 'fade', 'ghost']
-        },
-        defaultValue: 'primary',
-    },
     label: {
         control: {
             type: 'text'
@@ -34,7 +27,6 @@ const Template = (args) => <TextField {...args} />;
 export const Playground = Template.bind({});
 
 Playground.args = {
-  style: 'primary',
   size: 'default',
-  children: 'Hello'
+  label: 'Label'
 };

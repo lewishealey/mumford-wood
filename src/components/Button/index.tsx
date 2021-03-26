@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import Link from 'next/link';
 
 export interface Props {
-    href: string;
-    title: string;
+    href?: string;
+    title?: string;
     style: string;
     size: 'default' | 'compact';
     children?: string;
@@ -46,7 +46,7 @@ export const Button: React.FC<Props> = ({
         break;
     }
 
-    const classes = classNames(`Button`, `Button--size-${size}`, `Button--style-${style}`,`relative flex rounded font-heading text-md items-center`, buttonStyle, buttonSize);
+    const classes = classNames(`w-full text-center justify-center relative flex rounded font-heading text-md items-center`, buttonStyle, buttonSize);
 
     if(href) {
         return (

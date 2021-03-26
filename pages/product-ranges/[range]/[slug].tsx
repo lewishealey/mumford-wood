@@ -1,15 +1,18 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { fetchProduct, fetchProducts } from '@utils/contentfulPosts'
-import { route } from 'next/dist/next-server/server/router';
+import Layout from 'src/layouts/Layout';
 
 export default function Product({product}) {
-    const router = useRouter();
-    // console.log(product)
+    const data = product[0];
+    console.log(product);
+
     return (
-        <>
+        <Layout
+        title={data?.title}
+        image={data?.hero?.fields?.file?.url}
+        border>
             Hello
-        </>
+        </Layout>
     );
   }
 
@@ -20,7 +23,7 @@ export default function Product({product}) {
     // Map the result of that query to a list of slugs.
     // This will give Next the list of all blog post pages that need to be
     // rendered at build time.
-    const paths = products.map(({ fields: { slug, type, range } }) => ({ params: { slug, type, range } }))
+    const paths = products.map(({ fields: { slug, range } }) => ({ params: { slug, range } }))
     //const paths = [];
     return {
       paths,
@@ -30,8 +33,8 @@ export default function Product({product}) {
 
 
   export async function getStaticProps(context) {
-    const { range, type } = context.params;
-    const res = await fetchProduct(range, type);
+    const { range, slug } = context.params;
+    const res = await fetchProduct(range, slug);
 
     const product = await res.map((p) => {
       return p.fields

@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import Success from '../../icons/circle-success.svg';
-import Error from '../../icons/circle-error.svg';
-import Warning from '../../icons/circle-warning.svg';
-import Loading from '../../icons/circle-loading.svg';
+import Success from '@icon/circle-success.svg';
+import Error from '@icon/circle-error.svg';
+import Warning from '@icon/circle-warning.svg';
+import Loading from '@icon/circle-loading.svg';
 
 export interface Props {
     size: number;
@@ -17,30 +17,10 @@ export const IconCircle: React.FC<Props> = ({
     style,
     size,
 }) => {
-       let iconName;
-       let animation = false;
-
-       switch(style) {
-            case 'success':
-                iconName = Success;
-                break;
-            case 'error':
-                iconName = Error;
-                break;
-            case 'warning':
-                iconName = Warning;
-                break;
-            case 'loading':
-                iconName = Loading;
-                animation = true;
-                break;
-       }
-
-       const classes = classNames(`IconCircle`, `IconCircle--style-${style}`,`relative flex rounded font-heading text-md items-center h-${size} w-${size} ${animation && 'animate-spin'}`);
-
-       return (
-            <img src={iconName} className={classes}/>
-        )
+       let animation = style === 'loading' ? true : false;
+       const classes = classNames(`relative flex rounded font-heading text-md items-center h-${size} w-${size} ${animation && 'animate-spin'}`);
+       const IconSVG = require(`@icon/circle-${style}.svg`);
+       return <IconSVG.ReactComponent className={classes} />;
   }
 
   export default IconCircle;

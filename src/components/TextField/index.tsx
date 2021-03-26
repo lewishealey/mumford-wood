@@ -5,9 +5,10 @@ import Link from 'next/link';
 export interface Props {
     type: string;
     label: string;
+    name: string;
     placeholder?: string;
     value?: string;
-    size: 'default' | 'compact';
+    size?: 'default' | 'compact';
 }
 
 // export class CounterDisplay extends React.PureComponent<CounterDisplayProps> {
@@ -15,6 +16,7 @@ export interface Props {
 export const TextField: React.FC<Props> = ({
     type,
     label,
+    name,
     placeholder,
     value,
     size,
@@ -36,7 +38,7 @@ export const TextField: React.FC<Props> = ({
     return (
         <div className="TextField__group w-full">
             {label && <label className="relative flex rounded font-heading text-md items-center mb-0.25">{label}</label>}
-            <input type={type} className={classes} value={value} placeholder={placeholder}/>
+            <input type={type} className={classes} name={name} value={value} placeholder={placeholder}/>
         </div>
     )
   }

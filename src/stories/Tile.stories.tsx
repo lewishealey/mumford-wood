@@ -1,4 +1,4 @@
-import Tile from './index';
+import Tile from '@components/Tile/index';
 
 export default {
   title: 'Components/Tile',
@@ -9,9 +9,9 @@ export default {
 const Template = (args) => <Tile {...args} />;
 
 //👇 Each story then reuses that template
-export const Primary = Template.bind({});
+export const Playground = Template.bind({});
 
-Primary.args = {
+Playground.args = {
   href: 'https://google.com',
   size: 'default',
   highlight: 'Hello',

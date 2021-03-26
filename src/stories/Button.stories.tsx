@@ -25,9 +25,9 @@ export default {
 const Template = (args) => <Button {...args} />;
 
 //👇 Each story then reuses that template
-export const Primary = Template.bind({});
+export const Playground = Template.bind({});
 
-Primary.args = {
+Playground.args = {
   style: 'primary',
   size: 'default',
   children: 'Hello'
