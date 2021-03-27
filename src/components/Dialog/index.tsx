@@ -2,11 +2,11 @@ import React from 'react';
 import IconCircle from '@components/IconCircle';
 
 export interface DialogProps {
-    children: string;
-    success: boolean;
-    error: boolean;
-    title: string;
-    summary: string;
+    children: any;
+    success?: boolean;
+    error?: boolean;
+    title?: string;
+    summary?: string;
 }
 
 export const Dialog: React.FC<DialogProps> = ({
@@ -24,8 +24,8 @@ export const Dialog: React.FC<DialogProps> = ({
                 {error && <IconCircle size={3} style="error"/>}
             </div>
 }
-            <h4 className="text-2xl font-heading mb-1">{title}</h4>
-            <p className="text-base font-body mb-1 text-neutral-1">{summary}</p>
+            {title && <h4 className="text-2xl font-heading mb-1">{title}</h4>}
+            {summary && <p className="text-base font-body mb-1 text-neutral-1">{summary}</p>}
             <div className="">
                 {children}
             </div>

@@ -6,14 +6,10 @@ const IconSVG = require(`@icon/chevron.svg`);
 type styles = 'neutral' | 'classic' | 'heritage' | 'conservation';
 type Props = {
     style: styles;
-    title: string;
-    summary: string;
 }
 
 export const Box: React.FC<Props> = ({
     style,
-    title,
-    summary
 }) => {
     let bgColor = 'bg-neutral-4';
 
@@ -31,8 +27,6 @@ export const Box: React.FC<Props> = ({
 
     return (
         <div className={`flex flex-col space-y-0.5 p-1.5 rounded-lg ${bgColor}`}>
-            {title && <h3 className="font-heading text-2xl color-gray">{title}</h3>}
-            {summary && <p className="font-body text-md">{summary}</p>}
         </div>
     )
   }

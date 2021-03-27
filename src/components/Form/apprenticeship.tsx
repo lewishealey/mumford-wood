@@ -8,6 +8,10 @@ export const Apprenticeship: React.FC = ({
 }) => {
 
     return <div className="space-y-1">
+            <div>
+                <h3 className="font-heading text-2xl color-gray">Apply for apprenticeship</h3>
+                <p className="font-body text-md text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget tincidunt felis. Aenean consectetur ligula lectus, pharetra fermentum lectus rutrum id.</p>
+            </div>
     <TextField
         type="text"
         label="First name*"

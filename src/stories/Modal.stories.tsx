@@ -1,4 +1,6 @@
-import Modal from '../components/Modal';
+import Modal from '@components/Modal';
+import Dialog from '@components/Dialog';
+import Form from '@components/Form';
 
 export default {
   title: 'Components/Modal',
@@ -8,5 +10,9 @@ export default {
     }
 }
 
-const Template = (args) => <Modal {...args} />;
+const Template = (args) => <Modal {...args}>
+        <Dialog>
+            <Form type="estimate" />
+        </Dialog>
+    </Modal>;
 export const Playground = Template.bind({});
