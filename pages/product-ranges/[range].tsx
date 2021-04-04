@@ -44,7 +44,7 @@ export default function ProductRange({ranges, products}) {
     // Map the result of that query to a list of slugs.
     // This will give Next the list of all blog post pages that need to be
     // rendered at build time.
-    const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }))
+    const paths = products.map(({ fields: { range } }) => ({ params: { range } }))
     //const paths = [];
     return {
       paths,
