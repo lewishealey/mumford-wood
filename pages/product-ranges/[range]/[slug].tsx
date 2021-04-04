@@ -89,27 +89,27 @@ export default function Product({product}) {
     }];
 
     const onGlazingFilter = (checklistItems) => {
-        console.log(checklistItems)
-        // let optionsArray = Object.values(checklistItems);
-        // let glazingItems = data?.glazing.filter( function (glass) {
-        //     const glassTags = getTags(glass); // get all tags in the glass item
-        //     const isInArray = isSelectionInTags(glassTags, optionsArray);
-        //     return isInArray;
-        // });
+        //console.log(checklistItems)
+        let optionsArray = Object.values(checklistItems);
+        let glazingItems = data?.glazing.filter( function (glass) {
+            const glassTags = getTags(glass); // get all tags in the glass item
+            const isInArray = isSelectionInTags(glassTags, optionsArray);
+            return isInArray;
+        });
 
-        // setGlassItems(glazingItems);
+        setGlassItems(glazingItems);
     }
 
     const onIronFilter = (checklistItems) => {
-        console.log(checklistItems)
-        // let optionsArray = Object.values(checklistItems);
-        // let ironmongeryItems = data?.ironmongery.filter( function (iron) {
-        //     const ironsTags = getTags(iron); // get all tags in the glass item
-        //     const isInArray = isSelectionInTags(ironsTags, optionsArray);
-        //     return isInArray;
-        // });
+        //console.log(checklistItems)
+        let optionsArray = Object.values(checklistItems);
+        let ironmongeryItems = data?.ironmongery.filter( function (iron) {
+            const ironsTags = getTags(iron); // get all tags in the glass item
+            const isInArray = isSelectionInTags(ironsTags, optionsArray);
+            return isInArray;
+        });
 
-        // setIronItems(ironmongeryItems);
+        setIronItems(ironmongeryItems);
     }
 
     return (
