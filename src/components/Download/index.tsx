@@ -1,27 +1,30 @@
 import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import fire from '@lib/firebase';
+
+type FileItem = {
+    fields: {
+        title: string;
+        file: {
+            details: {
+                size: number;
+            }
+            contentType: string;
+            url: string;
+        }
+    }
+}
 
 export interface DownloadProps {
     entity: string;
     user: object;
     title: string;
-    pdf?: string;
-    pdfLt?: string;
-    pdfOv?: string;
-    dwg?: string;
+    files: FileItem[];
 }
-
-// export class CounterDisplay extends React.PureComponent<CounterDisplayProps> {
 
 export const Download: React.FC<DownloadProps> = ({
     entity,
     title,
-    pdf,
-    pdfLt,
-    pdfOv,
-    dwg,
+    files
 }) => {
 
     const registerDownload = (event, type) => {
@@ -50,12 +53,11 @@ export const Download: React.FC<DownloadProps> = ({
     }
 
     return (
-        <div className="flex justify-between px-2 py-1 border-2 border-gray-200 border-solid w-full">
+        <div className="flex justify-between px-2 py-1 border-b border-gray-300 border-solid w-full">
             {title}
-            {dwg && <a href={dwg} onClick={(e) => registerDownload(e, 'DWG')}>DWG</a>}
-            {pdf && <a href={pdf} onClick={(e) => registerDownload(e, 'PDF')}>PDF</a>}
-            {pdfLt && <a href={pdfLt} onClick={(e) => registerDownload(e, 'LT PDF')}>LT PDF</a>}
-            {pdfOv && <a href={pdfOv} onClick={(e) => registerDownload(e, 'OV PDF')}>OV PDF</a>}
+            <div className="flex space-x-1">
+                {files && files.map((item, i) => <a href={item?.fields?.file?.url} onClick={(e) => registerDownload(e, item?.fields?.title)} className="hover:underline">{item?.fields?.title}</a>)}
+            </div>
         </div>
     )
   }

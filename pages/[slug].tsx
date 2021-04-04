@@ -1,28 +1,57 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import Layout from 'src/layouts/Layout';
-import { fetchPage, fetchPages } from '@utils/contentfulPosts'
+import { fetchPage, fetchPages } from '@utils/contentfulPosts';
+import Tile from '@components/Tile';
+import classNames from 'classnames';
+import { PageProvider } from '@utils/contexts.js';
+import { sectionClasses } from '@utils/helpers';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { options } from '@utils/contentfulOptions';
 
 export default function Page({ page }) {
     const data = page[0];
-    // console.log(data);
+    let breadcrumbs = null;
+    const summaryClasses = classNames(`font-body`, `text-base`, `md:text-lg`, `mb-3`, {
+        "text-left" : data?.sidebarType == "none"
+    });
+
+    console.log(data);
+    if(data?.parent) {
+        breadcrumbs = [{
+            label: data?.parent,
+            link: `/${data?.parent}`
+        },{
+            label: data?.title
+        }];
+    }
+
     return (
+        <PageProvider value={data?.parent}>
         <Layout
-        title={data?.title}>
-            Hello from a page {data?.title} {data?.slug}
+        title={data?.title}
+        breadcrumbs={breadcrumbs}
+        border={data?.border}
+        image={data?.thumbnail?.fields?.file?.url}
+        sidebar={data?.sidebarType}>
+            {data?.subtitle && <h2 className={sectionClasses}>{data?.subtitle}</h2>}
+            {data?.content && <p className={summaryClasses}>{documentToReactComponents(data?.content,options)}</p>}
+
+            {data && data?.sections &&
+                <div className="flex space-y-1 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1">
+                    {data?.sections?.map((section, i) =>
+                        <Tile key={i} href={section?.fields?.link} title={section?.fields?.title} size="default" image={section?.fields?.image?.fields?.file?.url}/>
+                    )}
+                </div>
+            }
+
         </Layout>
+        </PageProvider>
     );
   }
 
   export async function getStaticPaths() {
-    // Query Contentful for all products in the space
     const products = await fetchPages();
-
-    // Map the result of that query to a list of slugs.
-    // This will give Next the list of all blog post pages that need to be
-    // rendered at build time.
     const paths = products.map(({ fields: { slug, type, range } }) => ({ params: { slug, type, range } }))
-    //const paths = [];
     return {
       paths,
       fallback: false,

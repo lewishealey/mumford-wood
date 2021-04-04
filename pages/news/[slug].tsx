@@ -1,15 +1,27 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Layout from 'src/layouts/Layout';
-import { fetchArticle } from '@utils/contentfulPosts'
+import { fetchArticle } from '@utils/contentfulPosts';
+import { PageProvider } from '@utils/contexts.js';
 
 export default function Article({ page }) {
     const data = page[0];
+
+    const breadcrumbs = [{
+        label: 'News',
+        link: '/news'
+    },{
+        label: data?.title
+    }];
+
     return (
-        <Layout
-        title={data?.title}>
-            Hello from a page {data?.title} {data?.slug}
-        </Layout>
+        <PageProvider value="news">
+            <Layout
+            title={data?.title}
+            breadcrumbs={breadcrumbs}>
+                Hello from a page {data?.title} {data?.slug}
+            </Layout>
+        </PageProvider>
     );
   }
 

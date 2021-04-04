@@ -68,6 +68,14 @@ export async function fetchProductRanges() {
     console.log(`Error getting Entries for ${contentType.name}.`)
 }
 
+export async function fetchTeam() {
+    const entries = await client.getEntries({
+        content_type: 'teamMember',
+    })
+    if (entries.items) return entries.items
+    console.log(`Error getting Entries for ${contentType.name}.`)
+}
+
 
 export async function fetchPage(slug) {
     const page = await client.getEntries({
@@ -103,7 +111,7 @@ export async function fetchProductRange(range) {
     if (product.items) return product.items
 }
 
-export default { fetchEntries, fetchProduct, fetchProductRange, fetchProductRanges, fetchRangeProducts }
+export default { fetchEntries, fetchProduct, fetchProductRange, fetchProductRanges, fetchRangeProducts, fetchTeam }
 
 //contentful.entries(content_type: 'myUpdates', include: 10, 'fields.slug' => params[:id]).first
 

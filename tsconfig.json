@@ -17,8 +17,8 @@
       "paths": {
         "@components/*": ["src/components/*"],
         "@components": ["src/components"],
-        "@icon/*": ["src/icon/*"],
-        "@icon": ["src/icon"],
+        "@images/*": ["src/images/*"],
+        "@images": ["src/images"],
         "@lib/*": ["lib/*"],
         "@lib": ["lib"],
         "@forms/*": ["src/forms/*"],

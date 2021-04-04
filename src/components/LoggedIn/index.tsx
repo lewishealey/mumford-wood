@@ -50,9 +50,8 @@ export default function LoggedIn({ entity, location, children }) {
     );
   }
   return (
-    <div className="w-full">
-        <p>Welcome {fire.auth().currentUser.displayName}! You are now signed-in!</p>
-        <a onClick={() => fire.auth().signOut()}>Sign-out</a>
+    <div className="w-full font-heading">
+        <p className="mb-1">Logged in as <span className="font-bold">{fire.auth().currentUser.displayName}</span> <a className="text-primary-base underline cursor-pointer" onClick={() => fire.auth().signOut()}>Sign-out</a></p>
         {children}
     </div>
   );

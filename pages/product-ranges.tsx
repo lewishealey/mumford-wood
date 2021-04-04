@@ -7,12 +7,13 @@ export default function ProductRanges({ posts }) {
     // console.log(posts)
     return (
       <Layout
+      sidebar="none"
         title="Product Ranges">
             {/* <div className="posts bg-gray-200 m-2">
                 {posts && <div>Contentful is connected</div>}
             </div> */}
 
-            <div className="grid grid-cols-3 gap-1">
+            <div className="flex space-y-1 flex-col lg:grid lg:grid-cols-2 lg:gap-1">
                 {posts && posts?.map((post,i) =>
                     <Tile
                         href={`/product-ranges/${post?.slug}`}

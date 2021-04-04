@@ -1,17 +1,26 @@
 import React from 'react';
 import Layout from 'src/layouts/Layout';
 import Tile from '@components/Tile/'
-import { fetchProductRange, fetchProducts, fetchRangeProducts } from '@utils/contentfulPosts'
+import { fetchProductRange, fetchProducts, fetchRangeProducts } from '@utils/contentfulPosts';
+import { PageProvider } from '@utils/contexts.js';
 
 export default function ProductRange({ranges, products}) {
     const data = ranges[0];
-    console.log(products, data);
 
+    const breadcrumbs = [{
+        label: 'Product Ranges',
+        link: '/product-ranges'
+    },{
+        label: data?.title
+    },];
     return (
+        <PageProvider value="product-ranges">
         <Layout
+        sidebar="none"
+        breadcrumbs={breadcrumbs}
         title={data?.title}>
-            <p>{data?.content}</p>
-            <div className="grid grid-cols-3 gap-1">
+            {false && <p>{data?.content}</p>}
+            <div className="flex space-y-1 flex-col lg:grid lg:grid-cols-2 lg:gap-1">
                 {products && products?.map((post,i) =>
                     <Tile
                         href={`/product-ranges/${data?.slug}/${post?.slug}`}
@@ -24,6 +33,7 @@ export default function ProductRange({ranges, products}) {
                 )}
             </div>
         </Layout>
+        </PageProvider>
     );
   }
 

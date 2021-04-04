@@ -1,7 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Chevron from '../../icons/chevron.svg';
-const IconSVG = require(`@icon/chevron.svg`);
 
 type styles = 'neutral' | 'classic' | 'heritage' | 'conservation';
 type Props = {

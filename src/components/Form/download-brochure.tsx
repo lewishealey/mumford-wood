@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@components/TextField';
 import Button from '@components/Button';
 import ReCaptcha from '@components/ReCaptcha';
-import Checklist from '@components/Checklist';
+import Checkbox from '@components/Checkbox';
 
 export const DownloadBrochure: React.FC = ({
 
@@ -43,7 +43,7 @@ export const DownloadBrochure: React.FC = ({
         name="profession"
     />
     <ReCaptcha />
-    <Checklist label="I would like to receive more information by email"/>
+    <Checkbox id="information" name="info" label="I would like to receive more information by email" onChecked={() => console.log("Agree")}/>
     <Button
         size="default"
         style="primary"

@@ -17,7 +17,7 @@ module.exports = ({ config }) => {
 
     config.resolve.alias = {
         '@forms': path.join(__dirname, '../', 'src', 'forms'),
-        '@icon': path.join(__dirname, '../', 'src', 'icons'),
+        '@images': path.join(__dirname, '../', 'src', 'icons'),
         '@layouts': path.join(__dirname, '../', 'src', 'layouts'),
         '@components': path.join(__dirname, '../', 'src', 'components'),
         '@utils': path.join(__dirname, '../', 'src', 'utils'),
