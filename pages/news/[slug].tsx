@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Layout from 'src/layouts/Layout';
-import { fetchArticle } from '@utils/contentfulPosts';
+import { fetchArticle, fetchArticles } from '@utils/contentfulPosts';
 import { PageProvider } from '@utils/contexts.js';
 
 export default function Article({ page }) {
@@ -26,7 +26,7 @@ export default function Article({ page }) {
   }
 
   export async function getStaticPaths() {
-    const products = await fetchArticle();
+    const products = await fetchArticles();
     const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }))
     return {
       paths,

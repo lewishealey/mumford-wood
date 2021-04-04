@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from 'src/layouts/Layout';
 import Tile from '@components/Tile/'
-import { fetchProductRange, fetchProducts, fetchRangeProducts } from '@utils/contentfulPosts';
+import { fetchProductRange, fetchRanges, fetchRangeProducts } from '@utils/contentfulPosts';
 import { PageProvider } from '@utils/contexts.js';
 
 export default function ProductRange({ranges, products}) {
@@ -39,12 +39,12 @@ export default function ProductRange({ranges, products}) {
 
   export async function getStaticPaths() {
     // Query Contentful for all products in the space
-    const products = await fetchProducts();
+    const products = await fetchRanges();
 
     // Map the result of that query to a list of slugs.
     // This will give Next the list of all blog post pages that need to be
     // rendered at build time.
-    const paths = products.map(({ fields: { slug, type, range } }) => ({ params: { slug, type, range } }))
+    const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }))
     //const paths = [];
     return {
       paths,

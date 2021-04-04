@@ -60,7 +60,7 @@ export async function fetchArticle(slug) {
     if (product.items) return product.items
 }
 
-export async function fetchProductRanges() {
+export async function fetchRanges() {
     const entries = await client.getEntries({
         content_type: 'productRange',
     })
@@ -111,7 +111,7 @@ export async function fetchProductRange(range) {
     if (product.items) return product.items
 }
 
-export default { fetchEntries, fetchProduct, fetchProductRange, fetchProductRanges, fetchRangeProducts, fetchTeam }
+export default { fetchEntries, fetchProduct, fetchProductRange, fetchRanges, fetchRangeProducts, fetchTeam }
 
 //contentful.entries(content_type: 'myUpdates', include: 10, 'fields.slug' => params[:id]).first
 

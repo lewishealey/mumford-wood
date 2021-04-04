@@ -50,8 +50,8 @@ export default function Page({ page }) {
   }
 
   export async function getStaticPaths() {
-    const products = await fetchPages();
-    const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }))
+    const pages = await fetchPages();
+    const paths = pages.map(({ fields: { slug } }) => ({ params: { slug } }))
     return {
       paths,
       fallback: false,

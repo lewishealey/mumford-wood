@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from 'src/layouts/Layout';
 import Tile from '../src/components/Tile/'
-import { fetchProductRanges } from '../utils/contentfulPosts'
+import { fetchRanges } from '../utils/contentfulPosts'
 
 export default function ProductRanges({ posts }) {
     // console.log(posts)
@@ -32,7 +32,7 @@ export default function ProductRanges({ posts }) {
 
 
   export async function getStaticProps() {
-    const res = await fetchProductRanges()
+    const res = await fetchRanges()
     const posts = await res.map((p) => {
       return p.fields
     })

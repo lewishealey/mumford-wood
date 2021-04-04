@@ -79,9 +79,9 @@ export default function CaseStudy({ page, caseStudies }) {
 
   export async function getStaticPaths() {
     // Query Contentful for all products in the space
-    const products = await fetchCaseStudy();
+    const studies = await fetchCaseStudies();
 
-    const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }))
+    const paths = studies.map(({ fields: { slug } }) => ({ params: { slug } }))
     //const paths = [];
     return {
       paths,
