@@ -21,32 +21,32 @@ const checkboxes = [
 ];
 
 export default function MeetTheTeam({ members }) {
-    const [memberData, setmemberData] = useState(members);
+    // const [memberData, setmemberData] = useState(members);
 
-    const filterOptions = (options) => {
-        // TBC filter
-        let data = members.filter( function (item) {
-            console.log(item);
-            return item.type === 'factory';
-        });
-        setmemberData(data);
-    }
+    // const filterOptions = (options) => {
+    //     // TBC filter
+    //     let data = members.filter( function (item) {
+    //         console.log(item);
+    //         return item.type === 'factory';
+    //     });
+    //     setmemberData(data);
+    // }
 
     return (
         <PageProvider value="about-us">
             <Layout
             title="Meet the team"
             sidebar="none">
-                <Filter checkboxes={checkboxes} onFilter={filterOptions} />
+                <Filter checkboxes={checkboxes} onFilter={() => console.log("Filter")} />
                 <div className="flex space-y-1 flex-col lg:grid lg:grid-cols-2 lg:gap-1">
-                    {memberData && memberData?.map((member,i) =>
+                    {/* {members && members?.map((member,i) =>
                         <Card
                             image={member?.thumbnail?.fields?.file?.url}
                             title={member?.name}
                             summary={member?.jobTitle}
                             border={false}
                             key={i} />
-                    )}
+                    )} */}
                 </div>
             </Layout>
         </PageProvider>
@@ -54,10 +54,11 @@ export default function MeetTheTeam({ members }) {
   }
 
   export async function getStaticProps() {
-    const res = await fetchTeam()
+    const res = await fetchTeam();
     const members = await res.map((p) => {
       return p.fields
-    })
+    });
+
     return {
       props: {
         members,

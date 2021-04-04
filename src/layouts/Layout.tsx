@@ -48,14 +48,14 @@ export const Layout: React.FC<LayoutProps> = ({
         }
 
         {title &&
-            <div className="py-2 md:py-3 text-center justify-center">
+            <div className="py-2 md:py-3 text-center justify-center max-w-5xl m-auto">
                 <h1 className="font-title text-2xl md:text-4xl uppercase">{title}</h1>
                 {breadcrumbs && <Breadcrumb crumbs={breadcrumbs}/>}
             </div>
         }
 
         {image &&
-            <div className="mx-0.5 rounded-md overflow-hidden z-0 mb-1 md:mb-2 h-16">
+            <div className="mx-0.5 rounded-md overflow-hidden z-0 mb-1 md:mb-2 h-16 md:h-32">
                 <img src={image} className="w-full h-full object-cover"/>
             </div>
         }
