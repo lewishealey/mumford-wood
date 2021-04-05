@@ -4,11 +4,11 @@ import Tile from '@components/Tile';
 import Card from '@components/Card';
 import Layout from '@layouts/Layout';
 
-export default function Home({posts, ranges, caseStudies}) {
+export default function Home({ ranges, caseStudies }) {
     // console.log(posts)
     return (
       <Layout
-      image="http://www.mumfordwood.com/images/banners/Nov%202020/Brook-Bond-London1.jpg"
+        image="/img/brook-bond.jpeg"
         border={false}
         sidebar="none">
 

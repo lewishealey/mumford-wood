@@ -9,9 +9,6 @@ export default function ProductRanges({ posts }) {
       <Layout
       sidebar="none"
         title="Product Ranges">
-            {/* <div className="posts bg-gray-200 m-2">
-                {posts && <div>Contentful is connected</div>}
-            </div> */}
 
             <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
                 {posts && posts?.map((post,i) =>
