@@ -26,10 +26,13 @@ export default function Article({ page }) {
   }
 
   export async function getStaticPaths() {
-    const products = await fetchArticles();
-    const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }))
+    // const products = await fetchArticles();
+    // const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }));
+
     return {
-      paths,
+        paths: [
+            { params: { slug: 'mumford-wood-receives-certification' } },
+        ],
       fallback: false,
     }
   }

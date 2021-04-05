@@ -78,13 +78,14 @@ export default function CaseStudy({ page, caseStudies }) {
   }
 
   export async function getStaticPaths() {
-    // Query Contentful for all products in the space
-    const studies = await fetchCaseStudies();
+    // const studies = await fetchCaseStudies();
+    // const paths = studies.map(({ fields: { slug } }) => ({ params: { slug } }))
 
-    const paths = studies.map(({ fields: { slug } }) => ({ params: { slug } }))
-    //const paths = [];
     return {
-      paths,
+        paths: [
+            { params: { slug: 'large-renovation-and-remodelling-of-cambridgeshire-property' } },
+            { params: { slug: 'sliding-sashes-for-period-renovation' } },
+        ],
       fallback: false,
     }
   }

@@ -38,16 +38,15 @@ export default function ProductRange({ranges, products}) {
   }
 
   export async function getStaticPaths() {
-    // Query Contentful for all products in the space
-    const products = await fetchRanges();
+    // const products = await fetchRanges();
+    // const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }));
 
-    // Map the result of that query to a list of slugs.
-    // This will give Next the list of all blog post pages that need to be
-    // rendered at build time.
-    const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }))
-    //const paths = [];
     return {
-      paths,
+    paths: [
+        { params: { slug: 'conservation-range' } },
+        { params: { slug: 'heritage-range' } },
+        { params: { slug: 'classic-range' } },
+    ],
       fallback: false,
     }
   }
