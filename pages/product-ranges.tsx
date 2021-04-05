@@ -13,13 +13,13 @@ export default function ProductRanges({ posts }) {
                 {posts && <div>Contentful is connected</div>}
             </div> */}
 
-            <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-1">
+            <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
                 {posts && posts?.map((post,i) =>
                     <Tile
                         href={`/product-ranges/${post?.slug}`}
                         title={post?.title}
                         summary={post?.summary}
-                        size="compact"
+                        size="default"
                         border={false}
                         highlight={post?.area}
                         image={post?.thumbnail?.fields?.file?.url}
@@ -32,7 +32,7 @@ export default function ProductRanges({ posts }) {
 
 
   export async function getStaticProps() {
-    const res = await fetchRanges()
+    const res = await fetchRanges();
     const posts = await res.map((p) => {
       return p.fields
     })

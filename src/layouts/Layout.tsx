@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Head from 'next/head'
+import Head from 'next/head';
 import { Header } from '@components/Header';
 import { SubheaderRange } from '@components/SubHeaderRange';
 import { SubheaderContact } from '@components/SubheaderContact';
@@ -7,6 +7,9 @@ import Footer from '@components/Footer';
 import { useRouter } from 'next/router';
 import Form from '@components/Form';
 import Breadcrumb, { CrumbItem } from '@components/Breadcrumb';
+import {
+    GoogleReCaptchaProvider
+} from 'react-google-recaptcha-v3';
 
 //https://www.freecodecamp.org/news/how-to-add-interactive-animations-and-page-transitions-to-a-next-js-web-app-with-framer-motion/
 type Sidebar = 'none' | 'estimate' | 'brochure' | 'apprenticeship';
@@ -32,7 +35,8 @@ export const Layout: React.FC<LayoutProps> = ({
 }) => {
     const { asPath } = useRouter();
 
-    return <div>
+    return <GoogleReCaptchaProvider reCaptchaKey={process.env.CAPTCHA_SITE_KEY}>
+        <div>
         <Head>
             <title>{title} | Mumford & Wood</title>
             <link rel="icon" href="/favicon.ico" />
@@ -76,6 +80,7 @@ export const Layout: React.FC<LayoutProps> = ({
         </div>
         <Footer />
 </div>
+</GoogleReCaptchaProvider>
 }
 
 export default Layout;

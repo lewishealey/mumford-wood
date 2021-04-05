@@ -11,8 +11,8 @@ import { options } from '@utils/contentfulOptions';
 export default function Page({ page }) {
     const data = page[0];
     let breadcrumbs = null;
-    const summaryClasses = classNames(`font-body`, `text-base`, `md:text-lg`, `mb-3`, {
-        "text-left" : data?.sidebarType == "none"
+    const summaryClasses = classNames(`font-body`, `text-base`, `md:text-xl`, `mb-3`, {
+        "text-center" : data?.sidebarType == "none"
     });
 
     console.log(data);
@@ -34,10 +34,11 @@ export default function Page({ page }) {
         image={data?.thumbnail?.fields?.file?.url}
         sidebar={data?.sidebarType}>
             {data?.subtitle && <h2 className={sectionClasses}>{data?.subtitle}</h2>}
-            {data?.content && <div className={summaryClasses}>{documentToReactComponents(data?.content,options)}</div>}
+            {data?.summary && <div className={summaryClasses}>{data?.summary}</div>}
+            {data?.content && <div>{documentToReactComponents(data?.content,options)}</div>}
 
             {data && data?.sections &&
-                <div className="flex space-y-1 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1">
+                <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1">
                     {data?.sections?.map((section, i) =>
                         <Tile key={i} href={section?.fields?.link} title={section?.fields?.title} size="default" image={section?.fields?.image?.fields?.file?.url}/>
                     )}

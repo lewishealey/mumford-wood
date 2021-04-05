@@ -8906,7 +8906,7 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^3.3.0:
+hoist-non-react-statics@3.3.2, hoist-non-react-statics@^3.3.0:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -13647,6 +13647,13 @@ react-firebaseui@^4.1.0:
   integrity sha512-Y5pAom+W6/R5xZeF4xdvYiP7tObo7GDGWra1Pf2td+FxhtXtGQXQTKdW5Rs4js5zIuN0A3fApZzO+3sa1MHl9Q==
   dependencies:
     firebaseui "^4.1.0"
+
+react-google-recaptcha-v3@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/react-google-recaptcha-v3/-/react-google-recaptcha-v3-1.8.1.tgz#e81c7728ff50ed63d7fbd97bee04a8863abe3b53"
+  integrity sha512-cwCuTAe1R0W/mxjPfBMHIcZX717bXf3mVfW63DEuCl32P6E/Ghzz+haf+FO6GpOYVn26AdaPg8p9cKFTnyuXOA==
+  dependencies:
+    hoist-non-react-statics "3.3.2"
 
 react-google-recaptcha@^2.1.0:
   version "2.1.0"

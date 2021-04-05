@@ -75,7 +75,6 @@ export default function Product({product}) {
 
     const [glassItems, setGlassItems] = useState(data?.glazing);
     const [ironItems, setIronItems] = useState(data?.ironmongery);
-    const [isChecked, setIsChecked] = useState(true);
 
     const breadcrumbs = [{
         label: 'Product Ranges',

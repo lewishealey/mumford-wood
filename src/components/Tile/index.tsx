@@ -25,7 +25,7 @@ export const Tile: React.FC<Props> = ({
     children
 }) => {
 
-    const defineSize = (size === 'default' ? 'h-28' : 'h-24');
+    const defineSize = (size === 'default' ? 'h-32' : 'h-24');
 
     return (
         <Link href={href}>
