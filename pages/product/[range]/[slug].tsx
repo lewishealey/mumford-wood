@@ -269,7 +269,7 @@ export default function Product({product}) {
 
   function getTags(glass) {
     let tags = [];
-    glass.metadata.tags.map(tag => {
+    glass.metadata.tags.forEach(tag => {
         tags.push(tag.sys.id);
     })
     return tags;
@@ -277,7 +277,7 @@ export default function Product({product}) {
 
   function isSelectionInTags(itemTags, selectedTags) {
     let result = false;
-    itemTags.map(item => {
+    itemTags.forEach(item => {
         console.info(item, selectedTags, selectedTags.includes(item));
         if(selectedTags.includes(item)){
             result = true;

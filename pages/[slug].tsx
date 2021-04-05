@@ -34,7 +34,7 @@ export default function Page({ page }) {
         image={data?.thumbnail?.fields?.file?.url}
         sidebar={data?.sidebarType}>
             {data?.subtitle && <h2 className={sectionClasses}>{data?.subtitle}</h2>}
-            {data?.content && <p className={summaryClasses}>{documentToReactComponents(data?.content,options)}</p>}
+            {data?.content && <div className={summaryClasses}>{documentToReactComponents(data?.content,options)}</div>}
 
             {data && data?.sections &&
                 <div className="flex space-y-1 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1">
