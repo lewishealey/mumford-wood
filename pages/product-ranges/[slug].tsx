@@ -44,7 +44,7 @@ export default function ProductRange({ranges, products}) {
     // Map the result of that query to a list of slugs.
     // This will give Next the list of all blog post pages that need to be
     // rendered at build time.
-    const paths = products.map(({ fields: { range } }) => ({ params: { range } }))
+    const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }))
     //const paths = [];
     return {
       paths,
@@ -54,9 +54,9 @@ export default function ProductRange({ranges, products}) {
 
 
   export async function getStaticProps(context) {
-    const { range } = context.params;
-    const resR = await fetchProductRange(range);
-    const resP = await fetchRangeProducts(range);
+    const { slug } = context.params;
+    const resR = await fetchProductRange(slug);
+    const resP = await fetchRangeProducts(slug);
 
     const ranges = await resR.map((p) => {
       return p.fields

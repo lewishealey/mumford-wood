@@ -111,8 +111,6 @@ export async function fetchProductRange(range) {
     if (product.items) return product.items
 }
 
-export default { fetchEntries, fetchProduct, fetchProductRange, fetchRanges, fetchRangeProducts, fetchTeam }
-
 //contentful.entries(content_type: 'myUpdates', include: 10, 'fields.slug' => params[:id]).first
 
 //this.contentfulClient.getEntries({
