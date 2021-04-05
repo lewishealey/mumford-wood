@@ -4,8 +4,10 @@ import Layout from 'src/layouts/Layout';
 import { fetchArticle, fetchArticles } from '@utils/contentfulPosts';
 import { PageProvider } from '@utils/contexts.js';
 
-export default function Article({ page }) {
+export default function Article({ page, products, paths }) {
     const data = page[0];
+
+    console.log(products, paths)
 
     const breadcrumbs = [{
         label: 'News',
@@ -26,13 +28,11 @@ export default function Article({ page }) {
   }
 
   export async function getStaticPaths() {
-    // const products = await fetchArticles();
-    // const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }));
+    const products = await fetchArticles();
+    const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }));
 
     return {
-        paths: [
-            { params: { slug: 'mumford-wood-receives-certification' } },
-        ],
+        paths,
       fallback: false,
     }
   }
@@ -42,13 +42,19 @@ export default function Article({ page }) {
     const { slug } = context.params;
     const res = await fetchArticle(slug);
 
+    const products = await fetchArticles();
+    const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }));
+
+
     const page = await res.map((p) => {
       return p.fields
     })
 
     return {
       props: {
-        page
+        page,
+        products,
+        paths
       },
     }
   }

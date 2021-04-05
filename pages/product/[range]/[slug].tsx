@@ -82,7 +82,7 @@ export default function Product({product}) {
         link: '/product-ranges'
     },{
         label: `${data?.range.replace("-"," ")}™`,
-        link: `/product-ranges/${data?.range}`
+        link: `/product/${data?.range}`
     },
     {
         label: data?.title
@@ -136,6 +136,7 @@ export default function Product({product}) {
                         <div className="flex column w-full flex-wrap border-gray-300 border rounded">
                             {data?.profiles.map((profile, i) =>
                                 <Download
+                                key={i}
                                 title={profile?.fields?.title}
                                 entity="Product Page"
                                 user={fire.auth()}
@@ -226,6 +227,7 @@ export default function Product({product}) {
                                         size={file?.fields?.file?.details?.size}
                                         href={file?.fields?.file?.url}
                                         title={file?.fields?.title}
+                                        key={`file_${i}`}
                                     />
                                 )}
                             </div>
@@ -238,13 +240,11 @@ export default function Product({product}) {
   }
 
   export async function getStaticPaths() {
-    // const products = await fetchProducts();
-    // const paths = products.map(({ fields: { slug, range } }) => ({ params: { slug, range } }))
+    const products = await fetchProducts();
+    const paths = products.map(({ fields: { slug, range } }) => ({ params: { slug, range } }))
 
     return {
-        paths: [
-            { params: { slug: 'conservation-box-sash', range: 'conservation' } },
-        ],
+        paths,
       fallback: false,
     }
   }

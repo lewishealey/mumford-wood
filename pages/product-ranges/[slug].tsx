@@ -23,7 +23,7 @@ export default function ProductRange({ranges, products}) {
             <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-1">
                 {products && products?.map((post,i) =>
                     <Tile
-                        href={`/product-ranges/${data?.slug}/${post?.slug}`}
+                        href={`/product/${data?.slug}/${post?.slug}`}
                         title={post?.title}
                         size="compact"
                         border={false}
@@ -38,16 +38,12 @@ export default function ProductRange({ranges, products}) {
   }
 
   export async function getStaticPaths() {
-    // const products = await fetchRanges();
-    // const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }));
+    const products = await fetchRanges();
+    const paths = products.map(({ fields: { slug } }) => ({ params: { slug } }));
 
     return {
-    paths: [
-        { params: { slug: 'conservation-range' } },
-        { params: { slug: 'heritage-range' } },
-        { params: { slug: 'classic-range' } },
-    ],
-      fallback: false,
+        paths,
+        fallback: false,
     }
   }
 

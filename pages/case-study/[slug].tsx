@@ -78,15 +78,12 @@ export default function CaseStudy({ page, caseStudies }) {
   }
 
   export async function getStaticPaths() {
-    // const studies = await fetchCaseStudies();
-    // const paths = studies.map(({ fields: { slug } }) => ({ params: { slug } }))
+    const studies = await fetchCaseStudies();
+    const paths = studies.map(({ fields: { slug } }) => ({ params: { slug } }))
 
     return {
-        paths: [
-            { params: { slug: 'large-renovation-and-remodelling-of-cambridgeshire-property' } },
-            { params: { slug: 'sliding-sashes-for-period-renovation' } },
-        ],
-      fallback: false,
+        paths,
+        fallback: false,
     }
   }
 

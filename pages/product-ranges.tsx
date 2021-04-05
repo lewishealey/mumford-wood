@@ -13,7 +13,7 @@ export default function ProductRanges({ posts }) {
                 {posts && <div>Contentful is connected</div>}
             </div> */}
 
-            <div className="flex space-y-1 flex-col lg:grid lg:grid-cols-2 lg:gap-1">
+            <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-1">
                 {posts && posts?.map((post,i) =>
                     <Tile
                         href={`/product-ranges/${post?.slug}`}
