@@ -12,10 +12,10 @@ export const Footer: React.FC<Props> = ({
         <div className="p-2 bg-gray-100 mt-2">
             <div className="container m-auto max-w-6xl">
                 <div className="flex">
-                <div className="w-1/3">
+                <div className="w-full md:w-1/3">
                     <h5 className="font-heading text-xl mb-1">Pages</h5>
                 </div>
-                <div className="w-1/3">
+                <div className="w-full md:w-1/3">
                     <h5 className="font-heading text-xl mb-1">Social</h5>
                     <div className="flex space-x-1">
                         <div><Image src="/img/facebook.svg" height={40} width={40} alt="Facebook"/></div>
@@ -24,7 +24,7 @@ export const Footer: React.FC<Props> = ({
                         <div><Image src="/img/linkedin.svg" height={40} width={40} alt="Linkedin"/></div>
                     </div>
                 </div>
-                <div className="w-1/2">
+                <div className="w-full md:w-1/2">
                     <h5 className="font-heading text-xl mb-1">Sign up to our newsletter</h5>
                     <div className="flex space-x-1 items-end">
                         <TextField
@@ -48,7 +48,7 @@ export const Footer: React.FC<Props> = ({
                     </div>
                 </div>
             </div>
-            <div className="flex space-x-1 justify-between mt-3">
+            <div className="flex flex-wrap md:flex-nowrap space-x-1 justify-between mt-3">
                 <div className="flex items-center"><Image src="/img/iso.png" height={50} width={62} alt="ISO"/></div>
                 <div className="flex items-center"><Image src="/img/fsc.png" height={69} width={69} alt="FSC"/></div>
                 <div className="flex items-center"><Image src="/img/ukca.png" height={39} width={39} alt="UKCA"/></div>

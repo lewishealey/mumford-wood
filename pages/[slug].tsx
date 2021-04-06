@@ -38,7 +38,7 @@ export default function Page({ page }) {
             {data?.content && <div>{documentToReactComponents(data?.content,options)}</div>}
 
             {data && data?.sections &&
-                <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1">
+                <div className="flex space-y-2 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1">
                     {data?.sections?.map((section, i) =>
                         <Tile key={i} href={section?.fields?.link} title={section?.fields?.title} size="default" image={section?.fields?.image?.fields?.file?.url}/>
                     )}
