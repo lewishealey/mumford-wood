@@ -16,13 +16,13 @@ export const Breadcrumb: React.FC<Props> = ({
     return (
         <div className="flex space-x-0.5 items-center justify-center mt-0.5 md:mt-1">
             {crumbs?.map((crumb,i)=>
-            <span key={i}>
-               {crumbs.length == i+1 ? <div className="text-sm font-body font-bold capitalize">{crumb.label}</div> : <Link href={crumb.link}>
+            <span key={i} className="flex items-center">
+               {crumbs.length == i+1 ? <div className="text-sm font-body font-bold capitalize items-center">{crumb.label}</div> : <Link href={crumb.link}>
                     <a className="hover:underline text-gray-600 text-sm font-body capitalize">
                         {crumb.label}
                     </a>
                 </Link>}
-                {crumbs.length !== i+1 && <span className="items-center"><Image src={"/img/chevron.svg"} height={12} width={12} /></span> }
+                {crumbs.length !== i+1 && <span className="items-center ml-0.5"><Image src={"/img/chevron.svg"} height={12} width={12} /></span> }
             </span>
             )}
         </div>
