@@ -109,7 +109,13 @@ module.exports = {
         heading: ['Optima', 'serif'],
         body: ['Gill Sans', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+        zIndex: {
+            '-1': '-1',
+            '-5': '-5',
+            '-10': '-10',
+        }
+    },
   },
   variants: {
     extend: {},

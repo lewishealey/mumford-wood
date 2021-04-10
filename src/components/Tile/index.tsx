@@ -36,7 +36,7 @@ export const Tile: React.FC<Props> = ({
                     <div className="bg-white text-center py-0.75 shadow-md rounded-md px-1">
                         {highlight && <h3 className="font-heading text-primary-base text-sm md:text-base uppercase font-bold tracking-widest md:mb-0.5">{highlight}</h3>}
                         {title && <h4 className="font-heading text-neutral-0 text-xl m-0">{title}</h4>}
-                        {summary && <p className="font-body m-0 mt-0.5 text-neutral-0 text-center">{summary}</p>}
+                        {summary && <p className="font-body m-0 text-neutral-0 text-center">{summary}</p>}
                     </div>
                 </div>
             </a>

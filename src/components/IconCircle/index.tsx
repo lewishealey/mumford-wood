@@ -15,7 +15,7 @@ export const IconCircle: React.FC<Props> = ({
 }) => {
        let animation = style === 'loading' ? true : false;
        const classes = classNames(`relative flex rounded font-heading text-md items-center h-${size} w-${size} ${animation && 'animate-spin'}`);
-       return <div className={classes} />;
+       return <div className={classes}><img src={`/img/circle-${style}.svg`} /></div>;
   }
 
   export default IconCircle;

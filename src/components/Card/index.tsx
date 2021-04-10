@@ -11,6 +11,7 @@ export interface Props {
     height?: string;
     image: string;
     border: boolean;
+    thumbnail?: string;
 }
 
 export const Card: React.FC<Props> = ({
@@ -20,10 +21,11 @@ export const Card: React.FC<Props> = ({
     summary,
     height,
     image,
-    border
+    border,
+    thumbnail
 }) => {
     const classes = classNames(
-        `mb-0.5 object-cover ${height} w-full rounded-sm`,
+        `mb-0.5 object-${thumbnail} ${height} w-full rounded-sm`,
         { 'border border-solid border border-neutral-3': border }
     );
 
@@ -49,5 +51,6 @@ export const Card: React.FC<Props> = ({
 
   Card.defaultProps = {
       image: "http://www.mumfordwood.com/images/quick-links/Mumford-Wood-Brochure-2017.jpg",
-      height: "h-14"
+      height: "h-14",
+      thumbnail: "cover"
   }

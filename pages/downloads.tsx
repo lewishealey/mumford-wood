@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from 'src/layouts/Layout';
 import { PageProvider } from '@utils/contexts.js';
+import LoggedIn from '@components/LoggedIn';
 
 export default function Downloads() {
 
@@ -17,7 +18,9 @@ export default function Downloads() {
             title="Downloads"
             sidebar="none"
             breadcrumbs={breadcrumbs}>
-                wcfwe
+                <LoggedIn location="Downloads" entity="Downloads">
+                    Downloads
+                </LoggedIn>
             </Layout>
         </PageProvider>
     );

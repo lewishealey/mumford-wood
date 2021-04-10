@@ -6,7 +6,7 @@ import RequestEstimate from './request-estimate';
 
 type types = 'brochure' | 'apprenticeship' | 'estimate';
 type Props = {
-    type: types;
+    type: types | any;
 }
 
 export const Form: React.FC<Props> = ({

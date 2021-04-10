@@ -71,10 +71,12 @@ const ironCheckboxes = {
 
 export default function Product({product}) {
     const data = product[0];
-    console.log(data);
+    // console.log(data);
 
     const [glassItems, setGlassItems] = useState(data?.glazing);
     const [ironItems, setIronItems] = useState(data?.ironmongery);
+
+    const downloadPageDefinition = `Product / ${data?.range.replace("-"," ")}™ / ${data?.title}`;
 
     const breadcrumbs = [{
         label: 'Product Ranges',
@@ -117,6 +119,7 @@ export default function Product({product}) {
             title={data?.title}
             image={data?.hero?.fields?.file?.url}
             breadcrumbs={breadcrumbs}
+            gallery={data?.gallery}
             border>
                 <section className="mb-4">
                     <h2 className={sectionClasses}>Introduction</h2>
@@ -128,30 +131,12 @@ export default function Product({product}) {
                     <Gallery items={data?.gallery} />
                 </section> }
 
-                {data?.profiles && <section className="mb-4">
-                    <h2 className={sectionClasses}>Profiles</h2>
-                    <LoggedIn location="Homepage" entity="CAD profiles">
-
-                        <div className="flex column w-full flex-wrap border-gray-300 border rounded">
-                            {data?.profiles.map((profile, i) =>
-                                <Download
-                                key={i}
-                                title={profile?.fields?.title}
-                                entity="Product Page"
-                                user={fire.auth()}
-                                files={profile?.fields?.files}
-                            />)}
-                        </div>
-
-                    </LoggedIn>
-                </section>}
-
                 {data?.finishContent &&
                     <section className="mb-4">
                         <h2 className={sectionClasses}>Finish</h2>
                         <div className="mb-2">{documentToReactComponents(data?.finishContent,options)}</div>
 
-                        <div className="grid grid-cols-4 gap-1">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-1">
                             {data?.finishes && data?.finishes.map((finish, i) =>
                                 <Card
                                 image={finish?.fields?.thumbnail?.fields?.file?.url}
@@ -165,13 +150,20 @@ export default function Product({product}) {
                     </section>
                 }
 
+                {data?.profiles &&
+                    <section className="mb-4">
+                        <h2 className={sectionClasses}>Profiles</h2>
+                        <p>4 types of profiles</p>
+                    </section>
+                }
+
                 {glassItems &&
                     <section className="mb-4">
                         <h2 className={sectionClasses}>Glass</h2>
                         <div className="mb-1">
                             <Checklist items={checkboxes} onChecked={onGlazingFilter} />
                         </div>
-                        <div className="grid grid-cols-2 gap-x-1 gap-y-2">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-1 gap-y-2">
                             {glassItems && glassItems.map((glass, i) =>
                                 <Card
                                 image={glass?.fields?.thumbnail?.fields?.file?.url}
@@ -179,6 +171,7 @@ export default function Product({product}) {
                                 highlight={glass?.fields?.thickness}
                                 summary={glass?.fields?.content}
                                 border={true}
+                                thumbnail="scale-down"
                                 key={i} />
                             )}
                         </div>
@@ -191,7 +184,7 @@ export default function Product({product}) {
                         <div className="mb-1">
                             <Checklist items={ironCheckboxes} onChecked={onIronFilter} />
                         </div>
-                        <div className="grid grid-cols-3 gap-x-1 gap-y-2">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-1 gap-y-2">
                             {ironItems && ironItems.map((iron, i) =>
                                 <Card
                                 image={iron?.fields?.thumbnail?.fields?.file?.url}
@@ -200,6 +193,7 @@ export default function Product({product}) {
                                 summary={iron?.fields?.content}
                                 border={true}
                                 height="h-10"
+                                thumbnail="scale-down"
                                 key={i} />
                             )}
                         </div>
@@ -212,6 +206,24 @@ export default function Product({product}) {
                         <div className="mb-2">{documentToReactComponents(data?.technicalSpecs,options)}</div>
                     </section>
                 }
+
+                {data?.profiles && <section className="mb-4">
+                    <h2 className={sectionClasses}>CAD Drawings</h2>
+                    <LoggedIn location="Homepage" entity="CAD profiles">
+
+                        <div className="flex column w-full flex-wrap border-gray-300 border rounded">
+                            {data?.profiles.map((profile, i) =>
+                                <Download
+                                key={i}
+                                title={profile?.fields?.title}
+                                entity={downloadPageDefinition}
+                                user={fire.auth()}
+                                files={profile?.fields?.files}
+                            />)}
+                        </div>
+
+                    </LoggedIn>
+                </section>}
 
                 {data?.cadComplianceContent &&
                     <section className="mb-4">
@@ -277,7 +289,7 @@ export default function Product({product}) {
   function isSelectionInTags(itemTags, selectedTags) {
     let result = false;
     itemTags.forEach(item => {
-        console.info(item, selectedTags, selectedTags.includes(item));
+        // console.info(item, selectedTags, selectedTags.includes(item));
         if(selectedTags.includes(item)){
             result = true;
         }

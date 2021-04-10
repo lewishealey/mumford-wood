@@ -1,21 +1,24 @@
-import React from 'react';
-import Overlay from '@components/Overlay'
+import React, { useEffect } from "react";
+import { createPortal } from "react-dom";
+import Overlay from '@components/Overlay';
 
-export interface NavLinkProps {
-    children: any
+export interface Props {
+    children: any;
+    isOpen: boolean;
 }
 
-export const NavLink: React.FC<NavLinkProps> = ({
-    children
+export const Modal: React.FC<Props> = ({
+    isOpen,
+    children,
 }) => {
-    return (
-        <div className="fixed top-0 left-0 h-full w-full">
-            <div className="absolute top-0 left-0 h-full w-full flex z-10 justify-center items-center">
+
+    return isOpen ? (
+        <div className="fixed top-0 left-0 h-full w-full z-40">
+            <div className="absolute top-0 left-0 h-full w-full flex z-50 justify-center items-center">
                 {children}
             </div>
             <Overlay />
-        </div>
-    )
+        </div>) : null;
   }
 
-  export default NavLink;
+  export default Modal;

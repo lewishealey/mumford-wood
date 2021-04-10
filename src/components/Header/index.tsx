@@ -13,20 +13,20 @@ export const Header: React.FC<HeaderProps> = ({
     const [mobileMenu, setMobileMenu] = useState(false);
     return (
         <>
-        <div className="hidden md:flex bg-neutral-0 w-full text-center justify-between content-center items-center flex-row pt-0.5 -mb-0.5 px-2 hidden">
+        <div className="hidden md:flex bg-neutral-0 w-full text-center justify-between content-center items-center flex-row pt-0.5 -mb-0.5 px-2 z-20">
             <div className="flex-1 text-left">
                 <img src="/img/made-in-britain-white.svg" alt="Made in Britain" className="h-3"/>
             </div>
-            <Link href="/">
+            <a href="/">
                 <div className="flex items-bottom bottom-0">
                     <Image src="/img/emblem.svg" width={64} height={71} alt="Emblem" />
                 </div>
-            </Link>
+            </a>
             <div className="flex-1 text-right">
                 &nbsp;
             </div>
         </div>
-        <div className="bg-neutral-0 w-full text-center flex justify-center flex-col pt-0.5 top-0 z-30 sticky shadow">
+        <div className="bg-neutral-0 w-full text-center flex justify-center flex-col pt-0.5 top-0 relative shadow">
             <div className="flex justify-between md:justify-center items-center w-full">
                 <span
                     className="pl-1 md:hidden"
@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {mobileMenu &&
-            <div className="top-5 fixed z-30 bg-primary-neutral h-full w-full">
+            <div className="top-5 fixed bg-primary-neutral h-full w-full">
                 <NavList />
             </div>
         }

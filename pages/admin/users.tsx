@@ -7,6 +7,8 @@ const Users = () => {
 
       //https://medium.com/swlh/lets-create-blog-app-with-next-js-react-hooks-and-firebase-backend-tutorial-7ce6fd7bbb3a#3c58
 
+      console.log(users);
+
       useEffect(() => {
         fire.firestore()
           .collection('users')

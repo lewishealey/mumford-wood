@@ -20,7 +20,7 @@ export default function ProductRange({ranges, products}) {
         breadcrumbs={breadcrumbs}
         title={data?.title}>
             {false && <p>{data?.content}</p>}
-            <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-1 w-3/4 m-auto">
+            <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1 m-auto">
                 {products && products?.map((post,i) =>
                     <Tile
                         href={`/product/${data?.slug}/${post?.slug}`}

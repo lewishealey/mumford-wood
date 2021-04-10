@@ -8,6 +8,7 @@ export interface Props {
     style: string;
     size: 'default' | 'compact';
     children?: string;
+    onClick?: () => void;
 }
 
 // export class CounterDisplay extends React.PureComponent<CounterDisplayProps> {
@@ -17,7 +18,8 @@ export const Button: React.FC<Props> = ({
     title,
     style,
     size,
-    children
+    children,
+    onClick,
 }) => {
     let buttonStyle;
     let buttonSize;
@@ -58,7 +60,7 @@ export const Button: React.FC<Props> = ({
         )
     } else {
         return (
-            <button className={classes} title={title}>
+            <button type="submit" className={classes} title={title} onClick={onClick}>
                 {children}
             </button>
         )

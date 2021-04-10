@@ -22,10 +22,10 @@ export const Keys: React.FC<Props> = ({
     return (
         <div className="inline-flex rounded-md overflow-hidden">
             <div className={styleType} onClick={() => handleArrowClick("prev")}>
-                Left
+                <img src={`/img/arrow-left-${type}.svg`} />
             </div>
             <div className={styleType} onClick={() => handleArrowClick("next")}>
-                Right
+                <img src={`/img/arrow-right-${type}.svg`} />
             </div>
         </div>
     )

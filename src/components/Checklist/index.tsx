@@ -17,7 +17,7 @@ const Checklist: React.FunctionComponent<Props> = ({
     items,
     onChecked,
 }) => {
-    const classes = classNames(`flex`,`space-x-1`);
+    const classes = classNames(`md:flex`,`md:space-x-1`);
     const [checkedItems, setCheckedItems] = useState(items);
 
     const handleChange = (checkbox: CheckboxItem) => {
@@ -58,6 +58,7 @@ const Checklist: React.FunctionComponent<Props> = ({
             <div className={classes}>
                 {checkedItems && Object.keys(checkedItems).map((key, i) => {
                     return <Checkbox
+                            key={i}
                             label={checkedItems[key].label}
                             id={checkedItems[key].id}
                             checked={checkedItems[key].checked}

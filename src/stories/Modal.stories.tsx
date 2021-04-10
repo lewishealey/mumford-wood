@@ -11,7 +11,7 @@ export default {
 }
 
 const Template = (args) => <Modal {...args}>
-        <Dialog>
+        <Dialog onCloseClick={() => console.log("Close")}>
             <Form type="estimate" />
         </Dialog>
     </Modal>;
