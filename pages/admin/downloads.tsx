@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import fire from '@lib/firebase';
 import AdminLayout from '@layouts/AdminLayout';
+import Moment from 'react-moment';
 
 const Downloads = () => {
     const [downloads, setDownloads] = useState([]);
@@ -19,6 +20,7 @@ const Downloads = () => {
           });
       }, []);
 
+      console.log(downloads)
     return <AdminLayout title="Downloads">
 
         <table className="table-fixed w-full">
@@ -27,18 +29,24 @@ const Downloads = () => {
                 <th className="text-left border-b border-gray-200 p-1">File</th>
                 <th className="text-left border-b border-gray-200 p-1">Page</th>
                 <th className="text-left border-b border-gray-200 p-1">User</th>
-                <th className="text-left border-b border-gray-200 p-1">Date added</th>
+                <th className="text-left border-b border-gray-200 p-1">Date</th>
                 </tr>
             </thead>
             <tbody>
             {downloads ? downloads.map(download =>
                 <tr>
                     <td className="border-b border-gray-200 p-1">
-                        {download.title} ({download.type})
+                        {download.fileName} ({download.fileType})
                     </td>
-                    <td className="border-b border-gray-200 p-1">{download.entity}</td>
-                    <td className="border-b border-gray-200 p-1">{download.name}</td>
-                    <td className="border-b border-gray-200 p-1"></td>
+                    <td className="border-b border-gray-200 p-1">{download.page}</td>
+                    <td className="border-b border-gray-200 p-1">{download.userName}</td>
+                    <td className="border-b border-gray-200 p-1">
+                        {download.date &&
+                            <Moment format="DD/MM/YYYY hh:mm a">
+                                {download.date.toDate()}
+                            </Moment>
+                        }
+                    </td>
                 </tr>
                 ) : 'Loading'}
             </tbody>

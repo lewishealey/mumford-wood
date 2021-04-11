@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import TextField from '@components/TextField';
-import Button from '@components/Button';
+import Form from '@components/Form';
 import { currentYear } from '@utils/helpers';
 export interface Props {
 }
@@ -11,9 +10,19 @@ export const Footer: React.FC<Props> = ({
     return (
         <div className="p-2 bg-gray-100 mt-2">
             <div className="container m-auto max-w-6xl">
-                <div className="space-y-1 md:space-y-0 md:flex">
+                <div className="space-y-1 md:space-y-0 md:flex justify-between">
                 <div className="w-full md:w-1/3">
                     <h5 className="font-heading text-xl mb-1">Pages</h5>
+                    <div className="grid grid-cols-2 gap-1">
+                        <a href="/" target="blank">Home</a>
+                        <a href="/about-us">About us</a>
+                        <a href="/product-ranges/conservation-range">Conservation Range</a>
+                        <a href="/product-ranges/classic-range">Classic Range</a>
+                        <a href="/product-ranges/heritage-range">Heritage Range</a>
+                        <a href="/professional">Professional</a>
+                        <a href="/case-studies">Case studies</a>
+                        <a href="/contact-us">Contact us</a>
+                    </div>
                 </div>
                 <div className="w-full md:w-1/3">
                     <h5 className="font-heading text-xl mb-1">Social</h5>
@@ -24,29 +33,8 @@ export const Footer: React.FC<Props> = ({
                         <a href="https://www.linkedin.com/company/mumford-&-wood" target="blank"><Image src="/img/linkedin.svg" height={40} width={40} alt="Linkedin"/></a>
                     </div>
                 </div>
-                <div className="w-full md:w-1/2">
-                    <h5 className="font-heading text-xl mb-1">Sign up to our newsletter</h5>
-                    <div className="flex space-x-1 items-end">
-                        {"https://leerob.io/blog/mailchimp-next-js"}
-                        <TextField
-                            size="compact"
-                            type="text"
-                            label="Name *"
-                            name="name"
-                        />
-                        <TextField
-                            size="compact"
-                            type="email"
-                            label="Email *"
-                            name="eemail"
-                        />
-                        <Button
-                            size="compact"
-                            style="primary"
-                            >
-                            Request estimate
-                        </Button>
-                    </div>
+                <div className="w-full md:w-1/4">
+                    <Form type="newsletter" />
                 </div>
             </div>
             <div className="grid grid-cols-3 space-y-1 md:space-y-0 md:flex flex-wrap md:flex-nowrap md:space-x-1 justify-between mt-3">

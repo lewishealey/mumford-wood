@@ -1,10 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
+import Newsletter from './newsletter';
 import DownloadBrochure from './download-brochure';
 import Apprenticeship from './apprenticeship';
 import RequestEstimate from './request-estimate';
 
-type types = 'brochure' | 'apprenticeship' | 'estimate';
+type types = 'brochure' | 'apprenticeship' | 'estimate' | 'newsletter';
 type Props = {
     type: types | any;
 }
@@ -23,6 +23,9 @@ export const Form: React.FC<Props> = ({
             break;
         case 'estimate' :
             form = <RequestEstimate />;
+            break;
+        case 'newsletter' :
+            form = <Newsletter />;
             break;
     }
 

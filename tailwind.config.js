@@ -114,6 +114,9 @@ module.exports = {
             '-1': '-1',
             '-5': '-5',
             '-10': '-10',
+        },
+        boxShadow: {
+            'container': '0px -7px 15px -3px rgba(0, 0, 0, 0.1), 0px -4px 6px -2px rgba(0, 0, 0, 0.05)',
         }
     },
   },

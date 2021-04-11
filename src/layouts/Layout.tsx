@@ -75,7 +75,7 @@ export const Layout: React.FC<LayoutProps> = ({
     }
 
     return <GoogleReCaptchaProvider reCaptchaKey={process.env.CAPTCHA_SITE_KEY}>
-        <div>
+        <div className="bg-gray-50">
         <Head>
             <title>{title} | Mumford & Wood</title>
             <link rel="icon" href="/favicon.ico" />
@@ -99,8 +99,8 @@ export const Layout: React.FC<LayoutProps> = ({
         }
 
         {image &&
-            <div className="mx-0.5 rounded-md overflow-hidden mb-1 md:mb-2 h-16 md:h-32 relative">
-                <div className="absolute w-full bottom-2 z-0">
+            <div className="overflow-hidden mb-1 md:mb-2 h-16 md:h-32 relative">
+                <div className="absolute w-full bottom-1 md:bottom-3 z-10">
                     <div className="container m-auto max-w-6xl">
                         <Keys type="dark" onSelect={(dir) => handleDirection(dir)} />
                     </div>
@@ -113,7 +113,7 @@ export const Layout: React.FC<LayoutProps> = ({
                 </Slider>
             </div>
         }
-        <div className={`container m-auto max-w-6xl relative ${border && 'p-1 pt-2 md:p-2 md:-mt-4 bg-white border-t-4 border-primary-base border-solid'}`}>
+        <div className={`container m-auto max-w-6xl relative ${border && 'p-1 pt-2 md:p-2 md:-mt-4 bg-white border-t-4 border-primary-base border-solid shadow-container rounded-md'}`}>
             {sidebar !== "none" ?
                 <div className="container m-auto flex-col px-1 md:flex-row md:gap-2 md:px-0 flex">
                     <div className="lg:w-3/4">{children}</div>

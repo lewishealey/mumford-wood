@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import fire from '@lib/firebase';
 import AdminLayout from 'src/layouts/AdminLayout';
+import Moment from 'react-moment';
 
 const Users = () => {
     const [users, setUsers] = useState([]);
@@ -21,26 +22,34 @@ const Users = () => {
           });
       }, []);
 
-    return <AdminLayout title="User list">
+    return <AdminLayout title="Registered users">
 
         <table className="table-fixed w-full">
             <thead>
                 <tr>
                 <th className="text-left border-b border-gray-200 p-1">Title</th>
-                <th  className="text-left border-b border-gray-200 p-1">Date added</th>
-                <th  className="text-left border-b border-gray-200 p-1">Login type</th>
+                <th className="text-left border-b border-gray-200 p-1">Date last used</th>
                 </tr>
             </thead>
             <tbody>
-            {users ? users.map(user =>
+            {users?.length > 0 ? users.map(user =>
                 <tr>
                     <td className="border-b border-gray-200 text-royal-base underline p-1">
                         <a href={`/admin/user/${user.id}`}>{user.name}</a>
                     </td>
-                    <td className="border-b border-gray-200 p-1">11/09/2020 14:50pm</td>
-                    <td className="border-b border-gray-200 p-1">Google</td>
+                    <td className="border-b border-gray-200 p-1">
+                        {user.date_updated &&
+                            <Moment format="DD/MM/YYYY hh:mm a">
+                                {user.date_updated.toDate()}
+                            </Moment>
+                        }
+                    </td>
                 </tr>
-                ) : 'Loading'}
+                ) : <tr key={"loading"}>
+                <td className="border-b border-gray-200 p-1">
+                    Loading
+                </td>
+            </tr>}
             </tbody>
         </table>
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import Link from 'next/link';
+import Image from 'next/image';
 export interface AdminLayoutProps {
     title: string;
     children: any;
@@ -12,31 +13,32 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 
     return <div className="bg-gray-100 h-full">
 
-
-    <div className="w-full">
-        <div className="bg-primary-base text-white py-1 px-2">
-            <nav className="max-w-7xl mx-auto flex space-x-1">
-                <a href="/admin">Home</a>
-                <a href="/admin/users">Users</a>
-                <a href="/admin/enquiries">Enquiries</a>
-                <a href="/admin/downloads">Downloads</a>
-            </nav>
+    <div className="flex">
+        <div className="flex h-full w-1/5 sticky top-0">
+            <div className="text-white w-full py-1 px-2 h-screen flex bg-gray-700 flex-col space-y-1">
+            <span><Image src="/img/emblem.svg" width={64} height={71} alt="Emblem" /></span>
+            <span className="font-title text-white uppercase tracking-wider text-lg font-normal">Dashboard</span>
+                <nav className="flex space-y-1 flex-col">
+                    <Link href="/admin">Home</Link>
+                    <Link href="/admin/users">Registered users</Link>
+                    <Link href="/admin/newsletter">Newsletter sign ups</Link>
+                    <Link href="/admin/enquiries">Enquiries</Link>
+                    <Link href="/admin/downloads">Downloads</Link>
+                </nav>
+            </div>
         </div>
-    </div>
-
-    <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-2 justify-between flex">
-            <h2 className="font-sans font-semibold normal-case tracking-normal text-xl text-gray-800 leading-tight w-full flex justify-between items-center">{title}</h2>
-        </div>
-    </header>
-
-    <div className="py-1">
-        <div className="max-w-7xl mx-auto">
-            <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                {children}
+        <div className="flex w-4/5">
+            <div className="p-2 w-full">
+                        <h2 className="font-sans font-semibold normal-case tracking-normal text-xl text-gray-800 leading-tight w-full flex justify-between items-center mb-2">{title}</h2>
+                        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            {children}
+                        </div>
             </div>
         </div>
     </div>
+
+
+
 </div>
 }
 

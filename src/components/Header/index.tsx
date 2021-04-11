@@ -19,7 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
             <a href="/">
                 <div className="flex items-bottom bottom-0">
-                    <Image src="/img/emblem.svg" width={64} height={71} alt="Emblem" />
+                <Image src="/img/emblem.svg" width={64} height={71} alt="Emblem" />
                 </div>
             </a>
             <div className="flex-1 text-right">
