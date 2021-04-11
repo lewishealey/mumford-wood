@@ -44,6 +44,15 @@ export async function fetchCaseStudy(slug) {
     if (product.items) return product.items
 }
 
+export async function fetchBrochures() {
+    const entries = await client.getEntries({
+        content_type: 'brochure',
+    })
+    if (entries.items) return entries.items
+    console.log(`Error getting Entries for ${contentType.name}.`)
+}
+
+
 export async function fetchArticles() {
     const entries = await client.getEntries({
         content_type: 'news',

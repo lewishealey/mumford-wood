@@ -100,11 +100,13 @@ export const Layout: React.FC<LayoutProps> = ({
 
         {image &&
             <div className="overflow-hidden mb-1 md:mb-2 h-16 md:h-32 relative">
-                <div className="absolute w-full bottom-1 md:bottom-3 z-10">
-                    <div className="container m-auto max-w-6xl">
-                        <Keys type="dark" onSelect={(dir) => handleDirection(dir)} />
+                {gallery &&
+                    <div className="absolute w-full bottom-1 md:bottom-3 z-10">
+                        <div className="container m-auto max-w-6xl">
+                            <Keys type="dark" onSelect={(dir) => handleDirection(dir)} />
+                        </div>
                     </div>
-                </div>
+                }
                 <Slider {...settings} ref={sliderRef}>
                     {image && <img src={image} className="w-full h-full object-cover z-auto"/>}
                     {gallery && gallery?.map((item,i) =>
@@ -145,5 +147,5 @@ export default Layout;
 
 Layout.defaultProps = {
     header: true,
-    sidebarType: 'apprenticeship'
+    sidebarType: 'estimate'
 }
