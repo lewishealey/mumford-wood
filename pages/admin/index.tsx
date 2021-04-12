@@ -33,7 +33,7 @@ const Index = () => {
     console.log(users)
 
     return <AdminLayout title="Admin">
-            <button type="submit" onClick={handleSubmit}>Save</button>
+            <h1 className="p-2">Welcome to your dashboard</h1>
     </AdminLayout>
 }
 

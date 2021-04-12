@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import TextField from '@components/TextField';
+import { useRouter } from 'next/router';
 import Button from '@components/Button';
 import Modal from '@components/Modal';
 import Checkbox from "@components/Checkbox";
@@ -18,6 +18,7 @@ export const RequestEstimate: React.FC = ({
     const [status, setStatus] = useState("");
     const [isOpen, setOpen] = useState(false);
     const [isSignedUp, setIsSignedUp] = useState(false);
+    const { asPath } = useRouter();
 
     const {
         register,
@@ -27,6 +28,8 @@ export const RequestEstimate: React.FC = ({
       } = useForm();
 
       const onSubmit = (data) => {
+        data.page = asPath;
+
             try {
             fire.firestore()
             .collection('download-requests')

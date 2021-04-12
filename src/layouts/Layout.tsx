@@ -75,7 +75,7 @@ export const Layout: React.FC<LayoutProps> = ({
     }
 
     return <GoogleReCaptchaProvider reCaptchaKey={process.env.CAPTCHA_SITE_KEY}>
-        <div className="bg-gray-50">
+        <div className="bg-white">
         <Head>
             <title>{title} | Mumford & Wood</title>
             <link rel="icon" href="/favicon.ico" />

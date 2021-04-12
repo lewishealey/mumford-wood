@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import TextField from '@components/TextField';
 import Button from '@components/Button';
-import Modal from '@components/Modal';
-import useModal from "@components/Modal/use";
-import Dialog from '@components/Dialog';
+import { useRouter } from 'next/router';
 import ReCaptcha from '@components/ReCaptcha';
 import fire from '@lib/firebase';
 import classNames from 'classnames';
@@ -16,13 +13,17 @@ export const Newsletter: React.FC = ({
 
 }) => {
     const [status, setStatus] = useState("");
+    const { asPath } = useRouter();
 
     const {
         register,
         handleSubmit,
         formState: { errors },
       } = useForm();
+
       const onSubmit = (data) => {
+        data.page = asPath;
+
             try {
             fire.firestore()
             .collection('newsletter-signups')

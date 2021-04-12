@@ -4,3 +4,10 @@ export const sectionClasses = "text-2xl mb-1 md:mb-2 md:text-3xl font-heading";
 
 let d = new Date();
 export const currentYear =  d.getFullYear();
+
+export function formatPath(path) {
+    path = path.replace("-"," ");
+    path = path.replace("/product/","");
+    path = path.replace("/"," / ");
+    return <small className="text-xs text-gray-600 capitalize">{path}</small>
+}

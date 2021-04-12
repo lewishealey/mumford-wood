@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import TextField from '@components/TextField';
+import { useRouter } from 'next/router';
 import Button from '@components/Button';
 import Modal from '@components/Modal';
-import useModal from "@components/Modal/use";
 import Dialog from '@components/Dialog';
 import ReCaptcha from '@components/ReCaptcha';
 import fire from '@lib/firebase';
@@ -15,33 +14,20 @@ import classNames from 'classnames';
 export const RequestEstimate: React.FC = ({
 
 }) => {
-    const registerUser = event => {
-        event.preventDefault() // don't redirect the page
-        // where we'll add our form logic
-
-        try {
-            fire.firestore()
-            .collection('estimate-requests')
-            .add({
-                firstName: 'Lewis'
-            });
-            setStatus("success");
-
-            } catch (e) {
-            console.log('Issue with saving data')
-            setStatus("error");
-        }
-    }
 
     const [status, setStatus] = useState("");
     const [isOpen, setOpen] = useState(false);
+    const { asPath } = useRouter();
 
     const {
         register,
         handleSubmit,
         formState: { errors },
       } = useForm();
+
       const onSubmit = (data) => {
+          data.page = asPath;
+
             try {
             fire.firestore()
             .collection('estimate-requests')

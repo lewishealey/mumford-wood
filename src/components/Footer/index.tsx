@@ -27,7 +27,7 @@ export const Footer: React.FC<Props> = ({
                 <div className="w-full md:w-1/3">
                     <h5 className="font-heading text-xl mb-1">Social</h5>
                     <div className="flex space-x-1">
-                        <a href="https://www.instagram.com/mumfordandwood/" target="blank"><Image src="/img/facebook.svg" height={40} width={40} alt="Facebook"/></a>
+                        <a href="https://www.facebook.com/mumfordwood" target="blank"><Image src="/img/facebook.svg" height={40} width={40} alt="Facebook"/></a>
                         <a href="https://twitter.com/mumfordwood" target="blank"><Image src="/img/twitter.svg" height={40} width={40} alt="Twitter"/></a>
                         <a href="https://www.instagram.com/mumfordandwood/" target="blank"><Image src="/img/instagram.svg" height={40} width={40} alt="Instagram"/></a>
                         <a href="https://www.linkedin.com/company/mumford-&-wood" target="blank"><Image src="/img/linkedin.svg" height={40} width={40} alt="Linkedin"/></a>

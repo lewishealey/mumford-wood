@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import fire from '@lib/firebase';
 import AdminLayout from 'src/layouts/AdminLayout';
+import { formatPath } from "@utils/helpers";
 
 const Enquiries = () => {
     const [enquires, setEnquiries] = useState([]);
@@ -47,10 +48,12 @@ const Enquiries = () => {
                 <tr>
                 <th className="text-left border-b border-gray-200 p-1">Name</th>
                 <th className="text-left border-b border-gray-200 p-1">Email</th>
-                <th className="text-left border-b border-gray-200 p-1">Postcode</th>
                 <th className="text-left border-b border-gray-200 p-1">Phone</th>
                 {activeTab == "apprentice-requests" &&
                     <th className="text-left border-b border-gray-200 p-1">Address</th>
+                }
+                {(activeTab == "apprentice-requests" || activeTab == "download-requests")  &&
+                    <th className="text-left border-b border-gray-200 p-1">Postcode</th>
                 }
 
                 {activeTab == "apprentice-requests" &&
@@ -67,7 +70,8 @@ const Enquiries = () => {
             {enquires ? enquires.map((enquiry, i) =>
                 <tr key={i}>
                     <td className="border-b border-gray-200 p-1">
-                        {enquiry.firstName} {enquiry.lastName}
+                        <div>{enquiry.firstName} {enquiry.lastName}</div>
+                        {enquiry.page && formatPath(enquiry.page)}
                     </td>
                     <td className="border-b border-gray-200 p-1">
                         {enquiry.email}
@@ -80,9 +84,11 @@ const Enquiries = () => {
                             {enquiry.address}
                         </td>
                     }
-                    <td className="border-b border-gray-200 p-1">
-                        {enquiry.postcode}
-                    </td>
+                    {(activeTab == "apprentice-requests" || activeTab == "download-requests") &&
+                        <td className="border-b border-gray-200 p-1">
+                            {enquiry.postcode}
+                        </td>
+                    }
                     {activeTab == "apprentice-requests" &&
                         <>
                             <td className="border-b border-gray-200 p-1">
