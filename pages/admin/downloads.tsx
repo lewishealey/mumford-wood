@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import fire from '@lib/firebase';
 import AdminLayout from '@layouts/AdminLayout';
 import Moment from 'react-moment';
+import { CSVLink } from "react-csv";
+import { createCsvObject, fileDate } from '@utils/helpers';
 
 const Downloads = () => {
     const [downloads, setDownloads] = useState([]);
-
-      //https://medium.com/swlh/lets-create-blog-app-with-next-js-react-hooks-and-firebase-backend-tutorial-7ce6fd7bbb3a#3c58
+    const [csvData, setCsvData] = useState([]);
 
       useEffect(() => {
         fire.firestore()
@@ -16,12 +17,14 @@ const Downloads = () => {
                 id: doc.id,
                 ...doc.data()
               }));
-              setDownloads(downloads);
+              const csv = createCsvObject(downloads);
+                setCsvData(csv);
+                setDownloads(downloads);
           });
       }, []);
 
       console.log(downloads)
-    return <AdminLayout title="Downloads">
+    return <AdminLayout title="Downloads" action={<CSVLink className="bg-primary-base hover:bg-primary-hover text-center justify-center relative inline-flex rounded font-heading text-md items-center text-white h-2.5 px-1 self-end" data={csvData} filename={`downloads-${fileDate()}.csv`}>Download as CSV</CSVLink>}>
 
         <table className="table-fixed w-full">
             <thead>
@@ -33,8 +36,8 @@ const Downloads = () => {
                 </tr>
             </thead>
             <tbody>
-            {downloads ? downloads.map(download =>
-                <tr>
+            {downloads ? downloads?.map((download, i) =>
+                <tr key={i}>
                     <td className="border-b border-gray-200 p-1">
                         {download.fileName} ({download.fileType})
                     </td>

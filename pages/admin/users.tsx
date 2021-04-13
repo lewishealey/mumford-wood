@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import fire from '@lib/firebase';
 import AdminLayout from 'src/layouts/AdminLayout';
 import Moment from 'react-moment';
+import { CSVLink } from "react-csv";
+import { createCsvObject, fileDate } from '@utils/helpers';
 
 const Users = () => {
     const [users, setUsers] = useState([]);
-
-      //https://medium.com/swlh/lets-create-blog-app-with-next-js-react-hooks-and-firebase-backend-tutorial-7ce6fd7bbb3a#3c58
-
-      console.log(users);
+    const [csvData, setCsvData] = useState([]);
 
       useEffect(() => {
         fire.firestore()
@@ -18,11 +17,20 @@ const Users = () => {
                 id: doc.id,
                 ...doc.data()
               }));
+              const csv = createCsvObject(users);
+              setCsvData(csv);
               setUsers(users);
           });
       }, []);
 
-    return <AdminLayout title="Registered users">
+      // Create a function that provides header keys and object
+      // Add header to array
+      // Loop through Object keys and check if the object has a defined value
+      // If defined value, push value, if not, push space
+      // Return array
+
+
+    return <AdminLayout title="Registered users" action={<CSVLink className="bg-primary-base hover:bg-primary-hover text-center justify-center relative inline-flex rounded font-heading text-md items-center text-white h-2.5 px-1 self-end" data={csvData} filename={`registered_users-${fileDate()}.csv`}>Download as CSV</CSVLink>}>
 
         <table className="table-fixed w-full">
             <thead>
@@ -32,8 +40,8 @@ const Users = () => {
                 </tr>
             </thead>
             <tbody>
-            {users?.length > 0 ? users.map(user =>
-                <tr>
+            {users?.length > 0 ? users?.map((user,i) =>
+                <tr key={i}>
                     <td className="border-b border-gray-200 text-royal-base underline p-1">
                         <a href={`/admin/user/${user.id}`}>{user.name}</a>
                     </td>

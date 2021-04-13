@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import fire from '@lib/firebase';
 import AdminLayout from 'src/layouts/AdminLayout';
 import { formatPath } from "@utils/helpers";
+import { CSVLink } from "react-csv";
+import { createCsvObject, fileDate } from '@utils/helpers';
 
 const Enquiries = () => {
     const [enquires, setEnquiries] = useState([]);
     const [activeTab, setActiveTab] = useState("estimate-requests");
+    const [csvData, setCsvData] = useState([]);
 
     const handleTab = (type) => {
         fire.firestore()
@@ -15,6 +18,8 @@ const Enquiries = () => {
               id: doc.id,
               ...doc.data()
             }));
+            const csv = createCsvObject(enquires);
+            setCsvData(csv);
             setEnquiries(enquires);
             setActiveTab(type);
         });
@@ -35,7 +40,7 @@ const Enquiries = () => {
 
       console.log(enquires)
 
-    return <AdminLayout title="Form submissions">
+    return <AdminLayout title="Form submissions" action={<CSVLink className="bg-primary-base hover:bg-primary-hover text-center justify-center relative inline-flex rounded font-heading text-md items-center text-white h-2.5 px-1 self-end" data={csvData} filename={`${activeTab}-${fileDate()}.csv`}>Download as CSV</CSVLink>}>
 
         <div className="m-1 mb-0 flex space-x-0.5">
             <button className={`h-1.75 flex text-xs focus:outline-none ${activeTab == 'estimate-requests' ? 'text-white bg-primary-base' : 'text-black bg-neutral-4'} items-center justify-center px-0.75 py-0.5 rounded-full`} onClick={() => handleTab("estimate-requests")}>Estimate requests</button>
@@ -67,7 +72,7 @@ const Enquiries = () => {
                 </tr>
             </thead>
             <tbody>
-            {enquires ? enquires.map((enquiry, i) =>
+            {enquires ? enquires?.map((enquiry, i) =>
                 <tr key={i}>
                     <td className="border-b border-gray-200 p-1">
                         <div>{enquiry.firstName} {enquiry.lastName}</div>

@@ -11,3 +11,46 @@ export function formatPath(path) {
     path = path.replace("/"," / ");
     return <small className="text-xs text-gray-600 capitalize">{path}</small>
 }
+
+export function createCsvObject(data) {
+    let tempArray = [];
+    const headerKeys = Object.keys(data[0]);
+    tempArray.push(headerKeys);
+    data.forEach(dataItem => {
+        let tempTempArray = [];
+        headerKeys.forEach(key => {
+            if(key == "date_updated") {
+                tempTempArray.push(dataItem['date_updated'].toDate().toString())
+            } else if(dataItem[key]) {
+                tempTempArray.push(dataItem[key])
+            }
+        })
+        tempArray.push(tempTempArray);
+    });
+
+    return tempArray.length > 0 ? tempArray : null;
+}
+
+export function fileDate() {
+    var today = new Date();
+    var dd = today.getDate();
+
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd;
+    }
+
+    if(mm<10) {
+        mm='0'+mm;
+    }
+
+    today = dd+'-'+mm+'-'+yyyy;
+
+    return today;
+    today = mm+'-'+dd+'-'+yyyy;
+    today = mm+'/'+dd+'/'+yyyy;
+    today = dd+'-'+mm+'-'+yyyy;
+    today = dd+'/'+mm+'/'+yyyy;
+}
