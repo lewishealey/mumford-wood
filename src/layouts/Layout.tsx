@@ -31,19 +31,17 @@ type GalleryItem = {
     alt: string;
 }
 export interface LayoutProps {
-    sidebar?: Sidebar;
     header?: boolean;
     gallery?: GalleryItem[];
     border?: boolean;
     title?: string;
-    sidebarType?: string;
+    sidebarType?: Sidebar;
     image?: any
     breadcrumbs?: CrumbItem[];
     children: any;
 }
 
 export const Layout: React.FC<LayoutProps> = ({
-    sidebar,
     header,
     title,
     image,
@@ -116,7 +114,7 @@ export const Layout: React.FC<LayoutProps> = ({
             </div>
         }
         <div className={`container m-auto max-w-6xl relative ${border && 'p-1 pt-2 md:p-2 md:-mt-4 bg-white border-t-4 border-primary-base border-solid shadow-container rounded-md'}`}>
-            {sidebar !== "none" ?
+            {sidebarType !== "none" ?
                 <div className="container m-auto flex-col px-1 md:flex-row md:gap-2 md:px-0 flex">
                     <div className="lg:w-3/4">{children}</div>
                     <div className="lg:w-1/4">

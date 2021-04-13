@@ -12,6 +12,7 @@ export interface Props {
     image: string;
     border: boolean;
     thumbnail?: string;
+    children: any;
 }
 
 export const Card: React.FC<Props> = ({
@@ -22,7 +23,8 @@ export const Card: React.FC<Props> = ({
     height,
     image,
     border,
-    thumbnail
+    thumbnail,
+    children
 }) => {
     const classes = classNames(
         `mb-0.5 object-${thumbnail} ${height} w-full rounded-sm`,
@@ -34,6 +36,7 @@ export const Card: React.FC<Props> = ({
             {highlight && <h5 className="font-heading text-primary-base text-sm uppercase font-bold tracking-widest mt-1 mb-0.5">{highlight}</h5>}
             {title && <h4 className="font-body font-bold text-lg m-0 mb-0.5">{title}</h4>}
             {summary && documentToReactComponents(summary,options)}
+            {children && children}
         </div>;
 
         if(href) {

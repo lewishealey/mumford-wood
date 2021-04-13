@@ -77,6 +77,14 @@ export async function fetchRanges() {
     console.log(`Error getting Entries for ${contentType.name}.`)
 }
 
+export async function fetchOffices() {
+    const entries = await client.getEntries({
+        content_type: 'office',
+    })
+    if (entries.items) return entries.items
+    console.log(`Error getting Entries for ${contentType.name}.`)
+}
+
 export async function fetchTeam() {
     const entries = await client.getEntries({
         content_type: 'teamMember',
