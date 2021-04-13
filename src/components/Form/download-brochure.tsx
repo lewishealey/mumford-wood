@@ -28,6 +28,7 @@ export const RequestEstimate: React.FC = ({
       } = useForm();
 
       const onSubmit = (data) => {
+        data.date = new Date();
         data.page = asPath;
 
             try {
