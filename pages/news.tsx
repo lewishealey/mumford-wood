@@ -7,7 +7,7 @@ export default function News({ posts }) {
     return (
       <Layout
         title="News"
-        sidebar="none">
+        sidebarType="none">
 
             <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
                 {posts && posts?.map((post,i) =>

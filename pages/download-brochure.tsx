@@ -7,7 +7,7 @@ export default function Downloads() {
     return (
             <Layout
             title="Download Brochure"
-            sidebar="none">
+            sidebarType="none">
                 <Form type="brochure" />
             </Layout>
         );

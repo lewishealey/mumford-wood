@@ -36,7 +36,7 @@ export default function MeetTheTeam({ members }) {
         <PageProvider value="about-us">
             <Layout
             title="Meet the team"
-            sidebar="none">
+            sidebarType="none">
                 <Filter checkboxes={checkboxes} onFilter={() => console.log("Filter")} />
                 <div className="flex space-y-1 flex-col lg:grid lg:grid-cols-2 lg:gap-1">
                     {/* {members && members?.map((member,i) =>

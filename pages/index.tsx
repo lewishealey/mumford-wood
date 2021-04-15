@@ -10,7 +10,7 @@ export default function Home({ ranges, caseStudies }) {
       <Layout
         image="/img/brook-bond.jpeg"
         border={false}
-        sidebar="none">
+        sidebarType="none">
 
             <section className="mb-4">
                 <div className={`container m-auto max-w-4xl z-10 relative p-2 -mt-2 bg-white border-t-4 border-primary-base border-solid`}>

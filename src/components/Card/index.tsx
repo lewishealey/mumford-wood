@@ -12,7 +12,7 @@ export interface Props {
     image: string;
     border: boolean;
     thumbnail?: string;
-    children: any;
+    children?: any;
 }
 
 export const Card: React.FC<Props> = ({

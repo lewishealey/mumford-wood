@@ -22,7 +22,7 @@ export default function Downloads({ brochures }) {
         <PageProvider value="about-us">
             <Layout
             title="Downloads"
-            sidebar="none"
+            sidebarType="none"
             breadcrumbs={breadcrumbs}>
                 <LoggedIn location="Downloads" entity="Downloads">
                     <h2 className={sectionClasses}>Product brochures</h2>

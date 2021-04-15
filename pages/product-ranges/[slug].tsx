@@ -16,7 +16,7 @@ export default function ProductRange({ranges, products}) {
     return (
         <PageProvider value="product-ranges">
         <Layout
-        sidebar="none"
+        sidebarType="none"
         breadcrumbs={breadcrumbs}
         title={data?.title}>
             {false && <p>{data?.content}</p>}

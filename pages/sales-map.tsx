@@ -16,7 +16,7 @@ export default function Downloads() {
         <PageProvider value="contact-us">
             <Layout
             title="Sales Map"
-            sidebar="none"
+            sidebarType="none"
             border={false}
             breadcrumbs={breadcrumbs}>
                 <Map height={800}/>

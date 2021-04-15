@@ -8,7 +8,7 @@ export default function CaseStudies({ posts }) {
     return (
       <Layout
         title="Case Studies"
-        sidebar="none"
+        sidebarType="none"
         >
             {/* <div className="posts bg-gray-200 m-2">
                 {posts && <div>Contentful is connected</div>}

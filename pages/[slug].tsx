@@ -32,7 +32,7 @@ export default function Page({ page }) {
         breadcrumbs={breadcrumbs}
         border={data?.border}
         image={data?.thumbnail?.fields?.file?.url}
-        sidebar={data?.sidebarType}>
+        sidebarType={data?.sidebarType}>
             {data?.subtitle && <h2 className={sectionClasses}>{data?.subtitle}</h2>}
             {data?.summary && <div className={summaryClasses}>{data?.summary}</div>}
             {data?.content && <div>{documentToReactComponents(data?.content,options)}</div>}

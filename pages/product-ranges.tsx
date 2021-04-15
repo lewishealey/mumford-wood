@@ -7,7 +7,7 @@ export default function ProductRanges({ posts }) {
     // console.log(posts)
     return (
       <Layout
-      sidebar="none"
+      sidebarType="none"
         title="Product Ranges">
 
             <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
