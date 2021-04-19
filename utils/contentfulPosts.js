@@ -93,6 +93,12 @@ export async function fetchTeam() {
     console.log(`Error getting Entries for ${contentType.name}.`)
 }
 
+export async function fetchSalesTeam(slug) {
+    const entries = await client.getEntries({
+        content_type: 'salesRep',
+    })
+    if (entries.items) return entries.items
+}
 
 export async function fetchPage(slug) {
     const page = await client.getEntries({

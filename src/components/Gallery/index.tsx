@@ -41,7 +41,7 @@ export const Gallery: React.FC<Props> = ({
             {items &&
                 <div className="flex items-center justify-between mb-1">
                     <span className="font-heading">{items.length} images</span>
-                    <span className="flex items-center space-x-0.25 font-heading"><Image src="/img/icon-eye.svg" height={16} width={16}/> <span>View slideshow</span></span>
+                    <span className="flex items-center space-x-0.25 font-heading" onClick={() => handleChange(0)}><Image src="/img/icon-eye.svg" height={16} width={16}/> <span>View slideshow</span></span>
                 </div>
             }
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-0.25">

@@ -9,7 +9,7 @@ export interface Props {
     href?: string;
     summary?: any;
     height?: string;
-    image: string;
+    image?: string;
     border: boolean;
     thumbnail?: string;
     children?: any;
@@ -32,7 +32,7 @@ export const Card: React.FC<Props> = ({
     );
 
     const contents = <div>
-            <img src={image} className={classes} />
+            {image && <img src={image} className={classes} />}
             {highlight && <h5 className="font-heading text-primary-base text-sm uppercase font-bold tracking-widest mt-1 mb-0.5">{highlight}</h5>}
             {title && <h4 className="font-body font-bold text-lg m-0 mb-0.5">{title}</h4>}
             {summary && documentToReactComponents(summary,options)}
@@ -53,7 +53,6 @@ export const Card: React.FC<Props> = ({
   export default Card;
 
   Card.defaultProps = {
-      image: "http://www.mumfordwood.com/images/quick-links/Mumford-Wood-Brochure-2017.jpg",
       height: "h-14",
       thumbnail: "cover"
   }
