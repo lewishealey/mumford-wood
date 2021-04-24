@@ -73,3 +73,23 @@ export function today() {
     today = dd+'-'+mm+'-'+yyyy;
     return today.toString;
 }
+
+
+export function getTags(data) {
+    let tags = [];
+    data && data?.metadata?.tags?.forEach(tag => {
+        tags.push(tag.sys.id);
+    })
+    return tags;
+  }
+
+export function isSelectionInTags(itemTags, selectedTags) {
+    let result = false;
+    itemTags.forEach(item => {
+        // console.info(item, selectedTags, selectedTags.includes(item));
+        if(selectedTags.includes(item)){
+            result = true;
+        }
+    })
+    return result;
+  }

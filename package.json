@@ -45,6 +45,7 @@
     "react-waypoint": "^9.0.3",
     "simple-react-lightbox": "^3.6.4",
     "slick-carousel": "^1.8.1",
+    "sparkpost": "^2.1.4",
     "styled-jsx": "^3.4.4",
     "svg-inline-loader": "^0.8.2",
     "tailwindcss-children": "^2.1.0",

@@ -13,6 +13,18 @@ export default function ProductRange({ranges, products}) {
     },{
         label: data?.title
     },];
+
+    // Sort order
+    products.sort((a, b) => {
+        if (a.rangeOrder > b.rangeOrder) {
+          return 1;
+        }
+        if (a.rangeOrder < b.rangeOrder) {
+          return -1;
+        }
+        return 0;
+    });
+
     return (
         <PageProvider value="product-ranges">
         <Layout
@@ -24,7 +36,7 @@ export default function ProductRange({ranges, products}) {
                 {products && products?.map((post,i) =>
                     <Tile
                         href={`/product/${data?.slug}/${post?.slug}`}
-                        title={post?.title}
+                        title={`${post?.title}`}
                         size="default"
                         border={false}
                         highlight={data?.title}

@@ -14,7 +14,7 @@ export async function fetchEntries() {
 
 export async function fetchProducts() {
     const entries = await client.getEntries({
-        content_type: 'product',
+        content_type: 'product'
     })
     if (entries.items) return entries.items
     console.log(`Error getting Entries for ${contentType.name}.`)
@@ -93,6 +93,13 @@ export async function fetchTeam() {
     console.log(`Error getting Entries for ${contentType.name}.`)
 }
 
+export async function fetchCadDrawings() {
+    const entries = await client.getEntries({
+        content_type: 'cadDrawing',
+    })
+    if (entries.items) return entries.items
+}
+
 export async function fetchSalesTeam(slug) {
     const entries = await client.getEntries({
         content_type: 'salesRep',
@@ -112,7 +119,7 @@ export async function fetchPage(slug) {
 export async function fetchRangeProducts(range) {
     const product = await client.getEntries({
         content_type: 'product',
-        'fields.range[in]': range
+        'fields.range[in]': range,
     })
     if (product.items) return product.items
 }

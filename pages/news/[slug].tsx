@@ -1,6 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Layout from 'src/layouts/Layout';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { options } from '@utils/contentfulOptions';
 import { fetchArticle, fetchArticles } from '@utils/contentfulPosts';
 import { PageProvider } from '@utils/contexts.js';
 
@@ -22,6 +24,7 @@ export default function Article({ page, products, paths }) {
             title={data?.title}
             breadcrumbs={breadcrumbs}>
                 Hello from a page {data?.title} {data?.slug}
+                {documentToReactComponents(data?.content,options)}
             </Layout>
         </PageProvider>
     );

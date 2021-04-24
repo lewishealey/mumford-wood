@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { fetchRanges, fetchProducts, fetchCaseStudies } from '../utils/contentfulPosts'
 import Tile from '@components/Tile';
 import Card from '@components/Card';
@@ -8,12 +8,13 @@ export default function Home({ ranges, caseStudies }) {
     // console.log(posts)
     return (
       <Layout
-        image="/img/brook-bond.jpeg"
+        video="mumford.mp4"
         border={false}
         sidebarType="none">
 
+
             <section className="mb-4">
-                <div className={`container m-auto max-w-4xl z-10 relative p-2 -mt-2 bg-white border-t-4 border-primary-base border-solid`}>
+                <div className={`container m-auto max-w-4xl z-10 relative p-2 -mt-4 rounded bg-white border-t-4 border-primary-base border-solid`}>
                     <p className="text-center font-heading text-xl mb-1">Established in 1954 Mumford & Wood has since become the UK’s premier manufacturer of high quality timber windows and doors.</p>
                     <p className="text-center font-heading text-xl mb-1">Recognised within the industry as market leaders, Mumford & Wood has built a well-earned reputation amongst architects, developers and aspirational home owners for products of outstanding quality. All our wooden windows and doors are proudly made in our Tiptree factory using time-served craftsmanship and state of the art technology, using the finest quality wood.</p>
                     <p className="text-center font-heading text-xl">Learn more about our Our Conservation™ timber windows and timber doors and see why we're the UK's leading manufacturers and suppliers of wooden windows and doors.</p>

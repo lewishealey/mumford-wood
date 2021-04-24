@@ -31,16 +31,40 @@ export const RequestEstimate: React.FC = ({
         data.date = new Date();
         data.page = asPath;
 
-            try {
-            fire.firestore()
-            .collection('download-requests')
-            .add(data);
-            setStatus("success");
+        fetch('/api/email/brochure-user', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-            } catch (e) {
-                console.log('Issue with saving data')
+        fetch('/api/email/brochure', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }).then((res) => {
+            setStatus("success");
+            if (res.status === 200) {
+                try {
+                    fire.firestore()
+                        .collection('download-requests')
+                        .add(data);
+                        console.log("Data saved")
+                } catch (e) {
+                    console.log('Issue with saving data')
+                    setStatus("error");
+                }
+                console.log('Response succeeded!')
+            } else {
                 setStatus("error");
             }
+        });
+
       };
       const classes = classNames(`relative w-full flex rounded font-heading text-md items-center h-2.5 px-1`);
       const classesArea = classNames(`relative w-full flex rounded font-heading text-md items-center h-5 px-1`);
@@ -59,25 +83,34 @@ export const RequestEstimate: React.FC = ({
         <Modal isOpen={isOpen}>
            <Dialog success={status === "success"} error={status === "error"} onCloseClick={() => setOpen(false)}>
 
-            {status === "success" ?
+            {status === "success" &&
                 <>
                     <h3 className="font-heading text-xl color-gray mb-1">Success!</h3>
                     <p className="font-body text-base text-neutral-1">Thanks for your submission, please download below</p>
+                </>
+            }
 
-                    </> : <>
+            {status === "error" &&
+                <>
+                    <h3 className="font-heading text-xl color-gray mb-1">Oops!</h3>
+                    <p className="font-body text-base text-neutral-1">Something seems to have gone wrong when submitting your details, an admin has been notified.</p>
+                </>
+            }
+
+            {status.length == 0 && <>
                         <h3 className="font-heading text-xl color-gray mb-1">Download brochure</h3>
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-1">
                             <div className="TextField__group w-full">
                                 <label className="relative flex rounded font-heading text-md items-center mb-0.25">First name</label>
-                                <input type="text" className={classes} {...register('firstName')}/>
+                                <input type="text" className={classes} {...register('firstName')} required/>
                             </div>
                             <div className="TextField__group w-full">
                                 <label className="relative flex rounded font-heading text-md items-center mb-0.25">Last name</label>
-                                <input type="text" className={classes} {...register('lastName')}/>
+                                <input type="text" className={classes} {...register('lastName')} required/>
                             </div>
                             <div className="TextField__group w-full">
                                 <label className="relative flex rounded font-heading text-md items-center mb-0.25">Email address</label>
-                                <input type="email" className={classes} {...register('email')}/>
+                                <input type="email" className={classes} {...register('email')} required/>
                             </div>
                             <div className="TextField__group w-full">
                                 <label className="relative flex rounded font-heading text-md items-center mb-0.25">Phone number</label>

@@ -1,5 +1,6 @@
 import React from 'react';
 import fire from '@lib/firebase';
+import { formatBytes } from '@utils/helpers';
 
 type FileItem = {
     fields: {
@@ -56,16 +57,15 @@ export const Download: React.FC<DownloadProps> = ({
             });
             } catch (e) {
             console.log('Issue with saving data')
-        } finally {
-            window.open(link, '_blank');
         }
+        //window.open(link, '_blank');
     }
 
     return (
         <div className="flex justify-between px-2 py-1 border-b border-gray-300 border-solid w-full">
             {title}
             <div className="flex space-x-1">
-                {files && files.map((item, i) => <a href={item?.fields?.file?.url} key={i} onClick={(e) => registerDownload(e, item?.fields?.title, item?.fields?.file?.url)} className="hover:underline">{item?.fields?.title}</a>)}
+                {files && files.map((item, i) => <button onClick={(e) => registerDownload(e, item?.fields?.title, item?.fields?.file?.url)} className="hover:underline">{item?.fields?.title} <span className="text-gray-400">({formatBytes(item?.fields?.file?.details?.size)})</span></button>)}
             </div>
         </div>
     )

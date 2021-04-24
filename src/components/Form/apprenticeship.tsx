@@ -29,16 +29,39 @@ export const Apprenticeship: React.FC = ({
         data.date = new Date();
         data.page = asPath;
 
-            try {
-            fire.firestore()
-            .collection('apprentice-requests')
-            .add(data);
-            setStatus("success");
+        fetch('/api/email/apprenticeship-user', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-            } catch (e) {
-                console.log('Issue with saving data')
+        fetch('/api/email/apprenticeship', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }).then((res) => {
+            setStatus("success");
+            if (res.status === 200) {
+                try {
+                    fire.firestore()
+                        .collection('apprentice-requests')
+                        .add(data);
+                        console.log("Data saved")
+                } catch (e) {
+                    console.log('Issue with saving data')
+                    setStatus("error");
+                }
+                console.log('Response succeeded!')
+            } else {
                 setStatus("error");
             }
+        });
       };
       const classes = classNames(`relative w-full flex rounded font-heading text-md items-center h-2.5 px-1`);
       const classesArea = classNames(`relative w-full flex rounded font-heading text-md items-center h-5 px-1`);

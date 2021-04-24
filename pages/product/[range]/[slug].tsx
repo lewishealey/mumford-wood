@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { fetchProduct, fetchProducts } from '@utils/contentfulPosts';
+import { fetchProduct, fetchProducts, fetchRangeProducts } from '@utils/contentfulPosts';
 import { Waypoint } from 'react-waypoint';
 import Layout from 'src/layouts/Layout';
 import { PageProvider } from '@utils/contexts.js';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { options } from '@utils/contentfulOptions';
 import Gallery from '@components/Gallery';
+import Tile from '@components/Tile';
 import LoggedIn from '@components/LoggedIn';
 import fire from '@lib/firebase';
 import Download from '@components/Download';
 import Card from '@components/Card';
 import Checklist from '@components/Checklist';
 import File from '@components/File';
-import { sectionClasses } from '@utils/helpers';
+import { sectionClasses, getTags, isSelectionInTags } from '@utils/helpers';
 
 const checkboxes = {
     "24mmDgu": {
@@ -85,7 +86,7 @@ const ironCheckboxes = {
     }
 };
 
-export default function Product({product}) {
+export default function Product({product, ranges}) {
     const data = product[0];
     // console.log(data);
 
@@ -105,10 +106,6 @@ export default function Product({product}) {
     {
         label: data?.title
     }];
-
-    const handleWaypoint = (section: string) => {
-        setWaypointItem(section);
-    }
 
     const onGlazingFilter = (checklistItems) => {
         //console.log(checklistItems)
@@ -134,7 +131,6 @@ export default function Product({product}) {
         setIronItems(ironmongeryItems);
     }
 
-    console.log(waypointItem)
     return (
         <PageProvider value="product-ranges">
             <Layout
@@ -297,6 +293,20 @@ export default function Product({product}) {
                         }
                     </section>
                 }
+
+                <h2 className={sectionClasses}>Related products</h2>
+                <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-1 m-auto">
+                {ranges && ranges?.map((post,i) =>
+                    post.slug !== data.slug && <Tile
+                        href={`/product/${data?.slug}/${post?.slug}`}
+                        title={post?.title}
+                        size="default"
+                        border={false}
+                        highlight={data?.title}
+                        image={post?.thumbnail?.fields?.file?.url}
+                        key={i} />
+                )}
+            </div>
             </Layout>
         </PageProvider>
     );
@@ -316,35 +326,20 @@ export default function Product({product}) {
   export async function getStaticProps(context) {
     const { range, slug } = context.params;
     const res = await fetchProduct(range, slug);
+    const resP = await fetchRangeProducts(range);
 
     const product = await res.map((p) => {
       return p.fields
     })
 
+    const ranges = await resP.map((p) => {
+        return p.fields
+    })
+
     return {
       props: {
         product,
+        ranges
       },
     }
-  }
-
-
-
-  function getTags(glass) {
-    let tags = [];
-    glass.metadata.tags.forEach(tag => {
-        tags.push(tag.sys.id);
-    })
-    return tags;
-  }
-
-  function isSelectionInTags(itemTags, selectedTags) {
-    let result = false;
-    itemTags.forEach(item => {
-        // console.info(item, selectedTags, selectedTags.includes(item));
-        if(selectedTags.includes(item)){
-            result = true;
-        }
-    })
-    return result;
   }

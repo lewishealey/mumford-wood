@@ -25,16 +25,30 @@ export const Newsletter: React.FC = ({
         data.date = new Date();
         data.page = asPath;
 
-            try {
-            fire.firestore()
-            .collection('newsletter-signups')
-            .add(data);
+        fetch('/api/email/newsletter', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          }).then((res) => {
             setStatus("success");
-
-            } catch (e) {
-                console.log('Issue with saving data')
+            if (res.status === 200) {
+                try {
+                    fire.firestore()
+                        .collection('newsletter-signups')
+                        .add(data);
+                        console.log("Data saved")
+                } catch (e) {
+                    console.log('Issue with saving data')
+                    setStatus("error");
+                }
+                console.log('Response succeeded!')
+            } else {
                 setStatus("error");
             }
+        });
       };
       const classes = classNames(`relative w-full flex rounded font-heading text-md items-center h-2.5 px-1`);
 

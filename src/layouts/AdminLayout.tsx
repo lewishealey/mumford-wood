@@ -24,8 +24,8 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                     <Link href="/admin">Home</Link>
                     <Link href="/admin/users">Registered users</Link>
                     <Link href="/admin/newsletter">Newsletter sign ups</Link>
-                    <Link href="/admin/enquiries">Enquiries</Link>
-                    <Link href="/admin/downloads">Downloads</Link>
+                    <Link href="/admin/enquiries">Form submissions</Link>
+                    <Link href="/admin/downloads">File downloads</Link>
                 </nav>
             </div>
         </div>

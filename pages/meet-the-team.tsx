@@ -3,50 +3,52 @@ import Layout from 'src/layouts/Layout';
 import { fetchTeam } from '../utils/contentfulPosts'
 import Card from '@components/Card';
 import Filter from '@components/Filter';
+import Checklist from '@components/Checklist';
 import { PageProvider } from '@utils/contexts.js';
+import { getTags, isSelectionInTags } from '@utils/helpers.js';
+import { options } from '@utils/contentfulOptions';
 
-const checkboxes = [
-    {
-        name: 'main-office',
-        key: 'mainOffice',
+const checkboxes = {
+    "main-office": {
+        id: 'main-office',
         label: 'Main Office',
-        checked: true,
+        checked: true
     },
-    {
-        name: 'factory',
-        key: 'factory',
+    "factory": {
+        id: 'factory',
         label: 'Factory',
-        checked: true,
+        checked: true
     }
-];
+};
 
 export default function MeetTheTeam({ members }) {
-    // const [memberData, setmemberData] = useState(members);
+    const [memberItems, setMemberItems] = useState(members);
+    const onGlazingFilter = (checklistItems) => {
+        //console.log(checklistItems)
+        let optionsArray = Object.values(checklistItems);
+        let items = members.filter( function (member) {
+            return optionsArray.includes(member.type);
+        });
 
-    // const filterOptions = (options) => {
-    //     // TBC filter
-    //     let data = members.filter( function (item) {
-    //         console.log(item);
-    //         return item.type === 'factory';
-    //     });
-    //     setmemberData(data);
-    // }
+        setMemberItems(items);
+    }
 
     return (
         <PageProvider value="about-us">
             <Layout
             title="Meet the team"
             sidebarType="none">
-                <Filter checkboxes={checkboxes} onFilter={() => console.log("Filter")} />
-                <div className="flex space-y-1 flex-col lg:grid lg:grid-cols-2 lg:gap-1">
-                    {/* {members && members?.map((member,i) =>
+                <div className="mb-1">
+                    <Checklist items={checkboxes} onChecked={onGlazingFilter} />
+                </div>
+                <div className="flex space-y-1 flex-col lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-1">
+                    {memberItems && memberItems?.map((member,i) =>
                         <Card
                             image={member?.thumbnail?.fields?.file?.url}
                             title={member?.name}
-                            summary={member?.jobTitle}
                             border={false}
                             key={i} />
-                    )} */}
+                    )}
                 </div>
             </Layout>
         </PageProvider>
