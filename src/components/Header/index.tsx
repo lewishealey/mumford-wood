@@ -11,6 +11,7 @@ export interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   }) => {
     const [mobileMenu, setMobileMenu] = useState(false);
+    const [isSticky, setIsSticky] = useState(true);
     return (
         <>
         <div className="hidden md:flex bg-neutral-0 w-full text-center justify-between content-center items-center flex-row pt-0.5 -mb-0.5 px-2 z-20">
@@ -28,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({
                 &nbsp;
             </div>
         </div>
-        <div className="bg-neutral-0 w-full text-center flex justify-center flex-col pt-0.5 top-0 relative shadow">
+        <div className={`bg-neutral-0 w-full text-center flex justify-center flex-col pt-0.5 top-0 shadow z-40 ${isSticky && 'sticky'}`}>
                     <div className="flex justify-between md:justify-center items-center w-full">
                         <span
                             className="pl-1 md:hidden"

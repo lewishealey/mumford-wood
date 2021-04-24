@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from 'src/layouts/Layout';
-import Form from '@components/Form';
+import DownloadBrochure from '@components/Form/download-brochure';
 
 export default function Downloads() {
 
@@ -8,7 +8,7 @@ export default function Downloads() {
             <Layout
             title="Download Brochure"
             sidebarType="none">
-                <Form type="brochure" />
+                <DownloadBrochure inputs/>
             </Layout>
         );
   }

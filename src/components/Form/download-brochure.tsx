@@ -12,8 +12,16 @@ import classNames from 'classnames';
 // https://dev.to/markdrew53/integrating-sendgrid-with-next-js-4f5m
 // https://nextjs.org/blog/forms
 
-export const RequestEstimate: React.FC = ({
+type Props = {
+    cta?: boolean;
+    inputs?: boolean;
+    onCtaClick?: () => void;
+}
 
+export const RequestEstimate: React.FC<Props> = ({
+    cta,
+    inputs,
+    onCtaClick
 }) => {
     const [status, setStatus] = useState("");
     const [isOpen, setOpen] = useState(false);
@@ -70,19 +78,20 @@ export const RequestEstimate: React.FC = ({
       const classesArea = classNames(`relative w-full flex rounded font-heading text-md items-center h-5 px-1`);
 
     return <div className="space-y-1">
-        <div>
+
+        {cta && <div>
             <h3 className="font-heading text-xl color-gray mb-1">Download a brochure</h3>
             <p className="font-body text-base text-neutral-1 mb-1">Fill in a simple form and a representative will be in touch within 24 hours</p>
             <Button
                 size="default"
-                style="primary" onClick={() => setOpen(true)}>
+                style="primary" onClick={onCtaClick}>
                 Download brochure
             </Button>
         </div>
+        }
 
-        <Modal isOpen={isOpen}>
-           <Dialog success={status === "success"} error={status === "error"} onCloseClick={() => setOpen(false)}>
-
+        {inputs &&
+           <>
             {status === "success" &&
                 <>
                     <h3 className="font-heading text-xl color-gray mb-1">Success!</h3>
@@ -133,8 +142,8 @@ export const RequestEstimate: React.FC = ({
                                 Download
                             </Button>
                         </form></>}
-           </Dialog>
-        </Modal>
+           </>
+        }
     </div>
     ;
   }

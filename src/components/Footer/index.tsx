@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Form from '@components/Form';
+import Newsletter from '@components/Form/newsletter';
 import Link from 'next/link';
 
 import { currentYear } from '@utils/helpers';
@@ -36,7 +36,7 @@ export const Footer: React.FC<Props> = ({
                     </div>
                 </div>
                 <div className="w-full md:w-1/4">
-                    <Form type="newsletter" />
+                    <Newsletter />
                 </div>
             </div>
             <div className="grid grid-cols-3 space-y-1 md:space-y-0 md:flex flex-wrap md:flex-nowrap md:space-x-1 justify-between mt-3">

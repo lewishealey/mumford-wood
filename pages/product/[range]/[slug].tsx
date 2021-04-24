@@ -14,6 +14,12 @@ import Card from '@components/Card';
 import Checklist from '@components/Checklist';
 import File from '@components/File';
 import { sectionClasses, getTags, isSelectionInTags } from '@utils/helpers';
+import { Link, animateScroll as scroll } from "react-scroll";
+
+
+const waypointOptions = {
+    fireOnRapidScroll: false
+}
 
 const checkboxes = {
     "24mmDgu": {
@@ -92,7 +98,7 @@ export default function Product({product, ranges}) {
 
     const [glassItems, setGlassItems] = useState(data?.glazing);
     const [ironItems, setIronItems] = useState(data?.ironmongery);
-    const [waypointItem, setWaypointItem] = useState("introduction");
+    const [waypointItem, setWaypointItem] = useState("gallery");
 
     const downloadPageDefinition = `Product / ${data?.range.replace("-"," ")}™ / ${data?.title}`;
 
@@ -145,17 +151,17 @@ export default function Product({product, ranges}) {
                 </section>
 
                 <nav className="top-0 sticky z-10 bg-white flex m-0 space-x-1.5 mb-2">
-                    <a href="#gallery" className={`list-none border-b-4 py-1 ${waypointItem === 'gallery' ? 'border-black' : 'border-white'} py-1`}>Gallery</a>
-                    <a href="#finish" className={`list-none border-b-4 py-1 ${waypointItem === 'finish' ? 'border-black' : 'border-white'} hover:border-gray-500`}>Finish</a>
-                    <a href="#profile" className={`list-none border-b-4 py-1 ${waypointItem === 'profile' ? 'border-black' : 'border-white'} hover:border-gray-500`}>Profile</a>
-                    <a href="#glazing" className={`list-none border-b-4 py-1 ${waypointItem === 'glazing' ? 'border-black' : 'border-white'} hover:border-gray-500`}>Glazing</a>
-                    <a href="#ironmongery" className={`list-none border-b-4 py-1 ${waypointItem === 'ironmongery' ? 'border-black' : 'border-white'} hover:border-gray-500`}>Ironmongery</a>
-                    <a href="#specs" className={`list-none border-b-4 py-1 ${waypointItem === 'specs' ? 'border-black' : 'border-white'} hover:border-gray-500`}>Specs</a>
-                    <a href="#drawings" className={`list-none border-b-4 py-1 ${waypointItem === 'drawings' ? 'border-black' : 'border-white'} hover:border-gray-500`}>Drawings</a>
+                    <Link to="gallery" className={`list-none border-b-4 py-1 ${waypointItem === 'gallery' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-100} duration={500}>Gallery</Link>
+                    <Link to="finish" className={`list-none border-b-4 py-1 ${waypointItem === 'finish' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-100} duration={500}>Finish</Link>
+                    <Link to="profiles" className={`list-none border-b-4 py-1 ${waypointItem === 'profiles' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-100} duration={500}>Profile</Link>
+                    <Link to="glazing" className={`list-none border-b-4 py-1 ${waypointItem === 'glazing' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-100} duration={500}>Glazing</Link>
+                    <Link to="ironmongery" className={`list-none border-b-4 py-1 ${waypointItem === 'ironmongery' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-100} duration={500}>Ironmongery</Link>
+                    <Link to="specs" className={`list-none border-b-4 py-1 ${waypointItem === 'specs' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-100} duration={500}>Specs</Link>
+                    <Link to="drawings" className={`list-none border-b-4 py-1 ${waypointItem === 'drawings' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-100} duration={500}>Drawings</Link>
                 </nav>
 
-                {data?.gallery && <Waypoint onEnter={() => setWaypointItem('gallery')}>
-                                        <section className="mb-4">
+                {data?.gallery && <Waypoint onEnter={() => setWaypointItem('gallery')} onLeave={() => setWaypointItem('finish')} {...waypointOptions}>
+                                        <section className="mb-4" id="gallery">
                                             <h2 className={sectionClasses}>Gallery</h2>
                                             <Gallery items={data?.gallery} />
                                         </section>
@@ -163,7 +169,7 @@ export default function Product({product, ranges}) {
                 }
 
                 {data?.finishContent &&
-                <Waypoint onEnter={() => setWaypointItem('finish')}>
+                <Waypoint onLeave={() => setWaypointItem('profiles')} {...waypointOptions}>
                     <section className="mb-4" id="finish">
                         <h2 className={sectionClasses}>Finish</h2>
                         <div className="mb-2">{documentToReactComponents(data?.finishContent,options)}</div>
@@ -184,7 +190,7 @@ export default function Product({product, ranges}) {
                 }
 
                 {data?.profiles &&
-                    <Waypoint onEnter={() => setWaypointItem('profiles')}>
+                    <Waypoint onLeave={() => setWaypointItem('glazing')} {...waypointOptions}>
                         <section className="mb-4" id="profiles">
                             <h2 className={sectionClasses}>Profiles</h2>
                             <p>4 types of profiles</p>
@@ -193,7 +199,7 @@ export default function Product({product, ranges}) {
                 }
 
                 {glassItems &&
-                    <Waypoint onEnter={() => setWaypointItem('glazing')}>
+                    <Waypoint onLeave={() => setWaypointItem('ironmongery')} {...waypointOptions}>
                         <section className="mb-4" id="glazing">
                             <h2 className={sectionClasses}>Glazing</h2>
                             <div className="mb-1">
@@ -209,7 +215,7 @@ export default function Product({product, ranges}) {
                                     highlight={glass?.fields?.thickness}
                                     summary={glass?.fields?.content}
                                     border={true}
-                                    thumbnail="scale-down"
+                                    thumbnail="cover"
                                     key={i} /></>
                                 )}
                             </div>
@@ -218,7 +224,7 @@ export default function Product({product, ranges}) {
                 }
 
                 {ironItems &&
-                    <Waypoint onEnter={() => setWaypointItem('ironmongery')}>
+                    <Waypoint onLeave={() => setWaypointItem('specs')} {...waypointOptions}>
                     <section className="mb-4" id="ironmongery">
                         <h2 className={sectionClasses}>Ironmongery</h2>
                         <div className="mb-1">
@@ -235,7 +241,7 @@ export default function Product({product, ranges}) {
                                 summary={iron?.fields?.content}
                                 border={true}
                                 height="h-10"
-                                thumbnail="scale-down"
+                                thumbnail="contain"
                                 key={i} />
                                 </>
                             )}
@@ -245,7 +251,7 @@ export default function Product({product, ranges}) {
                 }
 
                 {data?.technicalSpecs &&
-                    <Waypoint onEnter={() => setWaypointItem('specs')}>
+                    <Waypoint onLeave={() => setWaypointItem('drawings')} {...waypointOptions}>
                     <section className="mb-4" id="specs">
                         <h2 className={sectionClasses}>Specifications</h2>
                         <div className="mb-2">{documentToReactComponents(data?.technicalSpecs,options)}</div>
@@ -253,7 +259,7 @@ export default function Product({product, ranges}) {
                     </Waypoint>
                 }
 
-                {data?.profiles && <Waypoint onEnter={() => setWaypointItem('drawings')}>
+                {data?.profiles && <Waypoint onLeave={() => setWaypointItem('compliance')} {...waypointOptions}>
                     <section className="mb-4" id="drawings">
                     <h2 className={sectionClasses}>CAD Drawings</h2>
                     <LoggedIn location="Homepage" entity="CAD profiles">
@@ -274,7 +280,7 @@ export default function Product({product, ranges}) {
                 </Waypoint>}
 
                 {data?.cadComplianceContent &&
-                    <section className="mb-4">
+                    <section className="mb-4" id="compliance">
                         <h2 className={sectionClasses}>CAD Compliance</h2>
                         <div className="mb-1">{documentToReactComponents(data?.cadComplianceContent,options)}</div>
 

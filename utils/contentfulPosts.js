@@ -14,7 +14,8 @@ export async function fetchEntries() {
 
 export async function fetchProducts() {
     const entries = await client.getEntries({
-        content_type: 'product'
+        content_type: 'product',
+        order: 'fields.type',
     })
     if (entries.items) return entries.items
     console.log(`Error getting Entries for ${contentType.name}.`)

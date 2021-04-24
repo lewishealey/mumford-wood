@@ -13,7 +13,7 @@ export const Modal: React.FC<Props> = ({
 }) => {
 
     return isOpen ? (
-        <div className="fixed top-0 left-0 h-full w-full z-40">
+        <div className="fixed top-0 left-0 h-full w-full z-50">
             <div className="absolute top-0 left-0 h-full w-full flex z-50 justify-center items-center">
                 {children}
             </div>

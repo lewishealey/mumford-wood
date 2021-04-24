@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Head from 'next/head';
 import { Header } from '@components/Header';
 import { SubheaderRange } from '@components/SubHeaderRange';
@@ -10,6 +10,11 @@ import { useRouter } from 'next/router';
 import Form from '@components/Form';
 import Breadcrumb, { CrumbItem } from '@components/Breadcrumb';
 import Button from '@components/Button';
+import Dialog from '@components/Dialog';
+import RequestEstimate from '@components/Form/request-estimate';
+import DownloadBrochure from '@components/Form/download-brochure';
+import Apprenticeship from '@components/Form/apprenticeship';
+import Modal from '@components/Modal';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -55,6 +60,7 @@ export const Layout: React.FC<LayoutProps> = ({
 }) => {
     const { asPath } = useRouter();
     const sliderRef = useRef(null);
+    const [isModalOpen, setModalOpen] = useState(false);
 
     const settings = {
         dots: true,
@@ -74,12 +80,22 @@ export const Layout: React.FC<LayoutProps> = ({
         }
     }
 
+    const handleCta = () => {
+        alert("W")
+    }
+
     return <GoogleReCaptchaProvider reCaptchaKey={process.env.CAPTCHA_SITE_KEY}>
         <div className="bg-white">
         <Head>
             <title>{title} | Mumford & Wood</title>
             <link rel="icon" href="/favicon.ico" />
         </Head>
+
+        <Modal isOpen={isModalOpen}>
+           <Dialog onCloseClick={() => setModalOpen(false)}>
+                <Form inputs type={sidebarType} />
+           </Dialog>
+        </Modal>
 
         {header && <Header/> }
 
@@ -137,7 +153,9 @@ export const Layout: React.FC<LayoutProps> = ({
                     <div className="lg:w-1/4">
                         <div className="top-1.5 sticky">
                             <div className="bg-primary-neutral rounded-md p-1.5 mb-0.5">
-                                <Form type={sidebarType}/>
+                                {sidebarType == "estimate" && <RequestEstimate cta onCtaClick={() => setModalOpen(true)}/>}
+                                {sidebarType == "brochure" && <DownloadBrochure cta onCtaClick={() => setModalOpen(true)}/>}
+                                {sidebarType == "apprenticeship" && <Apprenticeship cta onCtaClick={() => setModalOpen(true)}/>}
                             </div>
                             <Button
                                 size="default"
