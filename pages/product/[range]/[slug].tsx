@@ -13,7 +13,7 @@ import Download from '@components/Download';
 import Card from '@components/Card';
 import Checklist from '@components/Checklist';
 import File from '@components/File';
-import { sectionClasses, getTags, isSelectionInTags } from '@utils/helpers';
+import { sectionClasses, subSectionClasses, getTags, isSelectionInTags } from '@utils/helpers';
 import { Link, animateScroll as scroll } from "react-scroll";
 
 
@@ -233,7 +233,7 @@ export default function Product({product, ranges}) {
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-x-1 gap-y-2">
                             {ironItems && ironItems.map((iron, i) =>
                                 <>
-                                {i > 0 && iron?.fields?.highlight.toLowerCase() !== ironItems[i-1]?.fields?.highlight.toLowerCase() && <div className="col-span-3">&nbsp;</div>}
+                                {i > 0 && iron?.fields?.highlight.toLowerCase() !== ironItems[i-1]?.fields?.highlight.toLowerCase() && <div className="col-span-3"><h3 className={subSectionClasses}>{iron?.fields?.highlight}</h3></div>}
                                 <Card
                                 image={iron?.fields?.thumbnail?.fields?.file?.url}
                                 title={iron?.fields?.title}

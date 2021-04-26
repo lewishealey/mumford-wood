@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { fetchRanges, fetchProducts, fetchCaseStudies } from '../utils/contentfulPosts'
+import { fetchRanges, fetchProducts, fetchCaseStudies } from '@utils/contentfulPosts'
 import Tile from '@components/Tile';
 import Card from '@components/Card';
 import Layout from '@layouts/Layout';

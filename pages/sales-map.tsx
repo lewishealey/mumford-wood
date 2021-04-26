@@ -42,6 +42,7 @@ export default function SalesMap({posts}) {
                 rep = "scottMartin";
                 break;
         }
+        alert(rep)
         setPostcodeSearch(value);
         setSalesRep(rep);
     }
