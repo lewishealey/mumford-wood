@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import ReCaptcha from '@components/ReCaptcha';
 import fire from '@lib/firebase';
 import classNames from 'classnames';
+import moment from 'moment';
 
 // https://dev.to/markdrew53/integrating-sendgrid-with-next-js-4f5m
 // https://nextjs.org/blog/forms
@@ -23,6 +24,7 @@ export const Newsletter: React.FC = ({
 
       const onSubmit = (data) => {
         data.date = new Date();
+        data.prettyDate = moment(new Date()).format('DD MMM YYYY hh:mm');
         data.page = asPath;
 
         fetch('/api/email/newsletter', {

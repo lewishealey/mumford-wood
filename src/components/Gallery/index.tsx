@@ -9,7 +9,8 @@ type GalleryItem = {
     fields: {
         file: {
             url: string;
-        }
+        },
+        title: string;
     }
     large: string;
     thumbnail: string;
@@ -18,10 +19,12 @@ type GalleryItem = {
 
 type Props = {
     items: GalleryItem[];
+    columns?: number;
 }
 
 export const Gallery: React.FC<Props> = ({
-    items
+    items,
+    columns
 }) => {
     const [photoIndex, setPhotoIndex] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +37,10 @@ export const Gallery: React.FC<Props> = ({
 
     let images = [];
     items?.forEach(item => {
-        images.push(item.fields.file.url);
+        images.push({
+            url: item.fields.file.url,
+            caption: item.fields.title
+        });
     });
 
     const pictures = showAll ? items : items.slice(0,8);
@@ -43,14 +49,14 @@ export const Gallery: React.FC<Props> = ({
         <div>
             {items &&
                 <div className="flex items-center justify-between mb-1">
-                    <div className="font-heading space-x-0.5 flex">
+                    {pictures.length !== items.length && <div className="font-heading space-x-0.5 flex">
                         <span>Showing {pictures.length}/{items.length} images</span>
                         <button onClick={() => setShowAll(true)}>Show all</button>
-                    </div>
-                    <span className="flex items-center space-x-0.25 font-heading" onClick={() => handleChange(0)}><Image src="/img/icon-eye.svg" height={16} width={16}/> <span>View slideshow</span></span>
+                    </div>}
+                    <span className="flex items-center space-x-0.25 font-heading cursor-pointer hover:opacity-80" onClick={() => handleChange(0)}><Image src="/img/icon-eye.svg" height={16} width={16}/> <span>View slideshow</span></span>
                 </div>
             }
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-0.25">
+                <div className={`grid grid-cols-${columns < 2 ? '1' : '2'} md:grid-cols-4 gap-0.25`}>
                     {pictures?.map((item,i)=>
                         <GalleryItem
                             index={i}
@@ -64,9 +70,10 @@ export const Gallery: React.FC<Props> = ({
 
                 {isOpen && (
                     <Lightbox
-                        mainSrc={images[photoIndex]}
-                        nextSrc={images[(photoIndex + 1) % images.length]}
-                        prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+                        mainSrc={images[photoIndex]?.url}
+                        imageCaption={images[photoIndex]?.caption}
+                        nextSrc={images[(photoIndex + 1) % images.length].url}
+                        prevSrc={images[(photoIndex + images.length - 1) % images.length].url}
                         onCloseRequest={() => setIsOpen(false)}
                         onMovePrevRequest={() => setPhotoIndex((photoIndex + images.length - 1) % images.length)}
                         onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}
@@ -77,3 +84,7 @@ export const Gallery: React.FC<Props> = ({
   }
 
   export default Gallery;
+
+  Gallery.defaultProps = {
+      columns: 4
+  }

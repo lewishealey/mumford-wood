@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import Layout from 'src/layouts/Layout';
 import { PageProvider } from '@utils/contexts.js';
-import Map from '@components/Map';
 import TextField from '@components/TextField';
 import Card from '@components/Card'
 import { headOffice, alexFlokkas, benGreenwood, matthewBlaylock, scottMartin } from "@utils/salesAreas";
-import { fetchSalesTeam } from '../utils/contentfulPosts';
+import { fetchSalesTeam } from '@utils/contentfulPosts';
 
 export default function SalesMap({posts}) {
 
-    console.log(posts);
-
     const [postcodeSearch, setPostcodeSearch] = useState("");
     const [salesRep, setSalesRep] = useState("");
-
-    console.log(postcodeSearch, headOffice);
 
     const breadcrumbs = [{
         label: 'Contact Us',
@@ -25,26 +20,27 @@ export default function SalesMap({posts}) {
 
     const handlePostcode = (value) => {
         let rep: any;
-        switch(value) {
-            case headOffice.includes(value):
-                rep = "headOffice";
-                break;
-            case alexFlokkas.includes(value):
-                rep = "alexFlokkas";
-                break;
-            case benGreenwood.includes(value):
-                rep = "benGreenwood";
-                break;
-            case matthewBlaylock.includes(value):
-                rep = "matthewBlaylock";
-                break;
-            case scottMartin.includes(value):
-                rep = "scottMartin";
-                break;
+        let shortenedPostcode = value.slice(0,2).replace(/[0-9]/g, '').toUpperCase();
+
+        if(headOffice.includes(shortenedPostcode)) {
+            rep = "headOffice";
         }
-        alert(rep)
+        if(alexFlokkas.includes(shortenedPostcode)) {
+            rep = "alexFlokkas";
+        }
+        if(benGreenwood.includes(shortenedPostcode)) {
+            rep = "benGreenwood";
+        }
+        if(matthewBlaylock.includes(shortenedPostcode)) {
+            rep = "matthewBlaylock";
+        }
+        if(scottMartin.includes(shortenedPostcode)) {
+            rep = "scottMartin";
+        }
         setPostcodeSearch(value);
-        setSalesRep(rep);
+        if(value.length > 4) { setSalesRep(rep); } else {
+            setSalesRep("")
+        }
     }
 
     return (
@@ -54,33 +50,57 @@ export default function SalesMap({posts}) {
             sidebarType="none"
             border={false}
             breadcrumbs={breadcrumbs}>
-                <input className="input border border-gray-400 appearance-none rounded w-full px-1 py-0.5 focus focus:border-primary focus:outline-none active:outline-none active:border-primary" placeholder="First name" type="text" required onChange={(e) => handlePostcode(e.target.value)} onKeyUp={(e) => handlePostcode((e.target as HTMLTextAreaElement).value)} value={postcodeSearch}/>
 
-                <Map height={800}/>
-
-                {salesRep && salesRep.length > 0 && <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
-                    {posts && posts?.map((post,i) =>
-                        post.id == salesRep && <Card
-                            title={post?.title}
-                            border={false}
-                            highlight={post?.area}
-                            image={post?.thumbnail?.fields?.file?.url}
-                            key={i} />
-                    )}
+                <div className="lg:w-1/3 m-auto">
+                    <label className="relative flex rounded font-heading text-md items-center mb-0.25">Enter postcode to find your local sales rep</label>
+                    <input className="input border border-gray-400 appearance-none rounded w-full px-1 mb-3 py-0.5 focus focus:border-primary focus:outline-none active:outline-none active:border-primary" placeholder="E.g CO5 0LX" type="text" required onChange={(e) => handlePostcode(e.target.value)} onKeyUp={(e) => handlePostcode((e.target as HTMLTextAreaElement).value)} value={postcodeSearch}/>
                 </div>
-                }
 
                     <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
                         {posts && posts?.map((post,i) =>
-                            <Card
-                                title={post?.title}
-                                border={false}
-                                highlight={post?.area}
-                                image={post?.thumbnail?.fields?.file?.url}
-                                key={i}>
-                                    <p>{post?.phone}</p>
-                                    <p>{post?.email}</p>
-                            </Card>
+                            post.id == salesRep && <div className={`border p-2 rounded shadow border-primary-base bg-primary-fade`}>
+                                <Card
+                                    title={post?.title}
+                                    border={false}
+                                    highlight={post?.area}
+                                    image={post?.thumbnail?.fields?.file?.url}
+                                    align="center"
+                                    circle
+                                    key={i}>
+                                        <p>{post?.phone}</p>
+                                        <p>{post?.email}</p>
+                                </Card>
+                            </div>
+                        )}
+                        {posts && posts?.map((post,i) =>
+                            salesRep && post.id !== salesRep && <div className={`border p-2 rounded shadow opacity-50`}>
+                                <Card
+                                    title={post?.title}
+                                    border={false}
+                                    highlight={post?.area}
+                                    image={post?.thumbnail?.fields?.file?.url}
+                                    align="center"
+                                    circle
+                                    key={i}>
+                                        <p>{post?.phone}</p>
+                                        <p>{post?.email}</p>
+                                </Card>
+                            </div>
+                        )}
+                        {posts && posts?.map((post,i) =>
+                            !salesRep && <div className={`border p-2 rounded shadow`}>
+                                <Card
+                                    title={post?.title}
+                                    border={false}
+                                    highlight={post?.area}
+                                    image={post?.thumbnail?.fields?.file?.url}
+                                    align="center"
+                                    circle
+                                    key={i}>
+                                        <p>{post?.phone}</p>
+                                        <p>{post?.email}</p>
+                                </Card>
+                            </div>
                         )}
                     </div>
             </Layout>

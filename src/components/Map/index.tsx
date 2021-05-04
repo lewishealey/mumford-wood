@@ -14,8 +14,8 @@ export const Map: React.FC<Props> = ({
 }) => {
     const mapContainer = useRef();
     const [lng, setLng] = useState(0.739470);
-    const [lat, setLat] = useState(51.820042);
-    const [zoom, setZoom] = useState(9);
+    const [lat, setLat] = useState(51.820040);
+    const [zoom, setZoom] = useState(12);
 
     useEffect(() => {
         const map = new mapboxgl.Map({
@@ -25,35 +25,16 @@ export const Map: React.FC<Props> = ({
             zoom: zoom
         });
 
-        map.on('load', function () {
-            map.addSource('maine', {
-                    'type': 'geojson',
-                    'data': {
-                    'type': 'Feature',
-                    'geometry': {
-                    'type': 'Polygon',
-                    'coordinates': London
-                    }
-                }
-            });
-            map.addLayer({
-            'id': 'maine',
-            'type': 'fill',
-            'source': 'maine',
-            'layout': {},
-            'paint': {
-            'fill-color': '#088',
-            'fill-opacity': 0.8
-            }
-            });
-        });
+        var marker1 = new mapboxgl.Marker()
+        .setLngLat([0.739470, 51.820040])
+        .addTo(map);
 
         return () => map.remove();
         }, []);
 
     return (
-        <div className="pb-3">
-           <div className="map-container" ref={mapContainer} style={{ height }}/>
+        <div className="pb-3 overflow-hidden">
+           <div className="relative" ref={mapContainer} style={{ height }}/>
         </div>
     )
   }

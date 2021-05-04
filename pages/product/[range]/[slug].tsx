@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { fetchProduct, fetchProducts, fetchRangeProducts } from '@utils/contentfulPosts';
+import { fetchProduct, fetchProducts, fetchRangeProducts, fetchBrochures, fetchSalesTeam } from '@utils/contentfulPosts';
 import { Waypoint } from 'react-waypoint';
 import Layout from 'src/layouts/Layout';
 import { PageProvider } from '@utils/contexts.js';
+import { SalesProvider } from '@utils/salesContexts';
+import { BrochureProvider } from '@utils/brochureContexts';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { options } from '@utils/contentfulOptions';
 import Gallery from '@components/Gallery';
@@ -21,78 +23,7 @@ const waypointOptions = {
     fireOnRapidScroll: false
 }
 
-const checkboxes = {
-    "24mmDgu": {
-        id: '24mmDgu',
-        label: '24mm DGU',
-        checked: true
-    },
-    "14mmDgu": {
-        id: '14mmDgu',
-        label: '14mm DGU',
-        checked: true
-    },
-    "4mmDgu": {
-        id: '4mmDgu',
-        label: '4mm DGU',
-        checked: true
-    },
-    "toughened": {
-        id: 'toughened',
-        label: 'Toughened',
-        checked: true
-    },
-    "laminated": {
-        id: 'laminated',
-        label: 'Laminated',
-        checked: true
-    },
-    "acoustic": {
-        id: 'acoustic',
-        label: 'Acoustic',
-        checked: true
-    },
-    "obscure": {
-        id: 'obscure',
-        label: 'Obscure',
-        checked: true
-    }
-};
-
-const ironCheckboxes = {
-    "chrome": {
-        id: 'chrome',
-        label: 'Chrome',
-        checked: true
-    },
-    "brass": {
-        id: 'brass',
-        label: 'Brass',
-        checked: true
-    },
-    "bronze": {
-        id: 'bronze',
-        label: 'Bronze',
-        checked: true
-    },
-    "nickel": {
-        id: 'nickel',
-        label: 'Nickel',
-        checked: true
-    },
-    "black": {
-        id: 'black',
-        label: 'Black',
-        checked: true
-    },
-    "pewter": {
-        id: 'pewter',
-        label: 'Pewter',
-        checked: true
-    }
-};
-
-export default function Product({product, ranges}) {
+export default function Product({ product, ranges, salesTeam, brochures }) {
     const data = product[0];
     // console.log(data);
 
@@ -101,6 +32,80 @@ export default function Product({product, ranges}) {
     const [waypointItem, setWaypointItem] = useState("gallery");
 
     const downloadPageDefinition = `Product / ${data?.range.replace("-"," ")}™ / ${data?.title}`;
+
+    const checkboxes = {
+        "24mmDgu": {
+            id: '24mmDgu',
+            label: '24mm DGU',
+            checked: true
+        },
+        "14mmDgu": {
+            id: '14mmDgu',
+            label: '14mm DGU',
+            checked: true
+        },
+        "4mmDgu": {
+            id: '4mmDgu',
+            label: '4mm DGU',
+            checked: true
+        },
+        "toughened": {
+            id: 'toughened',
+            label: 'Toughened',
+            checked: true
+        },
+        "laminated": {
+            id: 'laminated',
+            label: 'Laminated',
+            checked: true
+        },
+        "acoustic": {
+            id: 'acoustic',
+            label: 'Acoustic',
+            checked: true
+        },
+        "obscure": {
+            id: 'obscure',
+            label: 'Obscure',
+            checked: true
+        }
+    };
+
+    const ironCheckboxes = {
+        "chrome": {
+            id: 'chrome',
+            label: 'Chrome',
+            checked: true
+        },
+        "brass": {
+            id: 'brass',
+            label: 'Brass',
+            checked: true
+        },
+        "bronze": {
+            id: 'bronze',
+            label: 'Bronze',
+            checked: true
+        },
+        "nickel": {
+            id: 'nickel',
+            label: 'Nickel',
+            checked: true
+        },
+    };
+
+    if(data?.range !== "conservation-range") {
+        ironCheckboxes["black"] = {
+            id: 'black',
+            label: 'Black',
+            checked: true
+        };
+        ironCheckboxes["pewter"] = {
+            id: 'pewter',
+            label: 'Pewter',
+            checked: true
+        }
+    }
 
     const breadcrumbs = [{
         label: 'Product Ranges',
@@ -137,8 +142,12 @@ export default function Product({product, ranges}) {
         setIronItems(ironmongeryItems);
     }
 
+    console.log(data)
+
     return (
         <PageProvider value="product-ranges">
+            <SalesProvider value={salesTeam}>
+            <BrochureProvider value={brochures}>
             <Layout
             title={data?.title}
             image={data?.hero?.fields?.file?.url}
@@ -150,7 +159,7 @@ export default function Product({product, ranges}) {
                     {documentToReactComponents(data?.content,options)}
                 </section>
 
-                <nav className="top-0 sticky z-10 bg-white flex m-0 space-x-1.5 mb-2">
+                <nav className="sticky z-10 bg-white flex m-0 space-x-1.5 mb-2" style={{top: 122}}>
                     <Link to="gallery" className={`list-none border-b-4 py-1 ${waypointItem === 'gallery' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-100} duration={500}>Gallery</Link>
                     <Link to="finish" className={`list-none border-b-4 py-1 ${waypointItem === 'finish' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-100} duration={500}>Finish</Link>
                     <Link to="profiles" className={`list-none border-b-4 py-1 ${waypointItem === 'profiles' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-100} duration={500}>Profile</Link>
@@ -202,21 +211,19 @@ export default function Product({product, ranges}) {
                     <Waypoint onLeave={() => setWaypointItem('ironmongery')} {...waypointOptions}>
                         <section className="mb-4" id="glazing">
                             <h2 className={sectionClasses}>Glazing</h2>
-                            <div className="mb-1">
+                            {/* <div className="mb-1">
                                 <Checklist items={checkboxes} onChecked={onGlazingFilter} />
-                            </div>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-1 gap-y-2">
+                            </div> */}
+                            {data?.glazingThumbnails && <Gallery columns={data?.glazingThumbnails.length} items={data?.glazingThumbnails} />}
+                            <div className="grid grid-cols-2 md:grid-cols-1 gap-y-0.5">
                                 {glassItems && glassItems.map((glass, i) =>
-                                    <>
-                                    {i > 0 && glass?.fields?.thickness.toLowerCase() !== glassItems[i-1]?.fields?.thickness.toLowerCase() && <div className="col-span-3">&nbsp;</div>}
                                 <Card
-                                    image={glass?.fields?.thumbnail?.fields?.file?.url}
                                     title={glass?.fields?.title}
                                     highlight={glass?.fields?.thickness}
                                     summary={glass?.fields?.content}
                                     border={true}
                                     thumbnail="cover"
-                                    key={i} /></>
+                                    key={i} />
                                 )}
                             </div>
                         </section>
@@ -314,6 +321,8 @@ export default function Product({product, ranges}) {
                 )}
             </div>
             </Layout>
+            </BrochureProvider>
+            </SalesProvider>
         </PageProvider>
     );
   }
@@ -324,7 +333,7 @@ export default function Product({product, ranges}) {
 
     return {
         paths,
-      fallback: false,
+        fallback: false,
     }
   }
 
@@ -333,6 +342,10 @@ export default function Product({product, ranges}) {
     const { range, slug } = context.params;
     const res = await fetchProduct(range, slug);
     const resP = await fetchRangeProducts(range);
+    const sales = await fetchSalesTeam();
+    const salesT = await sales.map((p) => {
+        return p.fields
+    })
 
     const product = await res.map((p) => {
       return p.fields
@@ -342,10 +355,17 @@ export default function Product({product, ranges}) {
         return p.fields
     })
 
+    const b = await fetchBrochures();
+    const brochures = await b.map((p) => {
+        return p.fields
+    });
+
     return {
       props: {
         product,
-        ranges
+        ranges,
+        salesTeam: salesT,
+        brochures
       },
     }
   }

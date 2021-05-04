@@ -3,18 +3,8 @@ const client = new SparkPost(process.env.SPARKPOST_KEY)
 const adminEmail = process.env.ADMIN_EMAIL;
 
 export default function (req, res) {
-    const data = {
-        date: req.body.date,
-        page: req.body.page,
-        fName: req.body.firstName,
-        lName: req.body.lastName,
-        email: req.body.email,
-        phone: req.body.phone,
-        notes: req.body.notes,
-    }
-
     client.transmissions.send({
-        metadata: data,
+        metadata: req.body,
         content: {
           template_id: 'mw-admin-estimate',
         },

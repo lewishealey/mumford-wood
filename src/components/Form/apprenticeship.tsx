@@ -8,6 +8,7 @@ import Dialog from '@components/Dialog';
 import Download from '@components/Download';
 import fire from '@lib/firebase';
 import classNames from 'classnames';
+import moment from 'moment';
 
 // https://dev.to/markdrew53/integrating-sendgrid-with-next-js-4f5m
 // https://nextjs.org/blog/forms
@@ -35,6 +36,7 @@ export const Apprenticeship: React.FC<Props> = ({
 
       const onSubmit = (data) => {
         data.date = new Date();
+        data.prettyDate = moment(new Date()).format('DD MMM YYYY hh:mm');
         data.page = asPath;
 
         fetch('/api/email/apprenticeship-user', {

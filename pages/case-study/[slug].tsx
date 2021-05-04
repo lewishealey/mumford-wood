@@ -1,8 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Layout from 'src/layouts/Layout';
-import { fetchCaseStudies, fetchCaseStudy } from '@utils/contentfulPosts'
+import { fetchCaseStudies, fetchCaseStudy, fetchSalesTeam, fetchBrochures } from '@utils/contentfulPosts'
 import { PageProvider } from '@utils/contexts.js';
+import { SalesProvider } from '@utils/salesContexts';
+import { BrochureProvider } from '@utils/brochureContexts';
 import Gallery from '@components/Gallery';
 import Tile from '@components/Tile';
 import Card from '@components/Card';
@@ -10,9 +12,9 @@ import { sectionClasses } from '@utils/helpers';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { options } from '@utils/contentfulOptions';
 
-export default function CaseStudy({ page, caseStudies }) {
+export default function CaseStudy({ page, caseStudies, salesTeam, brochures }) {
     const data = page[0];
-    console.log(data, caseStudies);
+    // console.log(data, caseStudies);
 
     const breadcrumbs = [{
         label: 'Case Studies',
@@ -24,6 +26,8 @@ export default function CaseStudy({ page, caseStudies }) {
 
     return (
         <PageProvider value="case-studies">
+            <SalesProvider value={salesTeam}>
+            <BrochureProvider value={brochures}>
             <Layout
             title={data?.title}
             image={data?.thumbnail?.fields?.file?.url}
@@ -70,9 +74,9 @@ export default function CaseStudy({ page, caseStudies }) {
                 </section>
                 }
 
-
-
             </Layout>
+            </BrochureProvider>
+            </SalesProvider>
         </PageProvider>
     );
   }
@@ -92,6 +96,10 @@ export default function CaseStudy({ page, caseStudies }) {
     const { slug } = context.params;
     const res = await fetchCaseStudy(slug);
     const caseStudyData = await fetchCaseStudies();
+    const sales = await fetchSalesTeam();
+    const salesT = await sales.map((p) => {
+        return p.fields
+    })
 
     const caseStudies = await caseStudyData.map((p) => {
       return p.fields
@@ -101,10 +109,17 @@ export default function CaseStudy({ page, caseStudies }) {
       return p.fields
     })
 
+    const b = await fetchBrochures();
+    const brochures = await b.map((p) => {
+        return p.fields
+    });
+
     return {
       props: {
         page,
-        caseStudies
+        caseStudies,
+        salesTeam: salesT,
+        brochures
       },
     }
   }

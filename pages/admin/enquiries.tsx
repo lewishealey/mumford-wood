@@ -22,6 +22,7 @@ const Enquiries = () => {
           .collection(activeTab)
           .where('date', '>', new Date(dateFrom))
           .where('date', '<', new Date(dateTo))
+          .orderBy('date', 'desc')
           .onSnapshot(snap => {
             const enquires = snap.docs.map(doc => ({
                 id: doc.id,
@@ -86,8 +87,8 @@ const Enquiries = () => {
             {enquires ? enquires?.map((enquiry, i) =>
                 <tr key={i}>
                     <td className="border-b border-gray-200 p-1">
-                        {enquiry.date &&
-                            <Moment format="DD/MM/YYYY hh:mm a">
+                        {enquiry.prettyDate ?
+                                enquiry.prettyDate : <Moment format="DD/MM/YYYY hh:mm a">
                                 {enquiry.date.toDate()}
                             </Moment>
                         }

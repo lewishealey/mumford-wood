@@ -16,6 +16,7 @@ const Signups = () => {
           .collection('newsletter-signups')
           .where('date', '>', new Date(dateFrom))
           .where('date', '<', new Date(dateTo))
+          .orderBy('date', 'desc')
           .onSnapshot(snap => {
             const signups = snap.docs.map(doc => ({
                 id: doc.id,

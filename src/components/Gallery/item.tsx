@@ -14,10 +14,10 @@ export const GalleryItem: React.FC<Props> = ({
     onGalleryClick,
 }) => {
     return (
-        <div className="w-full h-10 relative rounded-sm overflow-hidden" onClick={() => onGalleryClick(index)}>
+        <div className="w-full h-10 relative rounded-sm overflow-hidden bg-gray-100" onClick={() => onGalleryClick(index)}>
             <div className="w-full h-full bg-neutral-0 z-0 absolute top-0 left-0 bg-opacity-50 opacity-0 hover:opacity-100 flex justify-center items-center cursor-pointer">
                 <Image src="/img/hover.svg" alt="Hover" height={42} width={42}/></div>
-            <img src={thumbnail} className="w-full h-full object-cover" alt={alt}/>
+            <img src={`${thumbnail}?w=200`} className="w-full h-full object-cover" alt={alt}/>
         </div>
     )
   }

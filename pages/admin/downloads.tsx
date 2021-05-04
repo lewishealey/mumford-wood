@@ -16,6 +16,7 @@ const Downloads = () => {
           .collection('downloads')
           .where('date', '>', new Date(dateFrom))
           .where('date', '<', new Date(dateTo))
+          .orderBy('date', 'desc')
           .onSnapshot(snap => {
             const downloads = snap.docs.map(doc => ({
                 id: doc.id,

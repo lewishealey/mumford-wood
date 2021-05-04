@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Layout from 'src/layouts/Layout';
 import Card from '@components/Card';
+import Map from '@components/Map';
 import { fetchOffices } from '../utils/contentfulPosts'
 import { PageProvider } from '@utils/contexts.js';
 import { options } from '@utils/contentfulOptions';
@@ -14,14 +15,22 @@ export default function ContactUs({ offices }) {
             title="Contact us"
             sidebarType="brochure">
                 <section className="mb-2">
-                    <p className="font-body mb-1">For technical and sales support, please contact our sales department.</p>
+                    <Map height={400}/>
+                    <h3 className="text-xl font-heading mb-0.5">Postal address</h3>
+                    <p>Mumford & Wood<br />
+                        Tower Business Park, Kelvedon Road<br />
+                        Tiptree<br />
+                        Essex<br />
+                        CO5 0LX
+                    </p>
+                    <hr className="my-1"/>
                     <h3 className="text-xl font-heading">Tel 01621 818155</h3>
                     <h3 className="text-xl font-heading mb-1">sales@mumfordwood.com</h3>
                     <p>For any after sale maintenance queries please contact:</p>
-                    <p><a href="mailto:customerservices@mumfordwood.com">customerservices@mumfordwood.com</a></p>
+                    <p><a href="mailto:customerservices@mumfordwood.com" className="text-xl font-heading mb-0.5">customerservices@mumfordwood.com</a></p>
                 </section>
 
-                <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-1">
+                <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-3">
                     {offices && offices?.map((office,i) =>
                         <Card
                             image={office?.thumbnail?.fields?.file?.url}

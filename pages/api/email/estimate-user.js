@@ -3,31 +3,21 @@ const client = new SparkPost(process.env.SPARKPOST_KEY)
 const adminEmail = process.env.ADMIN_EMAIL;
 
 export default function (req, res) {
-    const data = {
-        date: req.body.date,
-        page: req.body.page,
-        fName: req.body.firstName,
-        lName: req.body.lastName,
-        email: req.body.email,
-        phone: req.body.phone,
-        notes: req.body.notes,
-    }
-
     client.transmissions.send({
-        metadata: data,
+        metadata: req.body,
         content: {
           template_id: 'mw-user-estimate',
         },
         recipients: [{
-            address: data.email
+            address: req.body.repEmail ? req.body.repEmail : adminEmail
         }]
       })
       .then(data => {
-        // console.log(data)
+        console.log(data)
         res.status(200).json(true)
       })
       .catch(err => {
-        // console.log(err)
+        console.log(err)
         res.status(500).json(false)
     })
 }

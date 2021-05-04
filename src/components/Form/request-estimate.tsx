@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import SalesContext from '@utils/salesContexts';
 import { useRouter } from 'next/router';
 import Button from '@components/Button';
-import Modal from '@components/Modal';
-import Dialog from '@components/Dialog';
+import { useDropzone } from 'react-dropzone';
+import { headOffice, alexFlokkas, benGreenwood, matthewBlaylock, scottMartin } from "@utils/salesAreas";
 import ReCaptcha from '@components/ReCaptcha';
 import fire from '@lib/firebase';
 import classNames from 'classnames';
+import moment from 'moment';
 
 // https://dev.to/markdrew53/integrating-sendgrid-with-next-js-4f5m
 // https://nextjs.org/blog/forms
@@ -22,10 +24,15 @@ export const RequestEstimate: React.FC<Props> = ({
     inputs,
     onCtaClick
 }) => {
+    const onDrop = useCallback(acceptedFiles => {
+        // Do something with the files
+      }, [])
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     const [status, setStatus] = useState("");
     const [isOpen, setOpen] = useState(false);
     const { asPath } = useRouter();
+    const salesTeam = useContext(SalesContext);
 
     const {
         register,
@@ -35,7 +42,37 @@ export const RequestEstimate: React.FC<Props> = ({
 
       const onSubmit = (data) => {
           data.date = new Date();
+          data.prettyDate = moment(new Date()).format('DD MMM YYYY hh:mm');
           data.page = asPath;
+
+          let shortenedPostcode = data.postCode?.slice(0,2).replace(/[0-9]/g, '').toUpperCase();
+
+          const relevantRep = salesTeam instanceof Array ? salesTeam?.filter( function (team) {
+                if(headOffice.includes(shortenedPostcode) && team.id == "headOffice") {
+                    return true;
+                }
+                if(alexFlokkas.includes(shortenedPostcode) && team.id == "alexFlokkas") {
+                    return true;
+                }
+                if(benGreenwood.includes(shortenedPostcode) && team.id == "benGreenwood") {
+                    return true;
+                }
+                if(matthewBlaylock.includes(shortenedPostcode) && team.id == "matthewBlaylock") {
+                    return true;
+                }
+                if(scottMartin.includes(shortenedPostcode) && team.id == "scottMartin") {
+                    return true;
+                }
+        }): null;
+
+        if(relevantRep && relevantRep.length > 0) {
+            data.repName = relevantRep[0].title;
+            data.repEmail = relevantRep[0].email;
+            data.repPhone = relevantRep[0].phone;
+            data.repImage = relevantRep[0].thumbnail?.fields?.file?.url;
+        }
+
+        console.log(data)
 
           fetch('/api/email/estimate-user', {
             method: 'POST',
@@ -114,8 +151,20 @@ export const RequestEstimate: React.FC<Props> = ({
                                 <input type="text" className={classes} {...register('phone')}/>
                             </div>
                             <div className="TextField__group w-full">
+                                <label className="relative flex rounded font-heading text-md items-center mb-0.25">Post code</label>
+                                <input type="text" className={classes} {...register('postCode')}/>
+                            </div>
+                            <div className="TextField__group w-full">
                                 <label className="relative flex rounded font-heading text-md items-center mb-0.25">Additional information</label>
                                 <textarea className={classesArea} {...register('notes')} rows={6}/>
+                            </div>
+                            <div {...getRootProps()}>
+                                <input {...getInputProps()} />
+                                {
+                                    isDragActive ?
+                                    <p>Drop the files here ...</p> :
+                                    <p>Drag 'n' drop some files here, or click to select files</p>
+                                }
                             </div>
                             <ReCaptcha />
                             <Button

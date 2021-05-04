@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import Button from '@components/Button';
@@ -8,9 +8,39 @@ import Dialog from '@components/Dialog';
 import Download from '@components/Download';
 import fire from '@lib/firebase';
 import classNames from 'classnames';
+import moment from 'moment';
+import BrochureContexts from '@utils/brochureContexts';
 
 // https://dev.to/markdrew53/integrating-sendgrid-with-next-js-4f5m
 // https://nextjs.org/blog/forms
+
+const productBrochure = [
+    {
+        fields: {
+            title: 'PDF',
+            file: {
+                url: 'https://assets.ctfassets.net/uefpddncbaai/5HVCETi4zp3S5xPXDMisCW/b8813ed0969757844fdba1e53475a14a/M_W_brochure.pdf',
+                details: {
+                    size: '3770000'
+                }
+            }
+        }
+    }
+]
+
+const commercialBrochure = [
+    {
+        fields: {
+            title: 'PDF',
+            file: {
+                url: 'https://assets.ctfassets.net/uefpddncbaai/1yxf05PyO0MoLR1XeUHdwy/8f4ff7e1c18b51aba5fd31fce40de475/M_W-Commercial-Brochure',
+                details: {
+                    size: '3670000'
+                }
+            }
+        }
+    }
+]
 
 type Props = {
     cta?: boolean;
@@ -27,7 +57,9 @@ export const RequestEstimate: React.FC<Props> = ({
     const [isOpen, setOpen] = useState(false);
     const [isSignedUp, setIsSignedUp] = useState(false);
     const { asPath } = useRouter();
+    const brochures = useContext(BrochureContexts);
 
+    console.log(brochures);
     const {
         register,
         handleSubmit,
@@ -37,6 +69,7 @@ export const RequestEstimate: React.FC<Props> = ({
 
       const onSubmit = (data) => {
         data.date = new Date();
+        data.prettyDate = moment(new Date()).format('DD MMM YYYY hh:mm');
         data.page = asPath;
 
         fetch('/api/email/brochure-user', {
@@ -96,6 +129,16 @@ export const RequestEstimate: React.FC<Props> = ({
                 <>
                     <h3 className="font-heading text-xl color-gray mb-1">Success!</h3>
                     <p className="font-body text-base text-neutral-1">Thanks for your submission, please download below</p>
+                    <div className="flex column w-full flex-wrap border-gray-300 border rounded">
+                            {brochures instanceof Array && brochures?.map((brochure, i) =>
+                                <Download
+                                key={i}
+                                title={brochure?.name}
+                                entity={"Downloads"}
+                                user={fire.auth()}
+                                files={brochure?.files}
+                            />)}
+                    </div>
                 </>
             }
 

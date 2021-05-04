@@ -4,13 +4,15 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { options } from '@utils/contentfulOptions';
 import Link from 'next/link';
 export interface Props {
-    title: string;
+    title?: string;
     highlight?: string;
     href?: string;
     summary?: any;
     height?: string;
     image?: string;
+    align?: string;
     border: boolean;
+    circle?: boolean;
     thumbnail?: string;
     children?: any;
 }
@@ -22,19 +24,23 @@ export const Card: React.FC<Props> = ({
     summary,
     height,
     image,
+    align,
     border,
+    circle,
     thumbnail,
     children
 }) => {
     const classes = classNames(
-        `mb-0.5 object-${thumbnail} ${height} w-full rounded-sm`,
-        { 'border border-solid border border-neutral-3': border }
+        `mb-0.5 object-${thumbnail} ${!circle && `${height} w-full`} m-auto rounded-sm`, {
+            'border border-solid border border-neutral-3': border,
+            'rounded-full h-4 w-4' : circle,
+        }
     );
 
-    const contents = <div>
-            {image && <img src={image} className={classes} />}
+    const contents = <div className={`text-${align}`}>
+            {image && <img src={`${image}?w=300`} className={classes} />}
             {highlight && <h5 className="font-heading text-primary-base text-sm uppercase font-bold tracking-widest mt-1 mb-0.5">{highlight}</h5>}
-            {title && <h4 className="font-body font-bold text-lg m-0 mb-0.5">{title}</h4>}
+            {title && <h4 className={`font-body font-bold text-lg m-0 mb-0.5 ${!highlight && 'mt-1'}`}>{title}</h4>}
             {summary && documentToReactComponents(summary,options)}
             {children && children}
         </div>;
@@ -53,6 +59,7 @@ export const Card: React.FC<Props> = ({
   export default Card;
 
   Card.defaultProps = {
-      height: "h-14",
-      thumbnail: "cover"
+      height: 'h-14',
+      thumbnail: 'cover',
+      align: 'left'
   }
