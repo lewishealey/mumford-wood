@@ -25,17 +25,7 @@ export default function CaseStudies({ posts }) {
                         border={false}
                         highlight={post?.area}
                         image={post?.thumbnail?.fields?.file?.url}
-                        key={i}>
-                            <div className="mb-1 font-body text-gray-800 text-lg md:text-base">
-                            <Truncate
-                                lines={1}
-                                width={1000} // width being how much you want to truncate your copy
-                                ellipsis='&hellip;'
-                                >
-                                 {documentToReactComponents(post?.content,options)}
-                            </Truncate>
-                            </div>
-                        </Card>
+                        key={i} />
                 )}
             </div>
       </Layout>

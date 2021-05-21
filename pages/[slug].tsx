@@ -71,7 +71,7 @@ export default function Page({ page, salesTeam, brochures }) {
                       key={i}
                       href={section?.fields?.link}
                       title={section?.fields?.title}
-                      size="default"
+                      size="compact"
                       image={section?.fields?.image?.fields?.file?.url}
                     />
                   ))}

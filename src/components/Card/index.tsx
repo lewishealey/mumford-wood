@@ -39,15 +39,15 @@ export const Card: React.FC<Props> = ({
 
     const contents = <div className={`text-${align}`}>
             {image && <img src={`${image}?w=300`} className={classes} />}
-            {highlight && <h5 className="font-heading text-primary-base text-sm uppercase font-bold tracking-widest mt-1 mb-0.5">{highlight}</h5>}
-            {title && <h4 className={`font-body font-bold text-lg m-0 mb-0.5 ${!highlight && 'mt-1'}`}>{title}</h4>}
+            {highlight && <h5 className="font-heading text-primary-base text-sm uppercase font-bold tracking-widest mt-0.75 mb-0.25">{highlight}</h5>}
+            {title && <h4 className={`font-heading font-bold text-lg m-0 mb-0.5 ${!highlight && 'mt-1'}`}>{title}</h4>}
             {summary && documentToReactComponents(summary,options)}
             {children && children}
         </div>;
 
         if(href) {
             return <Link href={href}>
-                    <a className="cursor-pointer">
+                    <a className="cursor-pointer transform hover:opacity-60 duration-200 ease-linear">
                         {contents}
                     </a>
                 </Link>

@@ -177,7 +177,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                                 </Waypoint>
                 }
 
-                {data?.finishContent &&
+                {(data?.finishContent || data?.finishes) &&
                 <Waypoint onLeave={() => setWaypointItem('profiles')} {...waypointOptions}>
                     <section className="mb-4" id="finish">
                         <h2 className={sectionClasses}>Finish</h2>

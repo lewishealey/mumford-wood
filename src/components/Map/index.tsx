@@ -1,42 +1,50 @@
-import React, { useState, useRef, useEffect } from 'react';
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
-import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
-import { London } from "@utils/coordinates";
+import React, { useState, useRef, useEffect } from "react";
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
-mapboxgl.workerClass = MapboxWorker;
-mapboxgl.accessToken = 'pk.eyJ1IjoibGV3aXNoZWFsZXkiLCJhIjoiY2tuMW1ic3ZiMHpiMDJwdHA3YngyZGw3NCJ9.HIUEFGrQfzLWF-c7sShszg';
+const containerStyle = {
+  width: "100%",
+  height: "400px",
+};
+
+const center = {
+  lat: -3.745,
+  lng: -38.523,
+};
 export interface Props {
-    height: number;
+  height: number;
 }
 
-export const Map: React.FC<Props> = ({
-    height
-}) => {
-    const mapContainer = useRef();
-    const [lng, setLng] = useState(0.739470);
-    const [lat, setLat] = useState(51.820040);
-    const [zoom, setZoom] = useState(12);
+export const Map: React.FC<Props> = ({ height }) => {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyCCrBSmdMAhcbxkC-oGjl_cbgQ0y5-ETt0"
+  });
 
-    useEffect(() => {
-        const map = new mapboxgl.Map({
-            container: mapContainer.current,
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [lng, lat],
-            zoom: zoom
-        });
+  const [map, setMap] = React.useState(null)
 
-        var marker1 = new mapboxgl.Marker()
-        .setLngLat([0.739470, 51.820040])
-        .addTo(map);
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds();
+    map.fitBounds(bounds);
+    setMap(map)
+  }, [])
 
-        return () => map.remove();
-        }, []);
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
 
-    return (
-        <div className="pb-3 overflow-hidden">
-           <div className="relative" ref={mapContainer} style={{ height }}/>
-        </div>
-    )
-  }
+  return isLoaded ? (
+    <div className="mb-3"><GoogleMap
+      mapContainerStyle={containerStyle}
+      center={center}
+      zoom={10}
+      onLoad={onLoad}
+      onUnmount={onUnmount}
+    >
+      { /* Child components, such as markers, info windows, etc. */ }
+      <></>
+    </GoogleMap>
+    </div>
+) : <></>
+};
 
-  export default Map;
+export default Map;
