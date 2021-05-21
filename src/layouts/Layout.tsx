@@ -190,7 +190,7 @@ export const Layout: React.FC<LayoutProps> = ({
             <div className="container m-auto flex-col px-1 md:flex-row md:gap-2 md:px-0 flex">
               <div className="lg:w-3/4">{children}</div>
               <div className="lg:w-1/4">
-                <div className="top-1.5 sticky">
+                <div className="top-9 sticky">
                   <div className="bg-primary-neutral rounded-md p-1.5 mb-0.5">
                     {sidebarType == "estimate" && (
                       <RequestEstimate
