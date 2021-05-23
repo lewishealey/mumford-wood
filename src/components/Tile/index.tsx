@@ -6,7 +6,7 @@ export interface Props {
     href: string;
     title: string;
     size: 'default' | 'compact';
-    style: 'default' | 'conservation' | 'classic' | 'heritage';
+    style?: 'default' | 'conservation' | 'classic' | 'heritage';
     highlight?: string;
     border?: boolean;
     summary?: string;

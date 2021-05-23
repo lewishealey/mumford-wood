@@ -69,6 +69,7 @@ export default function Page({ page, salesTeam, brochures }) {
                   {data?.sections?.map((section, i) => (
                     <Tile
                       key={i}
+                      style="default"
                       href={section?.fields?.link}
                       title={section?.fields?.title}
                       size="compact"

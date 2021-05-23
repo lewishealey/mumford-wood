@@ -18,7 +18,7 @@ export default function Downloads({ brochures, products }) {
     }];
 
     return (
-        <PageProvider value="about-us">
+        <PageProvider value="professional">
             <Layout
             title="Downloads"
             sidebarType="none"

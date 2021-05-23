@@ -38,8 +38,8 @@ export const Gallery: React.FC<Props> = ({
     let images = [];
     items?.forEach(item => {
         images.push({
-            url: item.fields.file.url,
-            caption: item.fields.title
+            url: item?.fields?.file?.url,
+            caption: item?.fields?.title
         });
     });
 
@@ -60,7 +60,7 @@ export const Gallery: React.FC<Props> = ({
                     {pictures?.map((item,i)=>
                         <GalleryItem
                             index={i}
-                            thumbnail={item.fields.file.url}
+                            thumbnail={item?.fields?.file?.url}
                             alt="dqwd"
                             key={`gallery_${i}`}
                             onGalleryClick={handleChange}

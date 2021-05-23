@@ -1,0 +1,75 @@
+{
+  "version": "11.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "HelloCdkStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "HelloCdkStack.template.json",
+        "validateOnSynth": false
+      },
+      "metadata": {
+        "/HelloCdkStack/MyFirstBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyFirstBucketB8884501",
+            "trace": [
+              "new Bucket (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/aws-s3/lib/bucket.js:521:26)",
+              "new HelloCdkStack (/Users/hellohuman/mumford-wood/lib/hello-cdk-stack.js:8:5)",
+              "Object.<anonymous> (/Users/hellohuman/mumford-wood/bin/hello-cdk.js:7:1)",
+              "Module._compile (internal/modules/cjs/loader.js:1063:30)",
+              "Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)",
+              "Module.load (internal/modules/cjs/loader.js:928:32)",
+              "Function.Module._load (internal/modules/cjs/loader.js:769:14)",
+              "Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)",
+              "internal/main/run_main_module.js:17:47"
+            ]
+          }
+        ],
+        "/HelloCdkStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
+              "/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:9",
+              "visit (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/synthesis.js:185:9)",
+              "visit (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/synthesis.js:182:9)",
+              "injectMetadataResources (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/synthesis.js:117:5)",
+              "Object.synthesize (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "process.<anonymous> (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/app.js:50:51)",
+              "Object.onceWrapper (events.js:422:26)",
+              "process.emit (events.js:315:20)"
+            ]
+          }
+        ],
+        "/HelloCdkStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:30:35)",
+              "/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:9",
+              "visit (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/synthesis.js:185:9)",
+              "visit (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/synthesis.js:182:9)",
+              "injectMetadataResources (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/synthesis.js:117:5)",
+              "Object.synthesize (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/stage.js:100:41)",
+              "process.<anonymous> (/Users/hellohuman/mumford-wood/node_modules/@aws-cdk/core/lib/app.js:50:51)",
+              "Object.onceWrapper (events.js:422:26)",
+              "process.emit (events.js:315:20)"
+            ]
+          }
+        ]
+      },
+      "displayName": "HelloCdkStack"
+    }
+  }
+}

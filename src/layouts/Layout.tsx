@@ -15,6 +15,7 @@ import Dialog from "@components/Dialog";
 import RequestEstimate from "@components/Form/request-estimate";
 import DownloadBrochure from "@components/Form/download-brochure";
 import Apprenticeship from "@components/Form/apprenticeship";
+import YouTube from "react-youtube";
 import Modal from "@components/Modal";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -62,6 +63,7 @@ export const Layout: React.FC<LayoutProps> = ({
   const { asPath } = useRouter();
   const sliderRef = useRef(null);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isVideoShowing, setVideoShowing] = useState(false);
 
   const settings = {
     dots: true,
@@ -72,7 +74,14 @@ export const Layout: React.FC<LayoutProps> = ({
     slidesToScroll: 1,
   };
 
-  console.log(id);
+  const opts = {
+    height: '390',
+    width: '640',
+    playerVars: {
+      autoplay: 1,
+    },
+  };
+
 
   const handleDirection = (dir: string) => {
     // setTabIndex(dir);
@@ -101,6 +110,12 @@ export const Layout: React.FC<LayoutProps> = ({
           </Dialog>
         </Modal>
 
+        <Modal isOpen={isVideoShowing}>
+          <YouTube
+            videoId={"ljrFq_PkugU"}
+          />
+        </Modal>
+
         {header && <Header />}
 
         {asPath.includes("product-ranges/") && <SubheaderRange />}
@@ -115,7 +130,7 @@ export const Layout: React.FC<LayoutProps> = ({
               className="font-title text-2xl md:text-4xl uppercase"
               exit={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
+              initial={{ opacity: 0 }}
             >
               {title}
             </motion.h1>
@@ -132,13 +147,10 @@ export const Layout: React.FC<LayoutProps> = ({
                 </div>
               </div>
             )}
-            <Slider {...settings} ref={sliderRef}>
-              {image && (
-                <img
+            {image ? <img
                   src={image}
                   className="w-full h-full object-cover z-auto"
-                />
-              )}
+                /> : <Slider {...settings} ref={sliderRef}>
               {gallery &&
                 gallery?.map((item, i) => (
                   <img
@@ -147,7 +159,7 @@ export const Layout: React.FC<LayoutProps> = ({
                     className="w-full h-full object-cover z-auto"
                   />
                 ))}
-            </Slider>
+            </Slider>}
           </div>
         )}
 
@@ -166,6 +178,10 @@ export const Layout: React.FC<LayoutProps> = ({
                       UK’s premier manufacturer of high quality timber windows
                       and doors.
                     </h2>
+                    <div className="text-2xl text-white font-heading leading-normal mt-2 items-center flex justify-center space-x-1 hover:opacity-80 cursor-pointer" onClick={() => setVideoShowing(true)}>
+                      <img src="img/play.svg" alt="Play" />{" "}
+                      <span>Watch video (2m 12s)</span>
+                    </div>
                   </div>
                 </div>
                 <div className="w-full h-full bg-neutral-0 z-0 absolute top-0 left-0 bg-opacity-80 opacity-100 flex justify-center items-center cursor-pointer" />
@@ -218,8 +234,11 @@ export const Layout: React.FC<LayoutProps> = ({
               </div>
             </div>
           ) : (
-            <motion.div exit={{ opacity: 0 }} animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}>
+            <motion.div
+              exit={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+            >
               <div className="container m-auto flex-col px-1 md:flex-row md:gap-2 md:px-0">
                 {children}
               </div>
