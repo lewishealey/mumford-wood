@@ -25,7 +25,7 @@ export default function Downloads({ brochures, products }) {
             breadcrumbs={breadcrumbs}>
                 <LoggedIn location="Downloads" entity="Downloads">
                     <section className="mb-4">
-                        <h2 className={sectionClasses}>Product brochures</h2>
+                        <h2 className={sectionClasses}>Product literature</h2>
                         <div className="flex column w-full flex-wrap border-gray-300 border rounded">
                             {brochures?.map((brochure, i) =>
                                 <Download

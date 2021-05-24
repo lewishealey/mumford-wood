@@ -58,7 +58,7 @@ export const Gallery: React.FC<Props> = ({
             }
                 <div className={`grid grid-cols-${columns < 2 ? '1' : '2'} md:grid-cols-4 gap-0.25`}>
                     {pictures?.map((item,i)=>
-                        <GalleryItem
+                        item?.fields?.file?.url && <GalleryItem
                             index={i}
                             thumbnail={item?.fields?.file?.url}
                             alt="dqwd"

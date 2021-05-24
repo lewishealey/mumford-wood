@@ -5,11 +5,13 @@ import Overlay from '@components/Overlay';
 export interface Props {
     children: any;
     isOpen: boolean;
+    onOverlayClick: () => void;
 }
 
 export const Modal: React.FC<Props> = ({
     isOpen,
     children,
+    onOverlayClick
 }) => {
 
     return isOpen ? (
@@ -17,7 +19,7 @@ export const Modal: React.FC<Props> = ({
             <div className="absolute top-0 left-0 h-full w-full flex z-50 justify-center items-center">
                 {children}
             </div>
-            <Overlay />
+            <Overlay onClick={() => onOverlayClick}/>
         </div>) : null;
   }
 

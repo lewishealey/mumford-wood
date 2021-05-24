@@ -104,13 +104,13 @@ export const Layout: React.FC<LayoutProps> = ({
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Modal isOpen={isModalOpen}>
+        <Modal isOpen={isModalOpen} onOverlayClick={() => setModalOpen(false)}>
           <Dialog onCloseClick={() => setModalOpen(false)}>
             <Form inputs type={sidebarType} />
           </Dialog>
         </Modal>
 
-        <Modal isOpen={isVideoShowing}>
+        <Modal isOpen={isVideoShowing} onOverlayClick={() => setModalOpen(false)}>
           <YouTube
             videoId={"ljrFq_PkugU"}
           />

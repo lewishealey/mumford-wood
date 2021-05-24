@@ -92,6 +92,11 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
             label: 'Nickel',
             checked: true
         },
+        "white": {
+            id: 'white',
+            label: 'White',
+            checked: true
+        },
     };
 
     if(data?.range !== "conservation-range") {
@@ -286,7 +291,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 </section>
                 </Waypoint>}
 
-                {data?.cadComplianceContent &&
+                {/* {data?.cadComplianceContent &&
                     <section className="mb-4" id="compliance">
                         <h2 className={sectionClasses}>CAD Compliance</h2>
                         <div className="mb-1">{documentToReactComponents(data?.cadComplianceContent,options)}</div>
@@ -305,7 +310,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                             </div>
                         }
                     </section>
-                }
+                } */}
 
                 <h2 className={sectionClasses}>Related products</h2>
                 <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-1 m-auto">

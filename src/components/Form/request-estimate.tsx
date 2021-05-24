@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import SalesContext from "@utils/salesContexts";
 import { useRouter } from "next/router";
 import Button from "@components/Button";
-import { formatBytes } from '@utils/helpers';
+import { formatBytes } from "@utils/helpers";
 import { useDropzone } from "react-dropzone";
 import {
   headOffice,
@@ -35,7 +35,6 @@ export const RequestEstimate: React.FC<Props> = ({
     setFiles([...files, acceptedFiles]);
   }, []);
 
-
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const [status, setStatus] = useState("");
@@ -47,7 +46,7 @@ export const RequestEstimate: React.FC<Props> = ({
 
   useEffect(() => {
     setFlattenedFiles(files.flat(2));
-}, [files]);
+  }, [files]);
 
   const {
     register,
@@ -81,18 +80,26 @@ export const RequestEstimate: React.FC<Props> = ({
     data.date = new Date();
     data.prettyDate = moment(new Date()).format("DD MMM YYYY hh:mm");
     data.page = asPath;
+    let fileNames = [];
+    flattenedFiles.forEach(file =>
+        fileNames.push(file.name)
+    );
+    data.files = fileNames;
+    setStatus("loading");
+
+    console.log(data);
 
     flattenedFiles.forEach((file) => {
-        const reader = new FileReader();
-        uploadPhoto(file);
-        reader.onabort = () => console.log("file reading was aborted");
-        reader.onerror = () => console.log("file reading has failed");
-        reader.onload = () => {
-          // Do whatever you want with the file contents
-          const binaryStr = reader.result;
-          console.log(binaryStr);
-        };
-        reader.readAsArrayBuffer(file);
+      const reader = new FileReader();
+      uploadPhoto(file);
+      reader.onabort = () => console.log("file reading was aborted");
+      reader.onerror = () => console.log("file reading has failed");
+      reader.onload = () => {
+        // Do whatever you want with the file contents
+        const binaryStr = reader.result;
+        console.log(binaryStr);
+      };
+      reader.readAsArrayBuffer(file);
     });
 
     let shortenedPostcode = data.postCode
@@ -169,10 +176,12 @@ export const RequestEstimate: React.FC<Props> = ({
           console.log("Data saved");
         } catch (e) {
           console.log("Issue with saving data");
+          console.error(e);
           setStatus("error");
         }
         console.log("Response succeeded!");
       } else {
+        console.error(res);
         setStatus("error");
       }
     });
@@ -203,14 +212,34 @@ export const RequestEstimate: React.FC<Props> = ({
 
       {inputs && (
         <>
-          {status === "success" ? (
+        {status === "loading" && (
+             <>
+             <h3 className="font-heading text-xl color-gray mb-1">Submitting information</h3>
+             <p className="font-body text-base text-neutral-1">
+               Please kindly wait
+             </p>
+           </>
+        )}
+
+        {status === "error" && (
+             <>
+             <h3 className="font-heading text-xl color-gray mb-1">Opps! There seems to be an issue</h3>
+             <p className="font-body text-base text-neutral-1">
+               Something went wrong with your submission. Please contact sales@mumfordwood.com
+             </p>
+           </>
+        )}
+
+          {status === "success" && (
             <>
               <h3 className="font-heading text-xl color-gray mb-1">Success!</h3>
               <p className="font-body text-base text-neutral-1">
                 Thanks for your submission
               </p>
             </>
-          ) : (
+          )}
+
+          {status == "" && (
             <>
               <h3 className="font-heading text-xl color-gray mb-1">
                 Request an estimate
@@ -277,7 +306,7 @@ export const RequestEstimate: React.FC<Props> = ({
                   />
                 </div>
                 <div {...getRootProps()}>
-                  <input {...getInputProps()} accept="image/png, image/jpeg" />
+                  <input {...getInputProps()}/>
                   {isDragActive ? (
                     <div className="border-dashed border-2 w-full h-4 rounded flex justify-center items-center bg-primary-fade">
                       <span className="block text-neutral-1">
@@ -293,12 +322,23 @@ export const RequestEstimate: React.FC<Props> = ({
                   )}
                 </div>
                 <div className="flex flex-col">
-                    {flattenedFiles.map((file, i) => (
-                    <div className="text-left text-sm flex justify-between mb-0.25" key={file?.name}>
-                        <span className="truncate">{file?.name} ({formatBytes(file?.size)})</span>
-                        <span onClick={() => setFiles(files.filter((fileItem, x) => x !== i))}>Delete</span>
+                  {flattenedFiles.map((file, i) => (
+                    <div
+                      className="text-left text-sm flex justify-between mb-0.25"
+                      key={file?.name}
+                    >
+                      <span className="truncate">
+                        {file?.name} ({formatBytes(file?.size)})
+                      </span>
+                      <span
+                        onClick={() =>
+                          setFiles(files.filter((fileItem, x) => x !== i))
+                        }
+                      >
+                        Delete
+                      </span>
                     </div>
-                    ))}
+                  ))}
                 </div>
                 <ReCaptcha />
                 <Button size="default" style="primary">
