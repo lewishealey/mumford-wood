@@ -110,7 +110,7 @@ export const Layout: React.FC<LayoutProps> = ({
           </Dialog>
         </Modal>
 
-        <Modal isOpen={isVideoShowing} onOverlayClick={() => setModalOpen(false)}>
+        <Modal isOpen={isVideoShowing} onOverlayClick={() => setVideoShowing(false)}>
           <YouTube
             videoId={"ljrFq_PkugU"}
           />
