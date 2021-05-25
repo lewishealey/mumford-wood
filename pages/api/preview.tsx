@@ -1,7 +1,7 @@
 import { slugToURL } from '@lib/SlugToURL';
 
 export default function handler(req, res) {
-  const { secret, slug, typename } = req?.query;
+  const { secret, slug, typename, range } = req?.query;
   // Check the secret and next parameters
   // This secret should only be known to this API route and the CMS
   if (secret !== 'mwpreviewcontent04hdksh' || !slug) {
@@ -12,8 +12,14 @@ export default function handler(req, res) {
 
   if (!typename && !slug) {
     redirect = '/';
-  } else {
-    redirect = slugToURL(typename, slug);
+  }
+
+  if(typename === "page") {
+      redirect = `/${slug}`;
+  }
+
+  if(typename === "product" && range) {
+      redirect = `/product/${range}/${slug}`;
   }
 
   // Enable Preview Mode by setting the cookies, set to 5 minutes
