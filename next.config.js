@@ -11,12 +11,15 @@ module.exports = withImages({
         FIREBASE_MESSAGE_SENDER_ID: process.env.FIREBASE_MESSAGE_SENDER_ID,
         FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
         FIREBASE_CLIENT_EMAIL: process.env.FIREBASE_CLIENT_EMAIL,
+        contentfulGraphQLUrl: `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+        contentfulPreviewGraphQLUrl: `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}?access_token=${process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN}`,
     },
     target: 'serverless',
     publicRuntimeConfig: {
-      CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_ACCESS_TOKEN,
+      CONTENTFUL_ACCESS_TOKEN: process.env.CONTENTFUL_DELIVERY_TOKEN,
       CONTENTFUL_ENVIRONMENT: process.env.CONTENTFUL_ENVIRONMENT,
       CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
+      CONTENTFUL_PREVIEW_ACCESS_TOKEN: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
     },
     webpack(config) {
       config.resolve.alias['@components'] = path.join(__dirname, './src/components');

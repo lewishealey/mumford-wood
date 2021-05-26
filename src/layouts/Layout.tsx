@@ -8,6 +8,7 @@ import Footer from "@components/Footer";
 import Slider from "react-slick";
 import Keys from "@components/Keys";
 import { useRouter } from "next/router";
+import Link from 'next/link';
 import Form from "@components/Form";
 import Breadcrumb, { CrumbItem } from "@components/Breadcrumb";
 import Button from "@components/Button";
@@ -39,6 +40,7 @@ export interface LayoutProps {
   header?: boolean;
   gallery?: GalleryItem[];
   border?: boolean;
+  preview?: boolean;
   title?: string;
   sidebarType?: Sidebar;
   image?: any;
@@ -59,6 +61,7 @@ export const Layout: React.FC<LayoutProps> = ({
   breadcrumbs,
   border = false,
   children,
+  preview,
 }) => {
   const { asPath } = useRouter();
   const sliderRef = useRef(null);
@@ -75,13 +78,12 @@ export const Layout: React.FC<LayoutProps> = ({
   };
 
   const opts = {
-    height: '390',
-    width: '640',
+    height: "390",
+    width: "640",
     playerVars: {
       autoplay: 1,
     },
   };
-
 
   const handleDirection = (dir: string) => {
     // setTabIndex(dir);
@@ -90,10 +92,6 @@ export const Layout: React.FC<LayoutProps> = ({
     } else {
       sliderRef.current.slickNext();
     }
-  };
-
-  const handleCta = () => {
-    alert("W");
   };
 
   return (
@@ -110,11 +108,14 @@ export const Layout: React.FC<LayoutProps> = ({
           </Dialog>
         </Modal>
 
-        <Modal isOpen={isVideoShowing} onOverlayClick={() => setVideoShowing(false)}>
-          <YouTube
-            videoId={"ljrFq_PkugU"}
-          />
+        <Modal
+          isOpen={isVideoShowing}
+          onOverlayClick={() => setVideoShowing(false)}
+        >
+          <YouTube videoId={"ljrFq_PkugU"} />
         </Modal>
+
+        {preview && <div className="w-full p-1 text-default bg-primary-fade">You are in preview mode!<Link href="/api/exit-preview/"><a className="underline hover:opacity-60">Exit preview</a></Link></div>}
 
         {header && <Header />}
 
@@ -147,19 +148,20 @@ export const Layout: React.FC<LayoutProps> = ({
                 </div>
               </div>
             )}
-            {image ? <img
-                  src={image}
-                  className="w-full h-full object-cover z-auto"
-                /> : <Slider {...settings} ref={sliderRef}>
-              {gallery &&
-                gallery?.map((item, i) => (
-                  <img
-                    src={item.fields.file.url}
-                    key={i}
-                    className="w-full h-full object-cover z-auto"
-                  />
-                ))}
-            </Slider>}
+            {image ? (
+              <img src={image} className="w-full h-full object-cover z-auto" />
+            ) : (
+              <Slider {...settings} ref={sliderRef}>
+                {gallery &&
+                  gallery?.map((item, i) => (
+                    <img
+                      src={item.fields.file.url}
+                      key={i}
+                      className="w-full h-full object-cover z-auto"
+                    />
+                  ))}
+              </Slider>
+            )}
           </div>
         )}
 
@@ -178,7 +180,10 @@ export const Layout: React.FC<LayoutProps> = ({
                       UK’s premier manufacturer of high quality timber windows
                       and doors.
                     </h2>
-                    <div className="text-2xl text-white font-heading leading-normal mt-2 items-center flex justify-center space-x-1 hover:opacity-80 cursor-pointer" onClick={() => setVideoShowing(true)}>
+                    <div
+                      className="text-2xl text-white font-heading leading-normal mt-2 items-center flex justify-center space-x-1 hover:opacity-80 cursor-pointer"
+                      onClick={() => setVideoShowing(true)}
+                    >
                       <img src="img/play.svg" alt="Play" />{" "}
                       <span>Watch video (2m 12s)</span>
                     </div>
