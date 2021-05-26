@@ -115,12 +115,13 @@ export async function getStaticPaths() {
     const paths = pages.map(({ fields: { slug } }) => ({ params: { slug } }));
     return {
       paths,
-      fallback: false,
+      fallback: 'blocking',
     };
 }
 
-export async function getStaticProps({ params, preview = false }) {
-  return GetApolloState(GET_SIMPLE_PAGE, params.slug[0], preview);
+export async function getStaticProps(context) {
+    const { slug } = context.params;
+  return GetApolloState(GET_SIMPLE_PAGE, slug, context.preview);
   // const { slug } = context.params;
   // const res = await fetchPage(slug);
   // const sales = await fetchSalesTeam();
