@@ -18,8 +18,8 @@ import { options } from "@utils/contentfulOptions";
 import { GET_SIMPLE_PAGE } from "@utils/queries/page";
 import GetApolloState from "@lib/GetApolloState";
 import GetPaths from "@lib/GetPaths";
-import Link from 'next/link';
-import RichText from '@utils/renderers/RichText';
+import Link from "next/link";
+import RichText from "@utils/renderers/RichText";
 
 export default function Page(props) {
   const { data, loading, error, preview } = props;
@@ -28,7 +28,14 @@ export default function Page(props) {
     // if (typeof window !== "undefined") {
     //   window.location.replace("/404");
     // }
-    return <div className="w-full p-1 text-default bg-primary-fade">No data received - <Link href="/api/exit-preview/"><a className="underline hover:opacity-60">Exit preview</a></Link></div>;
+    return (
+      <div className="w-full p-1 text-default bg-primary-fade">
+        No data received -{" "}
+        <Link href="/api/exit-preview/">
+          <a className="underline hover:opacity-60">Exit preview</a>
+        </Link>
+      </div>
+    );
   }
 
   const {
@@ -46,81 +53,77 @@ export default function Page(props) {
     sectionsCollection,
   } = data.pageCollection.items[0];
 
-    let breadcrumbs = null;
-    const summaryClasses = classNames(
-      `font-body`,
-      `text-base`,
-      `md:text-xl`,
-      `mb-3`,
-      {
-        "text-center": sidebarType == "none",
-      }
-    );
-
-    console.log(data);
-    if (parent) {
-      breadcrumbs = [
-        {
-          label: parent,
-          link: `/${parent}`,
-        },
-        {
-          label: title,
-        },
-      ];
+  let breadcrumbs = null;
+  const summaryClasses = classNames(
+    `font-body`,
+    `text-base`,
+    `md:text-xl`,
+    `mb-3`,
+    {
+      "text-center": sidebarType == "none",
     }
+  );
 
-    return (
-      <PageProvider value={parent}>
-            <Layout
-              title={title}
-              breadcrumbs={breadcrumbs}
-              border={border}
-              image={thumbnail?.url}
-              video={videoBackground?.url}
-              sidebarType={sidebarType}
-              preview={preview}
-            >
-              {subtitle && (
-                <h2 className={sectionClasses}>{subtitle}</h2>
-              )}
-              {summary && (
-                <div className={summaryClasses}>{summary}</div>
-              )}
+  console.log(data);
+  if (parent) {
+    breadcrumbs = [
+      {
+        label: parent,
+        link: `/${parent}`,
+      },
+      {
+        label: title,
+      },
+    ];
+  }
 
-              {content && <RichText content={content} />}
+  return (
+    <PageProvider value={parent}>
+      <Layout
+        title={title}
+        breadcrumbs={breadcrumbs}
+        border={border}
+        image={thumbnail?.url}
+        video={videoBackground?.url}
+        sidebarType={sidebarType}
+        preview={preview}
+      >
+        {subtitle && <h2 className={sectionClasses}>{subtitle}</h2>}
+        {summary && <div className={summaryClasses}>{summary}</div>}
 
-              {data && sectionsCollection && (
-                <div className="flex space-y-2 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1">
-                  {sectionsCollection.items?.map((section, i) => (
-                    <Tile
-                      key={i}
-                      style="default"
-                      href={section?.link}
-                      title={section?.title}
-                      size="compact"
-                      image={section?.image?.url}
-                    />
-                  ))}
-                </div>
-              )}
-            </Layout>
-      </PageProvider>
-    );
+        {content && <RichText content={content} />}
+
+        {data && sectionsCollection && (
+          <div className="flex space-y-2 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1">
+            {sectionsCollection.items?.map((section, i) => (
+              <Tile
+                key={i}
+                style="default"
+                href={section?.link}
+                title={section?.title}
+                size="compact"
+                image={section?.image?.url}
+              />
+            ))}
+          </div>
+        )}
+      </Layout>
+    </PageProvider>
+  );
 }
 
 export async function getStaticPaths() {
-//   return GetPaths("page", true);
-    const pages = await fetchPages();
-    const paths = pages.map(({ fields: { slug } }) => ({ params: { slug } }));
-    return {
-      paths,
-      fallback: 'blocking',
-    };
+  //   return GetPaths("page", true);
+  const pages = await fetchPages();
+  const paths = pages.map(({ fields: { slug } }) => ({ params: { slug } }));
+  return {
+    paths,
+    fallback: false,
+  };
 }
 
 export async function getStaticProps(context) {
-    const { slug } = context.params;
+  const { slug } = context.params;
   return GetApolloState(GET_SIMPLE_PAGE, slug, context.preview);
   // const { slug } = context.params;
   // const res = await fetchPage(slug);
