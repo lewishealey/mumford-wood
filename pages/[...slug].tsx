@@ -110,13 +110,13 @@ export default function Page(props) {
 }
 
 export async function getStaticPaths() {
-  return GetPaths("page", true);
-  //   const pages = await fetchPages();
-  //   const paths = pages.map(({ fields: { slug } }) => ({ params: { slug } }));
-  //   return {
-  //     paths,
-  //     fallback: false,
-  //   };
+//   return GetPaths("page", true);
+    const pages = await fetchPages();
+    const paths = pages.map(({ fields: { slug } }) => ({ params: { slug } }));
+    return {
+      paths,
+      fallback: false,
+    };
 }
 
 export async function getStaticProps({ params, preview = false }) {
