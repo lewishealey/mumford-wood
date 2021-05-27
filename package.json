@@ -38,6 +38,7 @@
     "firebase": "^8.2.10",
     "firebase-admin": "^9.5.0",
     "framer-motion": "^4.1.11",
+    "google-map-react": "^2.1.9",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.4",
     "lodash": "^4.17.21",

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, Marker, LoadScript } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
@@ -7,44 +7,50 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523,
+  lat: 51.82024064819105,
+  lng: 0.7337239986668775,
 };
 export interface Props {
   height: number;
 }
 
 export const Map: React.FC<Props> = ({ height }) => {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyCCrBSmdMAhcbxkC-oGjl_cbgQ0y5-ETt0"
-  });
+//   const { isLoaded } = useJsApiLoader({
+//     id: "google-map-script",
+//     googleMapsApiKey: "AIzaSyCCrBSmdMAhcbxkC-oGjl_cbgQ0y5-ETt0",
+//   });
 
-  const [map, setMap] = React.useState(null)
+//   const [map, setMap] = React.useState(null);
 
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
+//   const onLoad = React.useCallback(function callback(map) {
+//     const bounds = new window.google.maps.LatLngBounds();
+//     map.fitBounds(bounds);
+//     setMap(map);
+//   }, []);
 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+//   const onUnmount = React.useCallback(function callback(map) {
+//     setMap(null);
+//   }, []);
 
-  return isLoaded ? (
-    <div className="mb-3"><GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
+const onLoad = marker => {
+    console.log('marker: ', marker)
+  }
+
+  return <div className="mb-3">
+      <LoadScript
+        googleMapsApiKey="AIzaSyCCrBSmdMAhcbxkC-oGjl_cbgQ0y5-ETt0"
+      ><GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={12}
+      >
+       <Marker
       onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      { /* Child components, such as markers, info windows, etc. */ }
-      <></>
-    </GoogleMap>
+      position={center}
+    />
+      </GoogleMap>
+      </LoadScript>
     </div>
-) : <></>
 };
 
 export default Map;
