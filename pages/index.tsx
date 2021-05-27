@@ -20,7 +20,7 @@ export default function Home({ ranges, caseStudies, homepage }) {
     <Layout video="mumford-main.mp4" border={false} sidebarType="none">
       <section className="mb-4">
         <div
-          className={`container m-auto max-w-4xl z-10 relative p-2 -mt-4 rounded bg-white border-t-4 border-primary-base border-solid`}
+          className={`container m-auto max-w-4xl z-10 relative px-1 py-1.5 md:p-2 -mt-2 md:-mt-4 rounded bg-white border-t-4 border-primary-base border-solid`}
         >
           {homepage?.summary && (
             <div className="text-center font-heading text-xl mb-1">
@@ -29,18 +29,18 @@ export default function Home({ ranges, caseStudies, homepage }) {
           )}
 
           {homepage?.announcementTitle && (
-            <div className="flex justify-center mt-2 space-x-2 items-center hover:bg-gray-50 rounded-md transition-all duration-100 ease-in-out pt-2 md:cursor-pointer md:w-2/3 m-auto">
+            <div className="flex flex-col md:flex-row justify-center mt-2 md:space-x-2 items-center hover:bg-gray-50 rounded-md transition-all duration-100 ease-in-out pt-2 md:cursor-pointer md:w-2/3 m-auto">
               {homepage?.announcementThumbnail && (
                 <img
                   src={`${homepage?.announcementThumbnail?.fields?.file?.url}?w=400`}
-                  className="h-8 w-8 min-w-8 object-cover overflow-hidden rounded-md flex-shrink-0"
+                  className="h-8 w-8 min-w-8 object-cover overflow-hidden rounded-md flex-shrink-0 m-auto"
                 />
               )}
               <div>
-                <h3 className="font-heading text-2xl mb-1">
+                <h3 className="font-heading text-2xl mb-1 text-center md:text-left mt-1 md:mt-0">
                   {homepage?.announcementTitle}
                 </h3>
-                <p className="font-body text-default text-gray-600">
+                <p className="font-body text-default text-gray-600 text-center md:text-left">
                   {homepage?.announcementSummary}
                 </p>
               </div>

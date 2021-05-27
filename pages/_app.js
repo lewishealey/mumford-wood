@@ -3,7 +3,7 @@ import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "@lib/ApolloClient";
 import { Router } from "next/router";
 import { useEffect, useRef } from "react";
-import LoadingBar from 'react-top-loading-bar';
+import LoadingBar from "react-top-loading-bar";
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 
@@ -38,12 +38,12 @@ function MyApp({ Component, pageProps, router }) {
   }, []);
 
   return (
-    <AnimatePresence exitBeforeEnter>
-      <ApolloProvider client={apolloClient}>
-        <LoadingBar color="#007366" ref={loadingRef} />
+    <ApolloProvider client={apolloClient}>
+      <LoadingBar color="#007366" ref={loadingRef} />
+      <AnimatePresence exitBeforeEnter>
         <Component {...pageProps} key={router.route} />
-      </ApolloProvider>
-    </AnimatePresence>
+      </AnimatePresence>
+    </ApolloProvider>
   );
 }
 

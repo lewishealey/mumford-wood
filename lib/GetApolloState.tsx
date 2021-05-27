@@ -1,4 +1,5 @@
 import { addApolloState, initializeApollo } from '@lib/ApolloClient';
+const TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
 
 export async function GetApolloState(
   query: any,
@@ -10,8 +11,7 @@ export async function GetApolloState(
   if (preview) {
     context = {
       headers: {
-        authorization: `Bearer wmL5J7kaGWNctJ7RZfhxZreEUh0YN2vOJrwHc9tXa1A`,
-        'Content-Language': 'en-us',
+        authorization: `Bearer LHmzxdmsRkUHfCMeMHwNJT2iL5C-kiaBi-eZBi1-PSc`
       },
     };
   } else {

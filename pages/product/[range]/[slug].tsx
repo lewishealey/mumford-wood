@@ -163,8 +163,9 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                     <h2 className={sectionClasses}>Introduction</h2>
                     {documentToReactComponents(data?.content,options)}
                 </section>
-
-                <nav className="sticky z-20 bg-white flex m-0 space-x-1.5 mb-2 pl-2 -m-2" style={{top: 122}}>
+{/*
+                <div className="sticky z-20 bg-white flex w-full top-mobile md:top-desktop">
+                <nav className="space-x-1.5 mb-2 pl-2 md:-ml-2 -mr-4 w-full overflow-x-auto">
                     <Link to="gallery" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'gallery' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Gallery</Link>
                     <Link to="finish" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'finish' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Finish</Link>
                     <Link to="profiles" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'profiles' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Profile</Link>
@@ -173,6 +174,8 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                     <Link to="specs" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'specs' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Specs</Link>
                     <Link to="drawings" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'drawings' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Drawings</Link>
                 </nav>
+                </div> */}
+
 
                 {data?.gallery && <Waypoint onEnter={() => setWaypointItem('gallery')} onLeave={() => setWaypointItem('finish')} {...waypointOptions}>
                                         <section className="mb-4" id="gallery">
@@ -219,7 +222,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                             {/* <div className="mb-1">
                                 <Checklist items={checkboxes} onChecked={onGlazingFilter} />
                             </div> */}
-                            <div className="grid grid-cols-2 md:grid-cols-1 gap-y-0.5">
+                            <div className="grid md:grid-cols-2 md:grid-cols-1 gap-y-0.5">
                                 {glassItems && glassItems.map((glass, i) =>
                                 <Card
                                     title={glass?.fields?.title}
@@ -241,7 +244,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                         <div className="mb-1">
                             <Checklist items={ironCheckboxes} onChecked={onIronFilter} />
                         </div>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-1 gap-y-2">
+                        <div className="flex flex-col md:space-y-0 md:grid lg:grid-cols-3 gap-x-1 gap-y-2">
                             {ironItems && ironItems.map((iron, i) =>
                                 <>
                                 {i > 0 && iron?.fields?.highlight.toLowerCase() !== ironItems[i-1]?.fields?.highlight.toLowerCase() && <div className="col-span-3"><h3 className={subSectionClasses}>{iron?.fields?.highlight}</h3></div>}

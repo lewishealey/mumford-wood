@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {mobileMenu &&
-            <div className="top-5 fixed bg-primary-neutral h-full w-full">
+            <div className="top-4 fixed bg-primary-neutral h-full w-full z-50">
                 <NavList />
             </div>
         }

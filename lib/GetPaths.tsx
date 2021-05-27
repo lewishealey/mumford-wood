@@ -1,4 +1,6 @@
 import { createContentfulClient } from '@lib/ContentfulClient';
+const space = process.env.CONTENTFUL_SPACE_ID
+const accessToken = process.env.CONTENTFUL_DELIVERY_TOKEN
 
 export async function GetPaths(contentType: string, catchAll?: boolean) {
   const client = createContentfulClient();
@@ -6,7 +8,7 @@ export async function GetPaths(contentType: string, catchAll?: boolean) {
   let paths;
 
   const posts = await client
-    .getEntries({ content_type: contentType, include: 0 })
+    .getEntries({ content_type: contentType})
     .then((response) => response.items);
 
   if (catchAll === true) {
@@ -21,7 +23,7 @@ export async function GetPaths(contentType: string, catchAll?: boolean) {
 
   return {
     paths: paths,
-    fallback: 'blocking',
+    fallback: 'blocking', //blocking
   };
 }
 

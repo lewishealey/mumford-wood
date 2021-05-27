@@ -19,9 +19,8 @@ export const NavList: React.FC<NavListProps> = ({
                     <NavLink href="/contact-us">Contact us</NavLink>
                     <NavLink href="/download-brochure">Download Brochure</NavLink>
 
-                    <div className="md:hidden mt-4">
+                    <div className="md:hidden">
                         <NavLink href="/request-estimate">Request an estimate</NavLink>
-                        <NavLink href="/download-brochure">Download brochure</NavLink>
                     </div>
                 </div>
             </div>

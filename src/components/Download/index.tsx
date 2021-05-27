@@ -62,10 +62,10 @@ export const Download: React.FC<DownloadProps> = ({
     }
 
     return (
-        <div className="flex justify-between px-2 py-1 border-b border-gray-300 border-solid w-full">
-            {title}
-            <div className="flex space-x-1">
-                {files && files.map((item, i) => <button key={i} onClick={(e) => registerDownload(e, item?.fields?.title, item?.fields?.file?.url)} className="hover:underline">{item?.fields?.title} <span className="text-gray-400">({formatBytes(item?.fields?.file?.details?.size)})</span></button>)}
+        <div className="flex flex-col md:flex-row justify-between md:px-1 md:py-1 border-b border-gray-300 border-solid w-full">
+            <span className="text-lg md:text-base px-1 py-0.5 md:py-0 md:px-0 bg-primary-neutral md:bg-white">{title}</span>
+            <div className="flex flex-col md:flex-row md:space-x-1 px-1 py-0.5 md:py-0 md:px-0 items-start border-t md:border-0">
+                {files && files.map((item, i) => <button key={i} onClick={(e) => registerDownload(e, item?.fields?.title, item?.fields?.file?.url)} className="flex justify-start py-0.5 md:py-0 hover:underline">{item?.fields?.title} <span className="text-gray-400 ml-0.5">({formatBytes(item?.fields?.file?.details?.size)})</span></button>)}
             </div>
         </div>
     )

@@ -31,7 +31,7 @@ export const Card: React.FC<Props> = ({
     children
 }) => {
     const classes = classNames(
-        `mb-0.5 object-${thumbnail} ${!circle && `${height} w-full`} m-auto rounded-sm`, {
+        `mb-0.5 object-${thumbnail} ${!circle && `${height} w-full`} m-auto rounded-sm flex-shrink-0`, {
             'border border-solid border border-neutral-3': border,
             'rounded-full h-4 w-4' : circle,
         }

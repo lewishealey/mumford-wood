@@ -16,7 +16,7 @@ export const File: React.FC<Props> = ({
 }) => {
     return (
         <a href={href} target="_blank" title={title}>
-            <div className="p-1 border border-neutral-3 rounded-md border-solid flex flex-row justify-between items-center hover:bg-gray-100 truncate">
+            <div className="p-1 border border-neutral-3 rounded-md border-solid flex flex-col md:flex-row justify-between items-center hover:bg-gray-100 truncate">
                 <div className="flex space-x-0.5 items-center">
                     <span className="flex items-center"><Image src="/img/file.svg" alt="Download file" height={20} width={20} /></span>
                     <span>{name}</span>

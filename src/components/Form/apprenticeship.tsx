@@ -95,7 +95,7 @@ export const Apprenticeship: React.FC<Props> = ({
                     <p className="font-body text-base text-neutral-1">Thanks for your submission, please download below</p>
 
                     </> : <>
-                        <h3 className="font-heading text-xl color-gray mb-1">Download brochure</h3>
+                        <h3 className="font-heading text-xl color-gray mb-1">Apply for apprenticeship</h3>
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-1">
                             <div className="TextField__group w-full">
                                 <label className="relative flex rounded font-heading text-md items-center mb-0.25">First name</label>

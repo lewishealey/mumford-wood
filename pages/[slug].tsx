@@ -23,7 +23,6 @@ import RichText from "@utils/renderers/RichText";
 
 export default function Page(props) {
   const { data, loading, error, preview } = props;
-  console.log(props);
   if (!data || !data.pageCollection || data.pageCollection.items.length < 1) {
     // if (typeof window !== "undefined") {
     //   window.location.replace("/404");
@@ -124,6 +123,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { slug } = context.params;
+  console.log(slug, context);
   return GetApolloState(GET_SIMPLE_PAGE, slug, context.preview);
   // const { slug } = context.params;
   // const res = await fetchPage(slug);

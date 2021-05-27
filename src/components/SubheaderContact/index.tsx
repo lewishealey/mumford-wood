@@ -11,7 +11,7 @@ export const SubheaderContact: React.FC<Props> = ({
 
     return (
         <div className={`w-full ${bgColour}`}>
-                <div className="flex m-auto flex-col px-1 md:flex-row md:gap-2 md:px-0 md:justify-center">
+                <div className="flex m-auto px-1 md:flex-row gap-1 md:gap-2 md:px-0 md:justify-center">
                     <SubNavLink href="/contact-us">Contact Us</SubNavLink>
                     <SubNavLink href="/sales-map">Sales Map</SubNavLink>
                 </div>

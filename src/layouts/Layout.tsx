@@ -126,7 +126,7 @@ export const Layout: React.FC<LayoutProps> = ({
         )}
 
         {title && (
-          <div className="py-2 md:py-3 text-center justify-center max-w-5xl m-auto">
+          <div className="py-2 md:py-3 text-center justify-center max-w-5xl m-auto px-1">
             <motion.h1
               className="font-title text-2xl md:text-4xl uppercase"
               exit={{ opacity: 0 }}
@@ -140,7 +140,7 @@ export const Layout: React.FC<LayoutProps> = ({
         )}
 
         {image && !video && (
-          <div className="overflow-hidden mb-1 md:mb-2 h-16 md:h-32 relative">
+          <div className="overflow-hidden md:mb-2 h-16 md:h-32 relative">
             {gallery && (
               <div className="absolute w-full bottom-1 md:bottom-3 z-10">
                 <div className="container m-auto max-w-6xl">
@@ -166,22 +166,22 @@ export const Layout: React.FC<LayoutProps> = ({
         )}
 
         {video && (
-          <div className="overflow-hidden mb-1 md:mb-2 h-16 md:h-40 relative">
+          <div className="overflow-hidden md:mb-2 h-24 md:h-40 relative">
             {asPath == "/" && (
               <>
-                <div className="absolute top-0 left-0 w-full z-10 h-full flex justify-center items-center px-2 flex-col">
+                <div className="absolute top-0 left-0 w-full z-10 h-full flex justify-center items-center px-0.5 md:px-2 flex-col">
                   <div className="container m-auto max-w-4xl text-center">
-                    <h1 className="text-5xl text-white font-title uppercase mb-1 leading-snug">
+                    <h1 className="text-3xl md:text-5xl text-white font-title uppercase mb-1 leading-snug">
                       Britain's Finest <br />
                       Timber Windows & Doors
                     </h1>
-                    <h2 className="text-2xl text-white font-heading leading-normal">
+                    <h2 className="text-lg md:text-2xl text-white font-heading leading-normal">
                       Established in 1954 Mumford & Wood has since become the
                       UK’s premier manufacturer of high quality timber windows
                       and doors.
                     </h2>
                     <div
-                      className="text-2xl text-white font-heading leading-normal mt-2 items-center flex justify-center space-x-1 hover:opacity-80 cursor-pointer"
+                      className="text-md md:text-2xl text-white font-heading leading-normal mt-2 items-center flex justify-center space-x-1 hover:opacity-80 cursor-pointer"
                       onClick={() => setVideoShowing(true)}
                     >
                       <img src="img/play.svg" alt="Play" />{" "}
@@ -192,11 +192,11 @@ export const Layout: React.FC<LayoutProps> = ({
                 <div className="w-full h-full bg-neutral-0 z-0 absolute top-0 left-0 bg-opacity-80 opacity-100 flex justify-center items-center cursor-pointer" />
               </>
             )}
-            <video width="100%" autoPlay muted loop>
+            <video className="md:w-full h-full object-cover z-auto" autoPlay muted loop>
               <source
                 src={video}
                 type="video/mp4"
-                className="w-full h-full object-cover z-auto"
+                className="md:w-full h-full object-cover z-auto"
               />
             </video>
           </div>
@@ -204,7 +204,7 @@ export const Layout: React.FC<LayoutProps> = ({
         <div
           className={`container m-auto max-w-6xl relative ${
             border &&
-            "p-1 pt-2 md:p-2 md:-mt-4 bg-white border-t-4 border-primary-base border-solid shadow-container rounded-md"
+            "p-1 pt-2 md:p-2 md:-mt-4 bg-white border-t-4 border-primary-base border-solid shadow-container md:rounded-md"
           }`}
         >
           {sidebarType !== "none" ? (

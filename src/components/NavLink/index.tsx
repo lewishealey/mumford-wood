@@ -27,7 +27,7 @@ export const NavLink: React.FC<NavLinkProps> = ({
 
     return (
         <Link href={href}>
-            <a className={`block ${activeClassName} border-solid border-b-4 py-0.75 hover:border-neutral-2 font-heading text-base transition-all duration-500 ease-in-out`}>
+            <a className={`block ${activeClassName} border-solid border-b-2 md:border-b-4 py-0.5 mt-0.5 md:mt-0 md:py-0.75 hover:border-neutral-2 font-heading text-xl md:text-base transition-all duration-500 ease-in-out`}>
                 {children}
             </a>
       </Link>

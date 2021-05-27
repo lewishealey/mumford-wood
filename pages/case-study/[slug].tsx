@@ -48,9 +48,7 @@ export default function CaseStudy({ page, caseStudies, salesTeam, brochures }) {
             breadcrumbs={breadcrumbs}
           >
             <nav
-              className="sticky z-10 bg-white flex m-0 space-x-1.5 mb-2"
-              style={{ top: 122 }}
-            >
+              className="sticky z-10 bg-white flex m-0 space-x-1.5 mb-2 top-mobile md:top-desktop">
               <Link
                 to="about"
                 className={`list-none border-b-4 py-1 ${

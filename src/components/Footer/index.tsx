@@ -12,7 +12,7 @@ export const Footer: React.FC<Props> = ({
     return (
         <div className="p-2 bg-gray-100 mt-2">
             <div className="container m-auto max-w-6xl">
-                <div className="space-y-1 md:space-y-0 md:flex justify-between">
+                <div className="space-y-2 md:space-y-0 md:flex justify-between">
                 <div className="w-full md:w-1/3">
                     <h5 className="font-heading text-xl mb-1">Pages</h5>
                     <div className="grid grid-cols-2 gap-1">
