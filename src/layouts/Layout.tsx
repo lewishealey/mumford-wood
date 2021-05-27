@@ -8,7 +8,7 @@ import Footer from "@components/Footer";
 import Slider from "react-slick";
 import Keys from "@components/Keys";
 import { useRouter } from "next/router";
-import Link from 'next/link';
+import Link from "next/link";
 import Form from "@components/Form";
 import Breadcrumb, { CrumbItem } from "@components/Breadcrumb";
 import Button from "@components/Button";
@@ -75,6 +75,7 @@ export const Layout: React.FC<LayoutProps> = ({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    adaptiveHeight: true,
   };
 
   const opts = {
@@ -88,9 +89,9 @@ export const Layout: React.FC<LayoutProps> = ({
   const handleDirection = (dir: string) => {
     // setTabIndex(dir);
     if (typeof dir === "string" && dir == "prev") {
-      sliderRef.current.slickPrev();
+      sliderRef?.current?.slickPrev();
     } else {
-      sliderRef.current.slickNext();
+      sliderRef?.current?.slickNext();
     }
   };
 
@@ -115,7 +116,14 @@ export const Layout: React.FC<LayoutProps> = ({
           <YouTube videoId={"ljrFq_PkugU"} />
         </Modal>
 
-        {preview && <div className="w-full p-1 text-default bg-primary-fade">You are in preview mode!<Link href="/api/exit-preview/"><a className="underline hover:opacity-60">Exit preview</a></Link></div>}
+        {preview && (
+          <div className="w-full p-1 text-default bg-primary-fade">
+            You are in preview mode!
+            <Link href="/api/exit-preview/">
+              <a className="underline hover:opacity-60">Exit preview</a>
+            </Link>
+          </div>
+        )}
 
         {header && <Header />}
 
@@ -139,8 +147,12 @@ export const Layout: React.FC<LayoutProps> = ({
           </div>
         )}
 
+        {console.log(image)}
+
+        {/* overflow-hidden md:mb-2 h-16 md:h-32  */}
+
         {image && !video && (
-          <div className="overflow-hidden md:mb-2 h-16 md:h-32 relative">
+          <div className="relative">
             {gallery && (
               <div className="absolute w-full bottom-1 md:bottom-3 z-10">
                 <div className="container m-auto max-w-6xl">
@@ -148,18 +160,20 @@ export const Layout: React.FC<LayoutProps> = ({
                 </div>
               </div>
             )}
-            {image ? (
-              <img src={image} className="w-full h-full object-cover z-auto" />
-            ) : (
+            {/* {image && <img src={image} className="w-full h-full object-cover z-auto" />} */}
+            {gallery && (
               <Slider {...settings} ref={sliderRef}>
-                {gallery &&
-                  gallery?.map((item, i) => (
-                    <img
-                      src={item.fields.file.url}
-                      key={i}
-                      className="w-full h-full object-cover z-auto"
-                    />
-                  ))}
+                {image && <img
+                  src={image}
+                  className="w-full h-full object-cover z-auto max-h-16 md:max-h-32 w-auto"
+                />}
+                {gallery?.map((item, i) => (
+                  <img
+                    src={item.fields.file.url}
+                    key={i}
+                    className="h-full object-cover z-auto max-h-16 md:max-h-32 w-auto"
+                  />
+                ))}
               </Slider>
             )}
           </div>
@@ -192,7 +206,12 @@ export const Layout: React.FC<LayoutProps> = ({
                 <div className="w-full h-full bg-neutral-0 z-0 absolute top-0 left-0 bg-opacity-80 opacity-100 flex justify-center items-center cursor-pointer" />
               </>
             )}
-            <video className="md:w-full h-full object-cover z-auto" autoPlay muted loop>
+            <video
+              className="md:w-full h-full object-cover z-auto"
+              autoPlay
+              muted
+              loop
+            >
               <source
                 src={video}
                 type="video/mp4"
@@ -204,7 +223,7 @@ export const Layout: React.FC<LayoutProps> = ({
         <div
           className={`container m-auto max-w-6xl relative ${
             border &&
-            "p-1 pt-2 md:p-2 md:-mt-4 bg-white border-t-4 border-primary-base border-solid shadow-container md:rounded-md"
+            "p-1 pt-2 md:p-2 md:-mt-2 bg-white border-t-4 border-primary-base border-solid shadow-container xl:rounded-md"
           }`}
         >
           {sidebarType !== "none" ? (
@@ -232,9 +251,11 @@ export const Layout: React.FC<LayoutProps> = ({
                       />
                     )}
                   </div>
-                  <Button size="default" style="tertiary">
-                    Contact us
-                  </Button>
+                  <Link href="/contact-us">
+                    <Button size="default" style="tertiary">
+                      Contact us
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

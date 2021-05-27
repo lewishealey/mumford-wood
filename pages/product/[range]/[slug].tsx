@@ -99,7 +99,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
         },
     };
 
-    if(data?.range !== "conservation-range") {
+    if(data?.slug === "casement-windows") {
         ironCheckboxes["black"] = {
             id: 'black',
             label: 'Black',
@@ -110,6 +110,14 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
             label: 'Pewter',
             checked: true
         }
+    }
+
+    if(data?.slug === "french-single-and-balcony-doors" || data?.slug === "entrance-doors") {
+        ironCheckboxes["steel"] = {
+            id: 'steel',
+            label: 'Steel',
+            checked: true
+        };
     }
 
     const breadcrumbs = [{
@@ -177,7 +185,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 </div> */}
 
 
-                {data?.gallery && <Waypoint onEnter={() => setWaypointItem('gallery')} onLeave={() => setWaypointItem('finish')} {...waypointOptions}>
+                {data?.gallery && <Waypoint onEnter={() => setWaypointItem('gallery')} {...waypointOptions}>
                                         <section className="mb-4" id="gallery">
                                             <h2 className={sectionClasses}>Gallery</h2>
                                             <Gallery items={data?.gallery} />
@@ -186,7 +194,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 }
 
                 {(data?.finishContent || data?.finishes) &&
-                <Waypoint onLeave={() => setWaypointItem('profiles')} {...waypointOptions}>
+                <Waypoint onEnter={() => setWaypointItem('finish')} {...waypointOptions}>
                     <section className="mb-4" id="finish">
                         <h2 className={sectionClasses}>Finish</h2>
                         <div className="mb-2">{documentToReactComponents(data?.finishContent,options)}</div>
@@ -207,7 +215,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 }
 
                 {data?.profiles &&
-                    <Waypoint onLeave={() => setWaypointItem('glazing')} {...waypointOptions}>
+                    <Waypoint onEnter={() => setWaypointItem('profiles')} {...waypointOptions}>
                         <section className="mb-4" id="profiles">
                             <h2 className={sectionClasses}>Profiles</h2>
                             {data?.glazingThumbnails && <Gallery columns={data?.glazingThumbnails.length} items={data?.glazingThumbnails} />}
@@ -216,13 +224,13 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 }
 
                 {glassItems &&
-                    <Waypoint onLeave={() => setWaypointItem('ironmongery')} {...waypointOptions}>
+                    <Waypoint onEnter={() => setWaypointItem('glazing')} {...waypointOptions}>
                         <section className="mb-4" id="glazing">
                             <h2 className={sectionClasses}>Glazing</h2>
                             {/* <div className="mb-1">
                                 <Checklist items={checkboxes} onChecked={onGlazingFilter} />
                             </div> */}
-                            <div className="grid md:grid-cols-2 md:grid-cols-1 gap-y-0.5">
+                            <div className="grid md:grid-cols-2 gap-y-0.5">
                                 {glassItems && glassItems.map((glass, i) =>
                                 <Card
                                     title={glass?.fields?.title}
@@ -238,7 +246,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 }
 
                 {ironItems &&
-                    <Waypoint onLeave={() => setWaypointItem('specs')} {...waypointOptions}>
+                    <Waypoint onEnter={() => setWaypointItem('ironmongery')} {...waypointOptions}>
                     <section className="mb-4" id="ironmongery">
                         <h2 className={sectionClasses}>Ironmongery</h2>
                         <div className="mb-1">
@@ -265,7 +273,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 }
 
                 {data?.technicalSpecs &&
-                    <Waypoint onLeave={() => setWaypointItem('drawings')} {...waypointOptions}>
+                    <Waypoint onEnter={() => setWaypointItem('specs')} {...waypointOptions}>
                     <section className="mb-4" id="specs">
                         <h2 className={sectionClasses}>Specifications</h2>
                         <div className="mb-2">{documentToReactComponents(data?.technicalSpecs,options)}</div>
@@ -273,7 +281,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                     </Waypoint>
                 }
 
-                {data?.profiles && <Waypoint onLeave={() => setWaypointItem('compliance')} {...waypointOptions}>
+                {data?.profiles && <Waypoint onEnter={() => setWaypointItem('drawings')} {...waypointOptions}>
                     <section className="mb-4" id="drawings">
                     <h2 className={sectionClasses}>CAD Drawings</h2>
                     <LoggedIn location="Homepage" entity="CAD profiles">
@@ -318,7 +326,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-1 m-auto">
                 {ranges && ranges?.map((post,i) =>
                     post.slug !== data.slug && <Tile
-                        href={`/product/${data?.slug}/${post?.slug}`}
+                        href={`/product/${data?.range}/${post?.slug}`}
                         title={post?.title}
                         size="default"
                         border={false}
