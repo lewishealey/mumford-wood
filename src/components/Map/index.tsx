@@ -38,7 +38,7 @@ const onLoad = marker => {
 
   return <div className="mb-3">
       <LoadScript
-        googleMapsApiKey="AIzaSyCCrBSmdMAhcbxkC-oGjl_cbgQ0y5-ETt0"
+        googleMapsApiKey={process.env.GOOGLE_KEY}
       ><GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
