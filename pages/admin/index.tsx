@@ -89,7 +89,7 @@ const Index = () => {
 
   return (
     <AdminLayout title="Welcome to your dashboard">
-      <LoggedIn admin location="Admin" entity="Admin">
+      <LoggedIn location="Admin" entity="Admin">
         <div className="grid grid-cols-3 grid-rows-3 p-2 gap-1">
           <div className="p-1 border-neutral-4 border rounded-md">
             <h3 className="font-heading text-neutral-2 text-sm md:text-base uppercase font-bold tracking-widest md:mb-0.5">
