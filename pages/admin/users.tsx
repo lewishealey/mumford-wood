@@ -16,7 +16,7 @@ const Users = () => {
           .collection('users')
           .where('date_updated', '>', new Date(dateFrom))
           .where('date_updated', '<', new Date(dateTo))
-          .orderBy('date', 'desc')
+          .orderBy('date_updated', 'desc')
           .onSnapshot(snap => {
             const users = snap.docs.map(doc => ({
                 id: doc.id,
