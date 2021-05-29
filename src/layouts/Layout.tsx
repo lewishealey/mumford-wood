@@ -147,8 +147,6 @@ export const Layout: React.FC<LayoutProps> = ({
           </div>
         )}
 
-        {console.log(image)}
-
         {/* overflow-hidden md:mb-2 h-16 md:h-32  */}
 
         {image && !video && (
@@ -161,7 +159,7 @@ export const Layout: React.FC<LayoutProps> = ({
               </div>
             )}
             {/* {image && <img src={image} className="w-full h-full object-cover z-auto" />} */}
-            {gallery && (
+            {(gallery || image) && (
               <Slider {...settings} ref={sliderRef}>
                 {image && <img
                   src={image}

@@ -49,5 +49,16 @@ export const GET_SIMPLE_PAGE = gql`
             }
           }
     }
+    salesRepCollection {
+        items {
+          title
+          phone
+          email
+          id
+          thumbnail {
+            url
+          }
+        }
+      }
   }
 `;

@@ -27,7 +27,10 @@ export const Newsletter: React.FC = ({
         data.prettyDate = moment(new Date()).format('DD MMM YYYY hh:mm');
         data.page = asPath;
 
-        fetch('/api/email/newsletter', {
+        data.subject = "Thank you signing up";
+        data.adminSubject = "New newsletter signup";
+
+        fetch('/api/email/send', {
             method: 'POST',
             headers: {
               'Accept': 'application/json, text/plain, */*',

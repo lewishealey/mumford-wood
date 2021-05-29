@@ -64,7 +64,6 @@ export const RequestEstimate: React.FC<Props> = ({
         register,
         handleSubmit,
         formState: { errors },
-
       } = useForm();
 
       const onSubmit = (data) => {
@@ -72,16 +71,10 @@ export const RequestEstimate: React.FC<Props> = ({
         data.prettyDate = moment(new Date()).format('DD MMM YYYY hh:mm');
         data.page = asPath;
 
-        fetch('/api/email/brochure-user', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json, text/plain, */*',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+        data.subject = "Thank you for downloading our brochure";
+        data.adminSubject = "New download brochure request";
 
-        fetch('/api/email/brochure', {
+        fetch('/api/email/send', {
             method: 'POST',
             headers: {
               'Accept': 'application/json, text/plain, */*',

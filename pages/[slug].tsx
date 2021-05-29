@@ -63,7 +63,6 @@ export default function Page(props) {
     }
   );
 
-  console.log(data);
   if (parent) {
     breadcrumbs = [
       {
@@ -78,6 +77,7 @@ export default function Page(props) {
 
   return (
     <PageProvider value={parent}>
+        <SalesProvider value={data?.salesRepCollection?.items}>
       <Layout
         title={title}
         breadcrumbs={breadcrumbs}
@@ -107,6 +107,7 @@ export default function Page(props) {
           </div>
         )}
       </Layout>
+      </SalesProvider>
     </PageProvider>
   );
 }

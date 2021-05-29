@@ -38,17 +38,10 @@ export const Apprenticeship: React.FC<Props> = ({
         data.date = new Date();
         data.prettyDate = moment(new Date()).format('DD MMM YYYY hh:mm');
         data.page = asPath;
+        data.subject = "Thank you for applying for an apprenticeship";
+        data.adminSubject = "New apprenticeship application";
 
-        fetch('/api/email/apprenticeship-user', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json, text/plain, */*',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        fetch('/api/email/apprenticeship', {
+        fetch('/api/email/send', {
             method: 'POST',
             headers: {
               'Accept': 'application/json, text/plain, */*',
@@ -119,7 +112,7 @@ export const Apprenticeship: React.FC<Props> = ({
                             </div>
                             <div className="TextField__group w-full">
                                 <label className="relative flex rounded font-heading text-md items-center mb-0.25">Address</label>
-                                <input type="text" className={classes} {...register('address')}/>
+                                <input type="text" className={classes} {...register('streetAddress')}/>
                             </div>
                             <div className="TextField__group w-full">
                                 <label className="relative flex rounded font-heading text-md items-center mb-0.25">Postcode</label>

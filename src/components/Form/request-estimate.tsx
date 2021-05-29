@@ -16,6 +16,10 @@ import ReCaptcha from "@components/ReCaptcha";
 import fire from "@lib/firebase";
 import classNames from "classnames";
 import moment from "moment";
+import {
+    amazonBucket,
+    encodeS3URI,
+  } from "@utils/helpers";
 
 // https://dev.to/markdrew53/integrating-sendgrid-with-next-js-4f5m
 // https://nextjs.org/blog/forms
@@ -82,12 +86,13 @@ export const RequestEstimate: React.FC<Props> = ({
     data.page = asPath;
     let fileNames = [];
     flattenedFiles.forEach(file =>
-        fileNames.push(file.name)
+        fileNames.push({
+            name: file.name,
+            link: `${amazonBucket}${encodeS3URI(file.name)}`
+        })
     );
     data.files = fileNames;
     setStatus("loading");
-
-    console.log(data);
 
     flattenedFiles.forEach((file) => {
       const reader = new FileReader();
@@ -102,7 +107,7 @@ export const RequestEstimate: React.FC<Props> = ({
       reader.readAsArrayBuffer(file);
     });
 
-    let shortenedPostcode = data.postCode
+    let shortenedPostcode = data?.postCode
       ?.slice(0, 2)
       .replace(/[0-9]/g, "")
       .toUpperCase();
@@ -147,21 +152,13 @@ export const RequestEstimate: React.FC<Props> = ({
       data.repName = relevantRep[0].title;
       data.repEmail = relevantRep[0].email;
       data.repPhone = relevantRep[0].phone;
-      data.repImage = relevantRep[0].thumbnail?.fields?.file?.url;
+      data.repImage = relevantRep[0].thumbnail?.url;
     }
 
-    console.log(data);
+    data.subject = "Thank you for submitting an estimate request";
+    data.adminSubject = "New estimate request";
 
-    fetch("/api/email/estimate-user", {
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    fetch("/api/email/estimate", {
+    fetch("/api/email/send", {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -179,13 +176,14 @@ export const RequestEstimate: React.FC<Props> = ({
           console.error(e);
           setStatus("error");
         }
-        console.log("Response succeeded!");
+        console.log("Response succeeded!", res);
       } else {
         console.error(res);
         setStatus("error");
       }
     });
   };
+
   const classes = classNames(
     `relative w-full flex rounded font-heading text-md items-center h-2.5 px-1`
   );

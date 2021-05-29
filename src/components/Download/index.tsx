@@ -58,7 +58,7 @@ export const Download: React.FC<DownloadProps> = ({
             } catch (e) {
             console.log('Issue with saving data')
         }
-        //window.open(link, '_blank');
+        window.open(link, '_blank');
     }
 
     return (

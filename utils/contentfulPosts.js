@@ -62,6 +62,15 @@ export async function fetchArticles() {
     console.log(`Error getting Entries for ${contentType.name}.`)
 }
 
+
+export async function fetchTechSpecs() {
+    const product = await client.getEntries({
+        content_type: 'page',
+        'fields.slug[in]': 'technical-specifications',
+    })
+    if (product.items) return product.items
+}
+
 export async function fetchArticle(slug) {
     const product = await client.getEntries({
         content_type: 'news',
