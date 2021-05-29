@@ -66,7 +66,7 @@ export async function fetchArticles() {
 export async function fetchTechSpecs() {
     const product = await client.getEntries({
         content_type: 'page',
-        'fields.slug[in]': 'technical-specifications',
+        'fields.slug[in]': 'technical-specs',
     })
     if (product.items) return product.items
 }
