@@ -19,13 +19,8 @@ export default function TechnicalSpecifications({ page, products }) {
       image={data?.thumbnail?.fields?.file?.url}
       sidebarType="none"
     >
-      <div className="container m-auto mt-3 flex-col px-1 md:flex-row md:gap-2 md:px-0">
-        <section className="mb-4">
-          {documentToReactComponents(data?.content, options)}
-        </section>
-
+      <div className="container m-auto mt-1 md:mt-2 flex-col px-1 md:flex-row md:gap-2 md:px-0">
         <section>
-          <h2 className={sectionClasses}>Downloads</h2>
           <LoggedIn
             location="Technical Specifications"
             entity="Technical Specifications"
