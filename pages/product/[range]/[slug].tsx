@@ -17,7 +17,7 @@ import Checklist from '@components/Checklist';
 import File from '@components/File';
 import { sectionClasses, subSectionClasses, getTags, isSelectionInTags } from '@utils/helpers';
 import { Link, animateScroll as scroll } from "react-scroll";
-
+import { renderTechTable } from "@utils/renderers/renderTechTable";
 
 const waypointOptions = {
     fireOnRapidScroll: false
@@ -272,11 +272,11 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                     </Waypoint>
                 }
 
-                {data?.technicalSpecs &&
+                {data?.techTable &&
                     <Waypoint onEnter={() => setWaypointItem('specs')} {...waypointOptions}>
                     <section className="mb-4" id="specs">
-                        <h2 className={sectionClasses}>Specifications</h2>
-                        <div className="mb-2">{documentToReactComponents(data?.technicalSpecs,options)}</div>
+                        <h2 className={sectionClasses}>Technical Specifications</h2>
+                        <div className="mb-2">{renderTechTable(data?.techTable)}</div>
                     </section>
                     </Waypoint>
                 }
