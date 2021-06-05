@@ -113,7 +113,7 @@ module.exports = {
     extend: {
       inset: {
         mobile: "72px",
-        desktop: "122px",
+        desktop: "118px",
       },
       zIndex: {
         "-1": "-1",

@@ -183,7 +183,7 @@ export const Layout: React.FC<LayoutProps> = ({
               <>
                 <div className="absolute top-0 left-0 w-full z-10 h-full flex justify-center items-center px-0.5 md:px-2 flex-col">
                   <div className="container m-auto max-w-4xl text-center">
-                    <h1 className="text-3xl md:text-5xl text-white font-title uppercase mb-1 leading-snug">
+                    <h1 className="text-3xl md:text-5xl text-white font-title uppercase mb-1 leading-snug md:leading-normal">
                       Britain's Finest <br />
                       Timber Windows & Doors
                     </h1>

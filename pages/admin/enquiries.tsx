@@ -226,14 +226,14 @@ const DownloadButton = ({ files }) => {
       )}
       {files &&
         openDownloads &&
-        files.map((file) => (
-          <div className="fle">
+        files?.map((file, i) => (
+          <div className="file" key={`file_${i}`}>
             <a
-              href={`${amazonBucket}${encodeS3URI(file)}`}
+              href={file.link}
               target="_blank"
               className="hover:underline opacity-80 text"
             >
-              {file}
+              {file.name}
             </a>
           </div>
         ))}

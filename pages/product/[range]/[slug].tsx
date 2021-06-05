@@ -171,22 +171,22 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                     <h2 className={sectionClasses}>Introduction</h2>
                     {documentToReactComponents(data?.content,options)}
                 </section>
-{/*
-                <div className="sticky z-20 bg-white flex w-full top-mobile md:top-desktop">
-                <nav className="space-x-1.5 mb-2 pl-2 md:-ml-2 -mr-4 w-full overflow-x-auto">
-                    <Link to="gallery" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'gallery' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Gallery</Link>
-                    <Link to="finish" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'finish' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Finish</Link>
-                    <Link to="profiles" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'profiles' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Profile</Link>
-                    <Link to="glazing" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'glazing' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Glazing</Link>
-                    <Link to="ironmongery" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'ironmongery' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Ironmongery</Link>
-                    <Link to="specs" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'specs' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Specs</Link>
-                    <Link to="drawings" className={`list-none border-b-4 py-1 cursor-pointer hover:opacity-70 ${waypointItem === 'drawings' ? 'border-black' : 'border-white'} py-1`} activeClass="border-black" spy={true} smooth={true} offset={-200} duration={500}>Drawings</Link>
+
+                <div className="sticky z-20 bg-white flex w-full top-mobile md:top-desktop pt-1">
+                <nav className="space-x-1.5 mb-1 pl-2 md:-ml-2 -mr-4 w-full overflow-x-auto md:overflow-visible">
+                    <Link to="gallery" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Gallery</Link>
+                    <Link to="finish" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Finish</Link>
+                    <Link to="profiles" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Profile</Link>
+                    <Link to="glazing" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Glazing</Link>
+                    <Link to="ironmongery" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Ironmongery</Link>
+                    <Link to="specs" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Specs</Link>
+                    <Link to="drawings" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Drawings</Link>
                 </nav>
-                </div> */}
+                </div>
 
 
                 {data?.gallery && <Waypoint onEnter={() => setWaypointItem('gallery')} {...waypointOptions}>
-                                        <section className="mb-4" id="gallery">
+                                        <section className="pb-4" id="gallery">
                                             <h2 className={sectionClasses}>Gallery</h2>
                                             <Gallery items={data?.gallery} />
                                         </section>
@@ -195,7 +195,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
                 {(data?.finishContent || data?.finishes) &&
                 <Waypoint onEnter={() => setWaypointItem('finish')} {...waypointOptions}>
-                    <section className="mb-4" id="finish">
+                    <section className="pb-4" id="finish">
                         <h2 className={sectionClasses}>Finish</h2>
                         <div className="mb-2">{documentToReactComponents(data?.finishContent,options)}</div>
 
@@ -216,7 +216,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
                 {data?.profiles &&
                     <Waypoint onEnter={() => setWaypointItem('profiles')} {...waypointOptions}>
-                        <section className="mb-4" id="profiles">
+                        <section className="pb-4" id="profiles">
                             <h2 className={sectionClasses}>Profiles</h2>
                             {data?.glazingThumbnails && <Gallery columns={data?.glazingThumbnails.length} items={data?.glazingThumbnails} />}
                         </section>
@@ -225,7 +225,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
                 {glassItems &&
                     <Waypoint onEnter={() => setWaypointItem('glazing')} {...waypointOptions}>
-                        <section className="mb-4" id="glazing">
+                        <section className="pb-4" id="glazing">
                             <h2 className={sectionClasses}>Glazing</h2>
                             {/* <div className="mb-1">
                                 <Checklist items={checkboxes} onChecked={onGlazingFilter} />
@@ -247,7 +247,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
                 {ironItems &&
                     <Waypoint onEnter={() => setWaypointItem('ironmongery')} {...waypointOptions}>
-                    <section className="mb-4" id="ironmongery">
+                    <section className="pb-4" id="ironmongery">
                         <h2 className={sectionClasses}>Ironmongery</h2>
                         <div className="mb-1">
                             <Checklist items={ironCheckboxes} onChecked={onIronFilter} />
@@ -274,7 +274,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
                 {data?.techTable &&
                     <Waypoint onEnter={() => setWaypointItem('specs')} {...waypointOptions}>
-                    <section className="mb-4" id="specs">
+                    <section className="pb-4" id="specs">
                         <h2 className={sectionClasses}>Technical Specifications</h2>
                         <div className="mb-2">{renderTechTable(data?.techTable)}</div>
                     </section>
@@ -282,7 +282,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 }
 
                 {data?.profiles && <Waypoint onEnter={() => setWaypointItem('drawings')} {...waypointOptions}>
-                    <section className="mb-4" id="drawings">
+                    <section className="pb-4" id="drawings">
                     <h2 className={sectionClasses}>CAD Drawings</h2>
                     <LoggedIn location="Homepage" entity="CAD profiles">
 

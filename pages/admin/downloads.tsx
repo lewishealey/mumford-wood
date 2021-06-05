@@ -54,7 +54,6 @@ return <AdminLayout title="Downloads" action={dateRange}>
                 <th className="text-left border-b border-gray-200 p-1">File</th>
                 <th className="text-left border-b border-gray-200 p-1">Page</th>
                 <th className="text-left border-b border-gray-200 p-1">User</th>
-                <th className="text-left border-b border-gray-200 p-1">Date</th>
                 </tr>
             </thead>
             <tbody>
