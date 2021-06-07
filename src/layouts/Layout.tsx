@@ -221,11 +221,11 @@ export const Layout: React.FC<LayoutProps> = ({
         <div
           className={`container m-auto max-w-6xl relative ${
             border &&
-            "p-1 pt-2 md:p-2 md:-mt-2 bg-white border-t-4 border-primary-base border-solid shadow-container xl:rounded-md"
+            "p-1 pt-2 md:p-2 md:-mt-2 bg-white border-t-4 border-primary-base border-solid md:shadow-container xl:rounded-md"
           }`}
         >
           {sidebarType !== "none" ? (
-            <div className="container m-auto flex-col px-1 md:flex-row md:gap-2 md:px-0 flex">
+            <div className="flex-col md:flex-row md:gap-2 md:px-0 flex">
               <div className="lg:w-3/4">{children}</div>
               <div className="lg:w-1/4">
                 <div className="top-9 sticky">
