@@ -173,14 +173,14 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 </section>
 
                 <div className="sticky z-20 bg-white flex w-full top-mobile md:top-desktop pt-1">
-                <nav className="space-x-1.5 mb-1 md:pl-2 md:-ml-2 -mr-4 w-full overflow-x-auto md:overflow-visible">
-                    <Link to="gallery" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Gallery</Link>
-                    <Link to="finish" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Finish</Link>
-                    <Link to="profiles" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Profile</Link>
-                    <Link to="glazing" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Glazing</Link>
-                    <Link to="ironmongery" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Ironmongery</Link>
-                    <Link to="specs" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Specs</Link>
-                    <Link to="drawings" className={`list-none border-b-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Drawings</Link>
+                <nav className="space-x-1.5 mb-1 md:pl-2 md:-ml-2 -mr-4 w-full overflow-x-auto md:overflow-visible bg-white">
+                    <Link to="gallery" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Gallery</Link>
+                    <Link to="finish" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Finish</Link>
+                    <Link to="profiles" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Profile</Link>
+                    <Link to="glazing" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Glazing</Link>
+                    <Link to="ironmongery" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Ironmongery</Link>
+                    <Link to="specs" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Specs</Link>
+                    <Link to="drawings" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Drawings</Link>
                 </nav>
                 </div>
 

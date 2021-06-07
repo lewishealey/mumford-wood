@@ -77,36 +77,37 @@ export default function Page(props) {
 
   return (
     <PageProvider value={parent}>
-        <SalesProvider value={data?.salesRepCollection?.items}>
-      <Layout
-        title={title}
-        breadcrumbs={breadcrumbs}
-        border={border}
-        image={thumbnail?.url}
-        video={videoBackground?.url}
-        sidebarType={sidebarType}
-        preview={preview}
-      >
-        {subtitle && <h2 className={sectionClasses}>{subtitle}</h2>}
-        {summary && <div className={summaryClasses}>{summary}</div>}
-
-        {content && <RichText content={content} />}
-
-        {data && sectionsCollection && (
-          <div className="flex space-y-2 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1">
-            {sectionsCollection.items?.map((section, i) => (
-              <Tile
-                key={i}
-                style="default"
-                href={section?.link}
-                title={section?.title}
-                size="compact"
-                image={section?.image?.url}
-              />
-            ))}
+      <SalesProvider value={data?.salesRepCollection?.items}>
+        <Layout
+          title={title}
+          breadcrumbs={breadcrumbs}
+          border={border}
+          image={thumbnail?.url}
+          video={videoBackground?.url}
+          sidebarType={sidebarType}
+          preview={preview}
+        >
+          <div className="p-1">
+            {subtitle && <h2 className={sectionClasses}>{subtitle}</h2>}
+            {summary && <div className={summaryClasses}>{summary}</div>}
+            {content && <RichText content={content} />}
           </div>
-        )}
-      </Layout>
+
+          {data && sectionsCollection && (
+            <div className="flex space-y-2 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1 px-1">
+              {sectionsCollection.items?.map((section, i) => (
+                <Tile
+                  key={i}
+                  style="default"
+                  href={section?.link}
+                  title={section?.title}
+                  size="compact"
+                  image={section?.image?.url}
+                />
+              ))}
+            </div>
+          )}
+        </Layout>
       </SalesProvider>
     </PageProvider>
   );

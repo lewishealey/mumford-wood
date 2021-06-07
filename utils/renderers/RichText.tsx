@@ -261,7 +261,7 @@ export const RichText: React.FC<RichTextProps> = ({ content, classNames }) => {
   };
 
   return (
-    <div className={classnames('rich-text pb-4', classNames)}>
+    <div className={classnames('rich-text pb-2 md:pb-4', classNames)}>
       {content && documentToReactComponents(content.json, options)}
     </div>
   );
