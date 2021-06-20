@@ -1,28 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "src/layouts/Layout";
-import { motion } from "framer-motion";
-import {
-  fetchPage,
-  fetchPages,
-  fetchSalesTeam,
-  fetchBrochures,
-} from "@utils/contentfulPosts";
-import { BrochureProvider } from "@utils/brochureContexts";
+import { fetchPages } from "@utils/contentfulPosts";
 import Tile from "@components/Tile";
+import Timeline from "@components/Timeline";
 import classNames from "classnames";
 import { PageProvider } from "@utils/contexts.js";
 import { SalesProvider } from "@utils/salesContexts";
 import { sectionClasses } from "@utils/helpers";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { options } from "@utils/contentfulOptions";
 import { GET_SIMPLE_PAGE } from "@utils/queries/page";
 import GetApolloState from "@lib/GetApolloState";
-import GetPaths from "@lib/GetPaths";
 import Link from "next/link";
 import RichText from "@utils/renderers/RichText";
+import { useRouter } from "next/router";
 
 export default function Page(props) {
   const { data, loading, error, preview } = props;
+  const router = useRouter();
+
   if (!data || !data.pageCollection || data.pageCollection.items.length < 1) {
     // if (typeof window !== "undefined") {
     //   window.location.replace("/404");
@@ -51,6 +45,9 @@ export default function Page(props) {
     parent,
     sectionsCollection,
   } = data.pageCollection.items[0];
+  const timeline = data.timelineCollection.items;
+
+  console.log(timeline);
 
   let breadcrumbs = null;
   const summaryClasses = classNames(
@@ -107,6 +104,20 @@ export default function Page(props) {
               ))}
             </div>
           )}
+
+          {router.asPath === "/our-story" && (
+            <div className="relative wrap">
+              <div
+                className="absolute border-opacity-20 bg-royal-fade h-full w-0.25 rounded left-1 md:left-1/2"
+              ></div>
+
+            {timeline && timeline?.map((section, i) => (
+                <Timeline year={section.year} index={i}>
+                    {section.description}
+                </Timeline>
+              ))}
+            </div>
+          )}
         </Layout>
       </SalesProvider>
     </PageProvider>
@@ -125,7 +136,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { slug } = context.params;
-  console.log(slug, context);
   return GetApolloState(GET_SIMPLE_PAGE, slug, context.preview);
   // const { slug } = context.params;
   // const res = await fetchPage(slug);

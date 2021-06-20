@@ -150,7 +150,7 @@ export const Layout: React.FC<LayoutProps> = ({
         {/* overflow-hidden md:mb-2 h-16 md:h-32  */}
 
         {image && !video && (
-          <div className="relative">
+          <div className="relative md:mb-2">
             {gallery && (
               <div className="absolute w-full bottom-1 md:bottom-3 z-10">
                 <div className="container m-auto max-w-6xl">
@@ -249,11 +249,12 @@ export const Layout: React.FC<LayoutProps> = ({
                       />
                     )}
                   </div>
+                  {(!asPath.includes("contact")) && (
                   <Link href="/contact-us">
                     <Button size="default" style="tertiary">
                       Contact us
                     </Button>
-                  </Link>
+                  </Link>)}
                 </div>
               </div>
             </div>

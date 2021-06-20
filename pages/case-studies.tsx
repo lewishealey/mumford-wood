@@ -32,21 +32,44 @@ export default function CaseStudies({ posts }) {
     }
   });
 
+  const newLocations = [
+      {
+          value: "london",
+          label: "London"
+      },
+      {
+        value: "north",
+        label: "North"
+    },
+    {
+        value: "east",
+        label: "East"
+    },
+    {
+        value: "west",
+        label: "West"
+    },
+    {
+        value: "south",
+        label: "South"
+    }
+  ];
+
+  console.log()
+
   return (
     <Layout title="Case Studies" sidebarType="none">
-      {/* <div className="posts bg-gray-200 m-2">
-                {posts && <div>Contentful is connected</div>}
-            </div> */}
       <div className="flex mb-1.5 w-full space-x-1 items-center">
         <span className="flex-shrink-0">Filter by</span>
         <Select
-          options={locations}
+          options={newLocations}
           placeholder="Select an multiple areas"
           className="w-full md:w-1/3"
           onChange={(selected) => {
             const flat = flatten(selected);
+            console.log(flat);
             if(flat.length > 0) {
-                setPosts(posts.filter((item) => flat.includes(item.location)))
+                setPosts(posts.filter((item) => flat.includes(item?.region?.toLowerCase())))
             } else {
                 setPosts(posts);
             }

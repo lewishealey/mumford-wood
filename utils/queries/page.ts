@@ -60,5 +60,13 @@ export const GET_SIMPLE_PAGE = gql`
           }
         }
       }
+      timelineCollection {
+        items {
+          year
+          description {
+            json
+        }
+        }
+      }
   }
 `;

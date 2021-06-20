@@ -33,6 +33,8 @@ export const Footer: React.FC<Props> = ({
                         <a href="https://twitter.com/mumfordwood" target="blank"><Image src="/img/twitter.svg" height={40} width={40} alt="Twitter"/></a>
                         <a href="https://www.instagram.com/mumfordandwood/" target="blank"><Image src="/img/instagram.svg" height={40} width={40} alt="Instagram"/></a>
                         <a href="https://www.linkedin.com/company/mumford-&-wood" target="blank"><Image src="/img/linkedin.svg" height={40} width={40} alt="Linkedin"/></a>
+                        <a href="https://www.pinterest.co.uk/mumfordwood/" target="blank"><Image src="/img/pinterest.svg" height={40} width={40} alt="Pinterest"/></a>
+                        <a href="https://www.houzz.co.uk/professionals/windows-and-glazing/mumford-and-wood-pfvwgb-pf~26390219" target="blank"><Image src="/img/houzz.svg" height={40} width={40} alt="Houzz"/></a>
                     </div>
                 </div>
                 <div className="w-full md:w-1/4">
@@ -40,8 +42,9 @@ export const Footer: React.FC<Props> = ({
                 </div>
             </div>
             <div className="grid grid-cols-3 space-y-1 md:space-y-0 md:flex flex-wrap md:flex-nowrap md:space-x-1 justify-between mt-3">
-                <div className="flex items-center justify-center"><Image src="/img/iso.svg" height={50} width={62} alt="ISO"/></div>
-                <div className="flex items-center justify-center"><Image src="/img/iso-14001.svg" height={60} width={60} alt="ISO 9001"/></div>
+                <div className="flex items-center justify-center"><Image src="/img/ISO-9001.svg" height={50} width={80} alt="ISO 9001"/></div>
+                <div className="flex items-center justify-center"><Image src="/img/ISO-14001.svg" height={50} width={80} alt="ISO 14001"/></div>
+                <div className="flex items-center justify-center"><Image src="/img/ISO-50001.svg" height={50} width={80} alt="ISO 50001"/></div>
                 <div className="flex items-center justify-center"><Image src="/img/fsc.svg" height={50} width={69} alt="FSC"/></div>
                 <div className="flex items-center justify-center"><Image src="/img/ukca.svg" height={50} width={50} alt="UKCA"/></div>
                 <div className="flex items-center justify-center"><Image src="/img/bsi.svg" height={50} width={50} alt="BSI"/></div>

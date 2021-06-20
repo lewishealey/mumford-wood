@@ -40,7 +40,7 @@ export const RichText: React.FC<RichTextProps> = ({ content, classNames }) => {
       },
       [INLINES.ASSET_HYPERLINK]: (node: any, children: any) => {
         {
-          const hyperlinkAsset = content.links.assets.hyperlink.find(
+          const hyperlinkAsset = content?.links?.assets?.hyperlink.find(
             (i) => i?.sys?.id === node.data.target.sys.id
           );
 
@@ -133,7 +133,7 @@ export const RichText: React.FC<RichTextProps> = ({ content, classNames }) => {
       ),
       [BLOCKS.HR]: (node, children) => <hr />,
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-        const entry = content.links.entries.block.find(
+        const entry = content?.links?.entries?.block?.find(
           (i) => i?.sys?.id === node.data.target?.sys?.id
         );
         if (!entry) {
@@ -203,7 +203,7 @@ export const RichText: React.FC<RichTextProps> = ({ content, classNames }) => {
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
         let mediaAsset = null;
 
-        const asset = content.links.assets.block.find(
+        const asset = content?.links?.assets?.block?.find(
           (i) => i?.sys?.id === node.data.target?.sys?.id
         );
 
@@ -261,7 +261,7 @@ export const RichText: React.FC<RichTextProps> = ({ content, classNames }) => {
   };
 
   return (
-    <div className={classnames('rich-text pb-2 md:pb-4', classNames)}>
+    <div className={classnames('rich-text', classNames)}>
       {content && documentToReactComponents(content.json, options)}
     </div>
   );
