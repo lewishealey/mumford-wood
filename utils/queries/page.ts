@@ -13,6 +13,44 @@ export const GET_SIMPLE_PAGE = gql`
             summary
             content {
                 json
+                links {
+                    __typename
+                    entries {
+                        block {
+                          sys {
+                            id
+                          }
+                          __typename
+                          ... on Download {
+                            name
+                            category
+                            filesCollection {
+                                items {
+                                    url
+                                    size
+                                    description
+                                    contentType
+                                    fileName
+                                }
+                            }
+                          }
+                        }
+                    }
+                    assets {
+                      block {
+                        sys {
+                            id
+                        }
+                        ... on Asset {
+                          url
+                          title
+                          fileName
+                          description
+                          contentType
+                        }
+                      }
+                    }
+                }
             }
             sectionsCollection {
                 items {
@@ -63,6 +101,9 @@ export const GET_SIMPLE_PAGE = gql`
       timelineCollection {
         items {
           year
+          thumbnail {
+            url
+          }
           description {
             json
         }

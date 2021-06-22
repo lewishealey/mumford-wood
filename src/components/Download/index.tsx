@@ -3,7 +3,7 @@ import fire from "@lib/firebase";
 import Image from "next/image";
 import { formatBytes } from "@utils/helpers";
 
-type FileItem = {
+export type FileItem = {
   fields: {
     title: string;
     file: {

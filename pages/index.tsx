@@ -108,7 +108,7 @@ export async function getStaticProps() {
   const res = await fetchProducts();
   const rangeData = await fetchRanges();
   const hp = await fetchHomepages();
-  const csData = await fetchCaseStudies();
+  const csData = await fetchCaseStudies(2);
 
   const ranges = await rangeData.map((p) => {
     return p.fields;

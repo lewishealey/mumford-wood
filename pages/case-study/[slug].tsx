@@ -175,7 +175,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { slug } = context.params;
   const res = await fetchCaseStudy(slug);
-  const caseStudyData = await fetchCaseStudies();
+  const caseStudyData = await fetchCaseStudies(4);
   const sales = await fetchSalesTeam();
   const salesT = await sales.map((p) => {
     return p.fields;

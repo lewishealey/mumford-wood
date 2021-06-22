@@ -18,6 +18,7 @@ import File from '@components/File';
 import { sectionClasses, subSectionClasses, getTags, isSelectionInTags } from '@utils/helpers';
 import { Link, animateScroll as scroll } from "react-scroll";
 import { renderTechTable } from "@utils/renderers/renderTechTable";
+import Slider from "@components/Slider";
 
 const waypointOptions = {
     fireOnRapidScroll: false
@@ -155,8 +156,6 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
         setIronItems(ironmongeryItems);
     }
 
-    console.log(data)
-
     return (
         <PageProvider value="product-ranges">
             <SalesProvider value={salesTeam}>
@@ -167,7 +166,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
             breadcrumbs={breadcrumbs}
             gallery={data?.gallery}
             border>
-                <section className="mb-4">
+                <section className="mb-4 md:mb-2">
                     <h2 className={sectionClasses}>Introduction</h2>
                     {documentToReactComponents(data?.content,options)}
                 </section>
@@ -186,7 +185,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
 
                 {data?.gallery && <Waypoint onEnter={() => setWaypointItem('gallery')} {...waypointOptions}>
-                                        <section className="pb-2" id="gallery">
+                                        <section className="b-2 md:pb-6 md:pt-2" id="gallery">
                                             <h2 className={sectionClasses}>Gallery</h2>
                                             <Gallery items={data?.gallery} />
                                         </section>
@@ -195,7 +194,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
                 {(data?.finishContent || data?.finishes) &&
                 <Waypoint onEnter={() => setWaypointItem('finish')} {...waypointOptions}>
-                    <section className="pb-2" id="finish">
+                    <section className="b-2 md:pb-6" id="finish">
                         <h2 className={sectionClasses}>Finish</h2>
                         <div className="mb-2">{documentToReactComponents(data?.finishContent,options)}</div>
 
@@ -216,7 +215,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
                 {data?.profiles &&
                     <Waypoint onEnter={() => setWaypointItem('profiles')} {...waypointOptions}>
-                        <section className="pb-2" id="profiles">
+                        <section className="b-2 md:pb-6" id="profiles">
                             <h2 className={sectionClasses}>Profiles</h2>
                             {data?.glazingThumbnails && <Gallery columns={data?.glazingThumbnails.length} items={data?.glazingThumbnails} />}
                         </section>
@@ -225,7 +224,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
                 {glassItems &&
                     <Waypoint onEnter={() => setWaypointItem('glazing')} {...waypointOptions}>
-                        <section className="pb-2" id="glazing">
+                        <section className="b-2 md:pb-6" id="glazing">
                             <h2 className={sectionClasses}>Glazing</h2>
                             {/* <div className="mb-1">
                                 <Checklist items={checkboxes} onChecked={onGlazingFilter} />
@@ -247,7 +246,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
                 {ironItems &&
                     <Waypoint onEnter={() => setWaypointItem('ironmongery')} {...waypointOptions}>
-                    <section className="pb-2" id="ironmongery">
+                    <section className="b-2 md:pb-6" id="ironmongery">
                         <h2 className={sectionClasses}>Ironmongery</h2>
                         <div className="mb-1">
                             <Checklist items={ironCheckboxes} onChecked={onIronFilter} />
@@ -274,7 +273,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
 
                 {data?.techTable &&
                     <Waypoint onEnter={() => setWaypointItem('specs')} {...waypointOptions}>
-                    <section className="pb-2" id="specs">
+                    <section className="b-2 md:pb-6" id="specs">
                         <h2 className={sectionClasses}>Technical Specifications</h2>
                         <div className="mb-2">{renderTechTable(data?.techTable)}</div>
                     </section>
@@ -282,7 +281,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 }
 
                 {data?.profiles && <Waypoint onEnter={() => setWaypointItem('drawings')} {...waypointOptions}>
-                    <section className="pb-2" id="drawings">
+                    <section className="b-2 md:pb-6" id="drawings">
                     <h2 className={sectionClasses}>CAD Drawings</h2>
                     <LoggedIn location="Homepage" entity="CAD profiles">
 
@@ -330,7 +329,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                         title={post?.title}
                         size="default"
                         border={false}
-                        highlight={data?.title}
+                        highlight={data?.range.replace('-',' ')}
                         image={post?.thumbnail?.fields?.file?.url}
                         key={i} />
                 )}

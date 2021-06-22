@@ -51,7 +51,6 @@ export const Footer: React.FC<Props> = ({
                 <div className="flex items-center justify-center"><Image src="/img/energy.svg" height={60} width={60} alt="Energy"/></div>
                 <div className="flex items-center justify-center px-0.5"><Image src="/img/made-in-britain-black.svg" height={70} width={100} alt="Made in Britain"/></div>
                 <div className="flex items-center justify-center px-0.5"><Image src="/img/bwf.svg" height={74} width={103} alt="BWF"/></div>
-                <div className="flex items-center justify-center px-0.5"><Image src="/img/houzz.svg" height={80} width={100} alt="Houzz"/></div>
                 <div className="flex items-center justify-center px-0.5"><Image src="/img/constructiononline.svg" height={74} width={103} alt="constructiononline"/></div>
             </div>
             <div className="flex space-y-1 md:space-y-0 flex-col md:flex-row justify-between mt-3 text-sm">

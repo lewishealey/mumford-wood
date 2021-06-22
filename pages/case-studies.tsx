@@ -63,7 +63,7 @@ export default function CaseStudies({ posts }) {
         <span className="flex-shrink-0">Filter by</span>
         <Select
           options={newLocations}
-          placeholder="Select an multiple areas"
+          placeholder="Select multiple areas"
           className="w-full md:w-1/3"
           onChange={(selected) => {
             const flat = flatten(selected);

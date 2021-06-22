@@ -18,8 +18,6 @@ import DownloadBrochure from "@components/Form/download-brochure";
 import Apprenticeship from "@components/Form/apprenticeship";
 import YouTube from "react-youtube";
 import Modal from "@components/Modal";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
@@ -147,8 +145,6 @@ export const Layout: React.FC<LayoutProps> = ({
           </div>
         )}
 
-        {/* overflow-hidden md:mb-2 h-16 md:h-32  */}
-
         {image && !video && (
           <div className="relative md:mb-2">
             {gallery && (
@@ -219,14 +215,14 @@ export const Layout: React.FC<LayoutProps> = ({
           </div>
         )}
         <div
-          className={`container m-auto max-w-6xl relative ${
+          className={`container m-auto md:mt-0 max-w-5xl relative ${
             border &&
-            "p-1 pt-2 md:p-2 md:-mt-2 bg-white border-t-4 border-primary-base border-solid md:shadow-container xl:rounded-md"
+            "p-1 pt-2 md:px-1 md:py-2 bg-white border-t-8 md:-mt-2 border-primary-base border-solid"
           }`}
         >
           {sidebarType !== "none" ? (
             <div className="flex-col md:flex-row md:gap-2 md:px-0 flex">
-              <div className="lg:w-3/4">{children}</div>
+              <div className="p-1.5 md:p-0 lg:w-3/4">{children}</div>
               <div className="lg:w-1/4 m-1 md:m-0">
                 <div className="top-9 sticky">
                   <div className="bg-primary-neutral rounded-md p-1.5 mb-0.5">

@@ -2,6 +2,9 @@ const path = require("path");
 const withImages = require("next-images");
 
 module.exports = withImages({
+    images: {
+        domains: ['images.ctfassets.net'],
+    },
   env: {
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,

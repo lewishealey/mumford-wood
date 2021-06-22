@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 import LoadingBar from "react-top-loading-bar";
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
+import "../styles/slider.css";
 
 function MyApp({ Component, pageProps, router }) {
   const apolloClient = useApollo(pageProps);

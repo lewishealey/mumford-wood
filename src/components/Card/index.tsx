@@ -3,12 +3,14 @@ import classNames from 'classnames';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { options } from '@utils/contentfulOptions';
 import Link from 'next/link';
+import Image from 'next/image';
 export interface Props {
     title?: string;
     highlight?: string;
     href?: string;
     summary?: any;
     height?: string;
+    width?: number;
     image?: string;
     align?: string;
     border: boolean;
@@ -22,6 +24,7 @@ export const Card: React.FC<Props> = ({
     highlight,
     href,
     summary,
+    width = 300,
     height,
     image,
     align,
@@ -38,7 +41,7 @@ export const Card: React.FC<Props> = ({
     );
 
     const contents = <div className={`text-${align}`}>
-            {image && <img src={`${image}?w=300`} className={classes} />}
+            {image && <div className={`w-full ${height} relative`}><img src={`https:${image}?w=${width}`} className={classes}  height="200" width="100"/></div>}
             {highlight && <h5 className="font-heading text-primary-base text-sm uppercase font-bold tracking-widest mt-0.75 mb-0.25">{highlight}</h5>}
             {title && <h4 className={`font-heading font-bold text-lg m-0 mb-0.5 ${!highlight && 'mt-1'}`}>{title}</h4>}
             {summary && documentToReactComponents(summary,options)}

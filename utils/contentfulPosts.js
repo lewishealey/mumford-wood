@@ -29,9 +29,10 @@ export async function fetchPages() {
     console.log(`Error getting Entries for ${contentType.name}.`)
 }
 
-export async function fetchCaseStudies() {
+export async function fetchCaseStudies(number) {
     const entries = await client.getEntries({
         content_type: 'caseStudy',
+        limit: number,
     })
     if (entries.items) return entries.items
     console.log(`Error getting Entries for ${contentType.name}.`)
@@ -107,6 +108,7 @@ export async function fetchHomepages() {
 export async function fetchTeam() {
     const entries = await client.getEntries({
         content_type: 'teamMember',
+        order: 'fields.type',
     })
     if (entries.items) return entries.items
     console.log(`Error getting Entries for ${contentType.name}.`)

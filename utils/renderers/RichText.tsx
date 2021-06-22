@@ -1,12 +1,17 @@
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
-import classnames from 'classnames';
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import React, { ReactNode } from 'react';
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
+import classnames from "classnames";
+
+import Link from "next/link";
+import Image from "next/image";
+import React, { ReactNode } from "react";
 
 const Bold = ({ children }) => <p className="weight-bold">{children}</p>;
-const Text = ({ children }) => <p className="mb-1 font-body text-gray-800 text-lg md:text-base">{children}</p>;
+const Text = ({ children }) => (
+  <p className="mb-1 font-body text-gray-800 text-lg md:text-base">
+    {children}
+  </p>
+);
 
 export interface RichTextProps {
   content: any;
@@ -19,7 +24,7 @@ export const RichText: React.FC<RichTextProps> = ({ content, classNames }) => {
       [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
     },
     renderText: (text) => {
-      return text.split('\n').reduce((children, textSegment, index) => {
+      return text.split("\n").reduce((children, textSegment, index) => {
         return [...children, index > 0 && <br key={index} />, textSegment];
       }, []);
     },
@@ -32,7 +37,8 @@ export const RichText: React.FC<RichTextProps> = ({ content, classNames }) => {
               className="richTextHyperlink"
               title="View more information"
               rel="noreferrer"
-              target={node.data.uri.startsWith('/') ? '' : '_blank'}>
+              target={node.data.uri.startsWith("/") ? "" : "_blank"}
+            >
               {children}
             </a>
           );
@@ -53,7 +59,8 @@ export const RichText: React.FC<RichTextProps> = ({ content, classNames }) => {
               target="blank"
               className="richTextHyperlink"
               rel="noopener"
-              title="View file">
+              title="View file"
+            >
               {children}
             </a>
           );
@@ -86,120 +93,54 @@ export const RichText: React.FC<RichTextProps> = ({ content, classNames }) => {
         <ul className="list-disc list-inside space-y-2">{children}</ul>
       ),
       [BLOCKS.HEADING_1]: (node, children) => (
-        <Text>
-          {children}
-        </Text>
+        <h1 className="text-3xl mb-1">{children}</h1>
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
-        <Text>
-          {children}
-        </Text>
+        <h2 className="text-2xl mb-1">{children}</h2>
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
-        <Text>
-          {children}
-        </Text>
+        <h3 className="text-xl mb-1">{children}</h3>
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
-        <Text>
-          {children}
-        </Text>
+        <h4 className="text-md mb-1">{children}</h4>
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
-        <Text>
-          {children}
-        </Text>
+        <h5 className="text-base mb-0.5">{children}</h5>
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
-        <Text>
-          {children}
-        </Text>
+        <h6 className="text-sm mb-0.5">{children}</h6>
       ),
       [BLOCKS.OL_LIST]: (node, children) => <ol>{children}</ol>,
       [BLOCKS.LIST_ITEM]: (node, children) => (
-        <Text>
-          {children[0].props.children}
-        </Text>
+        <Text>{children[0].props.children}</Text>
       ),
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <Text>
-          {children}
-        </Text>
-      ),
-      [BLOCKS.QUOTE]: (node, children) => (
-        <Text>
-          {children}
-        </Text>
-      ),
+      [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+      [BLOCKS.QUOTE]: (node, children) => <Text>{children}</Text>,
       [BLOCKS.HR]: (node, children) => <hr />,
-      [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-        const entry = content?.links?.entries?.block?.find(
-          (i) => i?.sys?.id === node.data.target?.sys?.id
-        );
-        if (!entry) {
-          return;
-        }
-        if (entry.__typename) {
-          switch (entry.__typename.toLowerCase()) {
-            // case 'youtube':
-            //   const youtubeUrl = `https://www.youtube.com/embed/${GetYoutubeID(
-            //     entry.youtubeUrl
-            //   )}`;
-
-            //   return (
-            //     <div className="embed-responsive aspect-ratio-16/9">
-            //       <iframe
-            //         className="embed-responsive-item"
-            //         src={youtubeUrl}
-            //         title="Embedded Media"
-            //       />
-            //     </div>
-            //   );
-            case 'iframe':
-              return (
-                <iframe
-                  className="w-full"
-                  height={entry.height ? entry.height : '320'}
-                  src={entry.iframeUrl}
-                />
-              );
-            // case 'section':
-            //   return (
-            //     <Section
-            //       heading={entry.sectionHeader}
-            //       description={entry.sectionSummary}
-            //       background="bg-white"
-            //       type="Card"
-            //       isCarousel
-            //       cardBackground="bg-stone"
-            //       wrapperClassName="full-width"
-            //       items={SectionRenderer(entry)}
-            //       xlCols={3}
-            //       lgCols={3}
-            //       mdCols={2}
-            //       smCols={1}
-            //       centerText={entry.centerText}
-            //     />
-            //   );
-            // case 'tile':
-            //   return (
-            //     <Tile
-            //       image={entry?.background?.image?.url}
-            //       heading={entry.title}
-            //       subtitle={entry.subtitle}
-            //       button={{
-            //         buttonType: 'Primary',
-            //         children: 'Read more',
-            //         link: entry.link
-            //           ? slugToURL(entry.link?.__typename, entry.link?.slug)
-            //           : null,
-            //       }}
-            //       className="full-width"
-            //     />
-            //   );
-          }
-        }
-      },
+    //   [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+    //     const entry = content?.links?.entries?.block?.find(
+    //       (i) => i?.sys?.id === node.data.target?.sys?.id
+    //     );
+    //     if (!entry) {
+    //       return;
+    //     }
+    //     if (entry.__typename) {
+    //       switch (
+    //         entry.__typename.toLowerCase()
+    //         // case 'download':
+    //         //   return (
+    //         //     <div className="flex column w-full flex-wrap border-gray-300 border rounded">
+    //         //         <Download
+    //         //             title={entry.name}
+    //         //             files={convertToFormat(entry.filesCollection.items)}
+    //         //             user={null}
+    //         //         />
+    //         //     </div>
+    //         //   );
+    //       ) {
+    //       }
+    //     }
+    //   },
       [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
         let mediaAsset = null;
 
@@ -210,58 +151,52 @@ export const RichText: React.FC<RichTextProps> = ({ content, classNames }) => {
         if (!asset) {
           return;
         }
-
-        // if (asset) {
-        //   switch (asset.contentType) {
-        //     case 'image/jpeg':
-        //       mediaAsset = (
-        //         <div className="py-10">
-        //           <div className="relative aspect-ratio-16/9 rounded overflow-hidden">
-        //             <Image
-        //               src={asset.url}
-        //               alt={asset.description}
-        //               cover
-        //               fullWidth
-        //               fullHeight
-        //             />
-        //           </div>
-        //           {asset.description && (
-        //             <Text>
-        //               {asset.description}
-        //             </Text>
-        //           )}
-        //         </div>
-        //       );
-        //       break;
-        //   }
-        // }
+        if (asset) {
+          switch (asset.contentType) {
+            case "image/jpeg":
+              mediaAsset = (
+                <div className="py-10">
+                  <div className="relative aspect-ratio-16/9 rounded overflow-hidden">
+                    <Image
+                      src={asset.url}
+                      alt={asset.description}
+                      width="100%"
+                      height="auto"
+                    />
+                  </div>
+                  {asset.description && <Text>{asset.description}</Text>}
+                </div>
+              );
+              break;
+            case "application/pdf":
+              mediaAsset = (
+                <div className="py-1">
+                  <a
+                    href={asset.url}
+                    title={asset.description}
+                    target="_blank"
+                    className="relative border p-1 rounded hover:bg-neutral-4 justify-between space-x-0.5 items-center inline-flex"
+                  >
+                    <Image
+                      src="/img/file.svg"
+                      alt="Download file"
+                      height={20}
+                      width={20}
+                    />
+                    <span>{asset.title}</span>
+                  </a>
+                </div>
+              );
+              break;
+          }
+        }
         return <>{mediaAsset}</>;
       },
-    //   [INLINES.EMBEDDED_ENTRY]: (node, children) => {
-    //     const entry = content.links.entries.inline.find(
-    //       (i) => i?.sys?.id === node.data.target?.sys?.id
-    //     );
-
-    //     if (!entry) {
-    //       return;
-    //     }
-    //     return (
-    //       <Card
-    //         link={slugToURL(entry.__typename, entry.slug)}
-    //         heading={entry.title}
-    //         content={entry.summary}
-    //         image={entry.heroCollection?.items[0]?.image?.url}
-    //         direction="horizontal"
-    //         size="small"
-    //         color="gray"
-    //       />
-    //     );
-    //   },
     },
   };
 
   return (
-    <div className={classnames('rich-text', classNames)}>
+    <div className={classnames("rich-text", classNames)}>
       {content && documentToReactComponents(content.json, options)}
     </div>
   );

@@ -10,7 +10,7 @@ import { sectionClasses } from "@utils/helpers";
 export default function ContactUs({ offices }) {
   return (
     <PageProvider value="about-us">
-      <Layout title="Contact us" sidebarType="brochure">
+      <Layout title="Contact us" sidebarType="brochure" video="https://videos.ctfassets.net/uefpddncbaai/2xZMFTE2NJYYrFVoxVZ9d8/473a198cb08607096d0cced5984f0847/Banner_Cut_Mould-MP4_1080_Low_Res__1_.mp4">
         <section className="mb-2">
           <Map height={400} />
         </section>

@@ -45,9 +45,12 @@ export default function Page(props) {
     parent,
     sectionsCollection,
   } = data.pageCollection.items[0];
-  const timeline = data.timelineCollection.items;
+  const timeline = data.timelineCollection.items
 
+  //const sortedTimeline = timeline.sort();
   console.log(timeline);
+  const sortedTimeline = timeline.slice().sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0))
+
 
   let breadcrumbs = null;
   const summaryClasses = classNames(
@@ -84,7 +87,7 @@ export default function Page(props) {
           sidebarType={sidebarType}
           preview={preview}
         >
-          <div className="p-1">
+          <div>
             {subtitle && <h2 className={sectionClasses}>{subtitle}</h2>}
             {summary && <div className={summaryClasses}>{summary}</div>}
             {content && <RichText content={content} />}
@@ -108,12 +111,12 @@ export default function Page(props) {
           {router.asPath === "/our-story" && (
             <div className="relative wrap">
               <div
-                className="absolute border-opacity-20 bg-royal-fade h-full w-0.25 rounded left-1 md:left-1/2"
+                className="absolute border-opacity-20 bg-primary-fade h-full w-0.25 rounded left-1 md:left-1/2"
               ></div>
 
-            {timeline && timeline?.map((section, i) => (
-                <Timeline year={section.year} index={i}>
-                    {section.description}
+            {sortedTimeline && sortedTimeline?.map((section, i) => (
+                <Timeline year={section?.year} thumbnail={section?.thumbnail?.url} index={i}>
+                    {section?.description}
                 </Timeline>
               ))}
             </div>
