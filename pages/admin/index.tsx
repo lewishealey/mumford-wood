@@ -85,8 +85,6 @@ const Index = () => {
       });
   }, []);
 
-  console.log(users);
-
   return (
     <AdminLayout title="Welcome to your dashboard">
       <LoggedIn location="Admin" entity="Admin">

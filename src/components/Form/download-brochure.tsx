@@ -59,7 +59,6 @@ export const RequestEstimate: React.FC<Props> = ({
     const { asPath } = useRouter();
     const brochures = useContext(BrochureContexts);
 
-    console.log(brochures);
     const {
         register,
         handleSubmit,
@@ -88,12 +87,9 @@ export const RequestEstimate: React.FC<Props> = ({
                     fire.firestore()
                         .collection('download-requests')
                         .add(data);
-                        console.log("Data saved")
                 } catch (e) {
-                    console.log('Issue with saving data')
                     setStatus("error");
                 }
-                console.log('Response succeeded!')
             } else {
                 setStatus("error");
             }

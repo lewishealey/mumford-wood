@@ -15,11 +15,7 @@ export async function sendTest() {
         ]
       })
       .then(data => {
-        console.log('Woohoo! You just sent your first mailing!')
-        console.log(data)
       })
       .catch(err => {
-        console.log('Whoops! Something went wrong')
-        console.log(err)
     })
 }

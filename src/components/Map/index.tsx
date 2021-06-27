@@ -31,10 +31,6 @@ export interface Props {
 
 export const Map: React.FC<Props> = ({ height }) => {
 
-  const onLoad = (marker) => {
-    console.log("marker: ", marker);
-  };
-
   return (
     <div className="mb-3">
       <LoadScript googleMapsApiKey={MAP_TOKEN}>

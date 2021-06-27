@@ -26,7 +26,6 @@ const waypointOptions = {
 
 export default function Product({ product, ranges, salesTeam, brochures }) {
     const data = product[0];
-    // console.log(data);
 
     const [glassItems, setGlassItems] = useState(data?.glazing);
     const [ironItems, setIronItems] = useState(data?.ironmongery);
@@ -133,7 +132,6 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
     }];
 
     const onGlazingFilter = (checklistItems) => {
-        //console.log(checklistItems)
         let optionsArray = Object.values(checklistItems);
         let glazingItems = data?.glazing.filter( function (glass) {
             const glassTags = getTags(glass); // get all tags in the glass item
@@ -145,7 +143,6 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
     }
 
     const onIronFilter = (checklistItems) => {
-        //console.log(checklistItems)
         let optionsArray = Object.values(checklistItems);
         let ironmongeryItems = data?.ironmongery.filter( function (iron) {
             const ironsTags = getTags(iron); // get all tags in the glass item

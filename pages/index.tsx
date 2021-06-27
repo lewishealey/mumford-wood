@@ -13,7 +13,6 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { options } from "@utils/contentfulOptions";
 
 export default function Home({ ranges, caseStudies, homepage }) {
-  // console.log(posts)
   return (
     <Layout video="mumford-main.webm" border={false} sidebarType="none">
       <section className="mb-4">

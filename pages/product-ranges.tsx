@@ -6,7 +6,6 @@ import { BrochureProvider } from '@utils/brochureContexts'
 import { fetchRanges, fetchBrochures } from '@utils/contentfulPosts'
 
 export default function ProductRanges({ posts, brochures }) {
-    // console.log(posts)
     return (
         <BrochureProvider value={brochures}>
       <Layout

@@ -163,7 +163,7 @@ export const Layout: React.FC<LayoutProps> = ({
                 />}
                 {gallery?.map((item, i) => (
                   <img
-                    src={item.fields.file.url}
+                    src={item?.fields?.file?.url}
                     key={i}
                     className="h-full object-cover z-auto max-h-16 md:max-h-32 w-auto"
                   />

@@ -44,12 +44,9 @@ export const Newsletter: React.FC = ({
                     fire.firestore()
                         .collection('newsletter-signups')
                         .add(data);
-                        console.log("Data saved")
                 } catch (e) {
-                    console.log('Issue with saving data')
                     setStatus("error");
                 }
-                console.log('Response succeeded!')
             } else {
                 setStatus("error");
             }

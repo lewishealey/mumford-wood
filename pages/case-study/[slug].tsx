@@ -22,7 +22,6 @@ import { Link, animateScroll as scroll } from "react-scroll";
 export default function CaseStudy({ page, caseStudies, salesTeam, brochures }) {
   const data = page[0];
   const [waypointItem, setWaypointItem] = useState("about");
-  // console.log(data, caseStudies);
 
   const breadcrumbs = [
     {

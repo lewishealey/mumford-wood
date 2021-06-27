@@ -55,12 +55,9 @@ export const Apprenticeship: React.FC<Props> = ({
                     fire.firestore()
                         .collection('apprentice-requests')
                         .add(data);
-                        console.log("Data saved")
                 } catch (e) {
-                    console.log('Issue with saving data')
                     setStatus("error");
                 }
-                console.log('Response succeeded!')
             } else {
                 setStatus("error");
             }

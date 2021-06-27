@@ -16,9 +16,13 @@ function flatten(obj) {
 }
 
 export default function CaseStudies({ posts }) {
-  // console.log(posts)
 
   const [postList, setPosts] = useState(posts);
+  const sortedPosts = postList.sort((a,b) => {
+      if(a.date > b.date) {
+          return -1;
+      }
+  });
 
   // Usable locations
   let locations = [];
@@ -59,8 +63,6 @@ export default function CaseStudies({ posts }) {
     }
   ];
 
-  console.log()
-
   return (
     <Layout title="Case Studies" sidebarType="none">
       <div className="flex mb-1.5 w-full space-x-1 items-center">
@@ -71,7 +73,6 @@ export default function CaseStudies({ posts }) {
           className="w-full md:w-1/3"
           onChange={(selected) => {
             const flat = flatten(selected);
-            console.log(flat);
             if(flat.length > 0) {
                 setPosts(posts.filter((item) => flat.includes(item?.region?.toLowerCase())))
             } else {
@@ -83,8 +84,8 @@ export default function CaseStudies({ posts }) {
       </div>
 
       <div className="flex space-y-2 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-2 lg:gap-y-4">
-        {postList &&
-          postList?.map((post, i) => (
+        {sortedPosts &&
+          sortedPosts?.map((post, i) => (
             <Card
               href={`/case-study/${post?.slug}`}
               title={post?.title}

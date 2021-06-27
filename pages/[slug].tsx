@@ -61,7 +61,6 @@ export default function Page(props) {
     }
   });
 
-  console.log(storyVideos);
   let breadcrumbs = null;
   const summaryClasses = classNames(
     `font-body`,

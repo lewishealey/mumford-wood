@@ -74,7 +74,6 @@ export const RequestEstimate: React.FC<Props> = ({
     });
 
     if (upload.ok) {
-      console.log("Uploaded successfully!");
     } else {
       console.error("Upload failed.");
     }
@@ -97,12 +96,11 @@ export const RequestEstimate: React.FC<Props> = ({
     flattenedFiles.forEach((file) => {
       const reader = new FileReader();
       uploadPhoto(file);
-      reader.onabort = () => console.log("file reading was aborted");
-      reader.onerror = () => console.log("file reading has failed");
+    //   reader.onabort = () => console.log("file reading was aborted");
+    //   reader.onerror = () => console.log("file reading has failed");
       reader.onload = () => {
         // Do whatever you want with the file contents
         const binaryStr = reader.result;
-        console.log(binaryStr);
       };
       reader.readAsArrayBuffer(file);
     });
@@ -170,13 +168,9 @@ export const RequestEstimate: React.FC<Props> = ({
       if (res.status === 200) {
         try {
           fire.firestore().collection("estimate-requests").add(data);
-          console.log("Data saved");
         } catch (e) {
-          console.log("Issue with saving data");
-          console.error(e);
           setStatus("error");
         }
-        console.log("Response succeeded!", res);
       } else {
         console.error(res);
         setStatus("error");

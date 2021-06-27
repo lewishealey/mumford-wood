@@ -29,8 +29,6 @@ const Index = () => {
           });
       }, []);
 
-    console.log(users)
-
     return <div>Admin
             <button type="submit" onClick={handleSubmit}>Save</button>
     </div>

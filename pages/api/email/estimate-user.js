@@ -13,11 +13,9 @@ export default function (req, res) {
         }]
       })
       .then(data => {
-        console.log(data)
         res.status(200).json(true)
       })
       .catch(err => {
-        console.log(err)
         res.status(500).json(false)
     })
 }

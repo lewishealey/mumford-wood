@@ -43,7 +43,7 @@ export const Footer: React.FC<Props> = ({
             </div>
             <div className="grid grid-cols-3 space-y-1 md:space-y-0 md:flex flex-wrap md:flex-nowrap md:space-x-1 justify-between mt-3">
                 <div className="flex items-center justify-center"><Image src="/img/ISO-9001.svg" height={50} width={80} alt="ISO 9001"/></div>
-                <div className="flex items-center justify-center"><Image src="/img/ISO-14001.svg" height={50} width={80} alt="ISO 14001"/></div>
+                <div className="flex items-center justify-center"><Image src="/img/ISO_14001.svg" height={50} width={80} alt="ISO 14001"/></div>
                 <div className="flex items-center justify-center"><Image src="/img/ISO-50001.svg" height={50} width={80} alt="ISO 50001"/></div>
                 <div className="flex items-center justify-center"><Image src="/img/fsc.svg" height={50} width={69} alt="FSC"/></div>
                 <div className="flex items-center justify-center"><Image src="/img/ukca.svg" height={50} width={50} alt="UKCA"/></div>
