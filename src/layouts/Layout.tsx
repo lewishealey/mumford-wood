@@ -134,7 +134,7 @@ export const Layout: React.FC<LayoutProps> = ({
         {title && (
           <div className="py-2 md:py-3 text-center justify-center max-w-5xl m-auto px-1">
             <motion.h1
-              className="font-title text-2xl md:text-4xl uppercase"
+              className="font-title text-2xl md:text-4xl md:leading-normal uppercase"
               exit={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               initial={{ opacity: 0 }}
@@ -208,7 +208,7 @@ export const Layout: React.FC<LayoutProps> = ({
             >
               <source
                 src={video}
-                type="video/mp4"
+                type="video/webm"
                 className="md:w-full h-full object-cover z-auto"
               />
             </video>

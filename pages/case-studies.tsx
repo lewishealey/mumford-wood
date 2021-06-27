@@ -46,6 +46,10 @@ export default function CaseStudies({ posts }) {
         label: "East"
     },
     {
+        value: "midlands",
+        label: "Midlands"
+    },
+    {
         value: "west",
         label: "West"
     },

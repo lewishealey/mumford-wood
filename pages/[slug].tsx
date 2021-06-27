@@ -12,6 +12,9 @@ import GetApolloState from "@lib/GetApolloState";
 import Link from "next/link";
 import RichText from "@utils/renderers/RichText";
 import { useRouter } from "next/router";
+import { route } from "next/dist/next-server/server/router";
+import Image from "next/image";
+import VideoThumbnail from "@components/VideoThumbnail";
 
 export default function Page(props) {
   const { data, loading, error, preview } = props;
@@ -45,13 +48,20 @@ export default function Page(props) {
     parent,
     sectionsCollection,
   } = data.pageCollection.items[0];
-  const timeline = data.timelineCollection.items
+  const timeline = data.timelineCollection.items;
+  const storyVideos = data.factoryVideoCollection.items;
 
   //const sortedTimeline = timeline.sort();
-  console.log(timeline);
-  const sortedTimeline = timeline.slice().sort((a,b) => (a.year > b.year) ? 1 : ((b.year > a.year) ? -1 : 0))
+  const sortedTimeline = timeline
+    .slice()
+    .sort((a, b) => (a.year > b.year ? 1 : b.year > a.year ? -1 : 0));
+  const sortedVideos = storyVideos.slice().sort((a, b) => {
+    if(a.order > b.order) {
+      return -1;
+    }
+  });
 
-
+  console.log(storyVideos);
   let breadcrumbs = null;
   const summaryClasses = classNames(
     `font-body`,
@@ -110,15 +120,26 @@ export default function Page(props) {
 
           {router.asPath === "/our-story" && (
             <div className="relative wrap">
-              <div
-                className="absolute border-opacity-20 bg-primary-fade h-full w-0.25 rounded left-1 md:left-1/2"
-              ></div>
+              <div className="absolute border-opacity-20 bg-primary-fade h-full w-0.25 rounded left-1 md:left-1/2"></div>
 
-            {sortedTimeline && sortedTimeline?.map((section, i) => (
-                <Timeline year={section?.year} thumbnail={section?.thumbnail?.url} index={i}>
+              {sortedTimeline &&
+                sortedTimeline?.map((section, i) => (
+                  <Timeline
+                    year={section?.year}
+                    thumbnail={section?.thumbnail?.url}
+                    index={i}
+                  >
                     {section?.description}
-                </Timeline>
-              ))}
+                  </Timeline>
+                ))}
+            </div>
+          )}
+          {router.asPath === "/the-factory" && (
+            <div className="flex flex-col space-y-4">
+              {sortedVideos &&
+                sortedVideos.reverse()?.map((video, i) => (
+                  <VideoThumbnail image={video?.thumbnail?.url} video={video?.youtubeId} title={video?.title} />
+                ))}
             </div>
           )}
         </Layout>

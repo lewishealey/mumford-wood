@@ -14,10 +14,8 @@ import { options } from "@utils/contentfulOptions";
 
 export default function Home({ ranges, caseStudies, homepage }) {
   // console.log(posts)
-
-  console.log(homepage[0]);
   return (
-    <Layout video="mumford-main.mp4" border={false} sidebarType="none">
+    <Layout video="mumford-main.webm" border={false} sidebarType="none">
       <section className="mb-4">
         <div
           className={`container m-auto max-w-4xl z-10 relative px-1 py-1.5 md:p-2 -mt-2 md:-mt-4 rounded bg-white border-t-4 border-primary-base border-solid`}

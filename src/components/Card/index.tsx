@@ -41,7 +41,7 @@ export const Card: React.FC<Props> = ({
     );
 
     const contents = <div className={`text-${align}`}>
-            {image && <div className={`w-full ${height} relative`}><img src={`https:${image}?w=${width}`} className={classes}  height="200" width="100"/></div>}
+            {image && <div className={`w-full ${height} relative`}><Image src={`https:${image}?w=${width}`} className={classes} layout="fill" /></div>}
             {highlight && <h5 className="font-heading text-primary-base text-sm uppercase font-bold tracking-widest mt-0.75 mb-0.25">{highlight}</h5>}
             {title && <h4 className={`font-heading font-bold text-lg m-0 mb-0.5 ${!highlight && 'mt-1'}`}>{title}</h4>}
             {summary && documentToReactComponents(summary,options)}

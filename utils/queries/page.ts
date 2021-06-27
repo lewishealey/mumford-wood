@@ -87,6 +87,16 @@ export const GET_SIMPLE_PAGE = gql`
             }
           }
     }
+    factoryVideoCollection {
+        items {
+          title
+          order
+          youtubeId
+          thumbnail {
+            url
+          }
+        }
+      }
     salesRepCollection {
         items {
           title

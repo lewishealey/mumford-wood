@@ -8,6 +8,7 @@ import { PageProvider } from '@utils/contexts.js';
 import { getTags, isSelectionInTags } from '@utils/helpers.js';
 import { options } from '@utils/contentfulOptions';
 import Select from "react-select";
+import Image from "next/image";
 
 const checkboxes = [
     {
@@ -54,15 +55,6 @@ const checkboxes = [
 
 export default function MeetTheTeam({ members }) {
     const [memberItems, setMemberItems] = useState(members);
-    const onGlazingFilter = (checklistItems) => {
-        //console.log(checklistItems)
-        let optionsArray = Object.values(checklistItems);
-        let items = members.filter( function (member) {
-            return optionsArray.includes(member.type);
-        });
-
-        setMemberItems(items);
-    }
     //posts.filter((item) => flat.includes(item?.region?.toLowerCase()))
     let sortedMemberItems = memberItems.sort((a, b) =>
 {
@@ -79,7 +71,6 @@ export default function MeetTheTeam({ members }) {
 });
 
 
-console.log(sortedMemberItems)
     return (
         <PageProvider value="about-us">
             <Layout
@@ -105,15 +96,17 @@ console.log(sortedMemberItems)
 
                 <div className="flex space-y-1 flex-col lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-1 lg:gap-y-3">
                     {sortedMemberItems && sortedMemberItems?.map((member,i) =>
+                        <div key={i}>
                         <Card
                             image={member?.thumbnail?.fields?.file?.url}
                             title={member?.name}
                             border={false}
                             height="h-20"
                             width={400}
-                            key={i}>
+                            key={member?.name}>
                                 {member.jobTitle}
                             </Card>
+                        </div>
                     )}
 
                 </div>
