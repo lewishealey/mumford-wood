@@ -94,17 +94,17 @@ export default function MeetTheTeam({ members }) {
                     />
                 </div>
 
-                <div className="flex space-y-1 flex-col lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-1 lg:gap-y-3">
+                <div className="flex space-y-3 flex-col lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-1 lg:gap-y-3">
                     {sortedMemberItems && sortedMemberItems?.map((member,i) =>
                         <div key={i}>
                         <Card
                             image={member?.thumbnail?.fields?.file?.url}
                             title={member?.name}
                             border={false}
-                            height="h-20"
+                            height="h-20 md:h-20"
                             width={400}
                             key={member?.name}>
-                                {member.jobTitle}
+                                <p>{member.jobTitle}</p>
                             </Card>
                         </div>
                     )}

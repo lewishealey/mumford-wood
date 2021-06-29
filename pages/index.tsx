@@ -13,6 +13,18 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { options } from "@utils/contentfulOptions";
 
 export default function Home({ ranges, caseStudies, homepage }) {
+
+
+const sortedPosts = ranges.sort((a, b) => {
+    if (a.order > b.order) {
+      return 1;
+    }
+    if (a.order < b.order) {
+      return -1;
+    }
+    return 0;
+  });
+
   return (
     <Layout video="mumford-main.webm" border={false} sidebarType="none">
       <section className="mb-4">
@@ -51,8 +63,8 @@ export default function Home({ ranges, caseStudies, homepage }) {
           Our Product Ranges
         </h2>
         <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
-          {ranges &&
-            ranges?.map((post, i) => (
+          {sortedPosts &&
+            sortedPosts?.map((post, i) => (
               <Tile
                 href={`/product-ranges/${post?.slug}`}
                 title={post?.title}

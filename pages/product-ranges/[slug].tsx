@@ -24,17 +24,6 @@ export default function ProductRange({ ranges, products, brochures }) {
     },
   ];
 
-  // Sort order
-  products.sort((a, b) => {
-    if (a.rangeOrder > b.rangeOrder) {
-      return 1;
-    }
-    if (a.rangeOrder < b.rangeOrder) {
-      return -1;
-    }
-    return 0;
-  });
-
   return (
       <PageProvider value="product-ranges">
         <BrochureProvider value={brochures}>

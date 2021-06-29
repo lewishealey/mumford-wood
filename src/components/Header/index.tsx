@@ -63,7 +63,9 @@ export const Header: React.FC<HeaderProps> = ({}) => {
             </Link>
           </div>
           <div className="md:flex-1">
-              <img src="/img/envelope.svg" alt="Enquire" className="h-1 md:hidden" />
+            <Link href="/contact-us">
+                <img src="/img/envelope.svg" alt="Enquire" className="h-1 md:hidden" />
+            </Link>
           </div>
         </div>
         <div className="bg-primary-neutral h-0.25 w-full mt-0.5"></div>

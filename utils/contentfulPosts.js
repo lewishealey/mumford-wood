@@ -33,7 +33,7 @@ export async function fetchCaseStudies(number) {
     const entries = await client.getEntries({
         content_type: 'caseStudy',
         limit: number,
-        order: 'fields.date',
+        order: '-fields.date',
     })
     if (entries.items) return entries.items
     console.log(`Error getting Entries for ${contentType.name}.`)
@@ -141,6 +141,7 @@ export async function fetchRangeProducts(range) {
     const product = await client.getEntries({
         content_type: 'product',
         'fields.range[in]': range,
+        order: 'fields.rangeOrder',
     })
     if (product.items) return product.items
 }
@@ -158,6 +159,7 @@ export async function fetchProductRange(range) {
     const product = await client.getEntries({
         content_type: 'productRange',
         'fields.slug[in]': range,
+        order: '-fields.order',
     })
     if (product.items) return product.items
 }
