@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
+import Image from 'next/image';
 
 export interface Props {
     href: string;
@@ -38,7 +39,7 @@ export const Tile: React.FC<Props> = ({
         <Link href={href}>
             <a className={`relative flex ${border && 'border-primary-base hover:border-neutral-2 border-solid border-t-2'} shadow-md hover:shadow-lg font-heading text-base transition-all duration-500 ease-in-out w-full overflow-hidden rounded ${defineSize}`}>
                 {children}
-                <img src={`${image}?w=400`} className={`object-cover ${defineSize} w-full`}/>
+                {image && <Image src={`${image.includes('https') ? image : 'https:' + image}`} className={classes} layout="fill" objectPosition="top" objectFit="cover"/>}
                 <div className="absolute bottom-0 w-full z-10">
                     <div className={classes}>
                         {highlight && <h3 className="font-heading text-primary-base text-sm md:text-base uppercase font-bold tracking-widest md:mb-0.5">{highlight}</h3>}

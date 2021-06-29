@@ -43,6 +43,7 @@ export interface LayoutProps {
   sidebarType?: Sidebar;
   image?: any;
   video?: string;
+  poster?: string;
   breadcrumbs?: CrumbItem[];
   children: any;
   id?: string;
@@ -54,6 +55,7 @@ export const Layout: React.FC<LayoutProps> = ({
   title,
   image,
   video,
+  poster,
   gallery,
   sidebarType,
   breadcrumbs,
@@ -159,7 +161,7 @@ export const Layout: React.FC<LayoutProps> = ({
               <Slider {...settings} ref={sliderRef}>
                 {image && <img
                   src={image}
-                  className="w-full h-full object-cover z-auto max-h-16 md:max-h-32 w-auto"
+                  className="w-full h-full object-cover z-auto max-h-16 md:max-h-32"
                 />}
                 {gallery?.map((item, i) => (
                   <img
@@ -174,7 +176,7 @@ export const Layout: React.FC<LayoutProps> = ({
         )}
 
         {video && (
-          <div className="overflow-hidden md:mb-2 h-24 md:h-40 relative">
+          <div className="overflow-hidden md:mb-2 h-28 md:h-40 relative">
             {asPath == "/" && (
               <>
                 <div className="absolute top-0 left-0 w-full z-10 h-full flex justify-center items-center px-0.5 md:px-2 flex-col">
@@ -205,6 +207,7 @@ export const Layout: React.FC<LayoutProps> = ({
               autoPlay
               muted
               loop
+              poster={poster}
             >
               <source
                 src={video}

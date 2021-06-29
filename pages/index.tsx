@@ -26,7 +26,7 @@ const sortedPosts = ranges.sort((a, b) => {
   });
 
   return (
-    <Layout video="mumford-main.webm" border={false} sidebarType="none">
+    <Layout video="mumford-main.webm" poster="http://www.mumfordwood.com/images/case-studies/New-Bond-Street-London/Brook-Bond-London.jpg" border={false} sidebarType="none">
       <section className="mb-4">
         <div
           className={`container m-auto max-w-4xl z-10 relative px-1 py-1.5 md:p-2 -mt-2 md:-mt-4 rounded bg-white border-t-4 border-primary-base border-solid`}
@@ -84,7 +84,7 @@ const sortedPosts = ranges.sort((a, b) => {
           <h2 className="text-2xl mb-1 md:mb-2 md:text-3xl font-heading text-center">
             Recent Case Studies
           </h2>
-          <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-2 lg:gap-y-4">
+          <div className="flex space-y-3 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-2 lg:gap-y-4">
             {caseStudies &&
               caseStudies?.map((post, i) => (
                 <Card
@@ -95,7 +95,7 @@ const sortedPosts = ranges.sort((a, b) => {
                   image={post?.thumbnail?.fields?.file?.url}
                   key={i}
                 >
-                  <div className="mb-1 font-body text-gray-800 text-lg md:text-base">
+                  <div className="mb-1 mt-1 font-body text-gray-800 text-lg md:text-base">
                     <Truncate
                       lines={1}
                       width={1000} // width being how much you want to truncate your copy
