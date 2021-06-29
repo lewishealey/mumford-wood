@@ -84,7 +84,6 @@ export default function MeetTheTeam({ members }) {
                     className="w-full md:w-1/3"
                     onChange={(selected) => {
                         const flat = flatten(selected);
-                        console.log(flat, members)
                         if(flat.length > 0) {
                             setMemberItems(members.filter((item) => isInArray(flat, item.type)))
                         } else {

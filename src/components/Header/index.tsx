@@ -46,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                   mobileMenu ? "/img/times-solid.svg" : "/img/bars-solid.svg"
                 }
                 alt="Menu"
-                className="h-1"
+                className="h-1 cursor-pointer"
               />
             </span>
           </div>
@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
               </a>
             </Link>
           </div>
-          <div className="md:flex-1">
+          <div className="md:flex-1 cursor-pointer">
             <Link href="/contact-us">
                 <img src="/img/envelope.svg" alt="Enquire" className="h-1 md:hidden" />
             </Link>
