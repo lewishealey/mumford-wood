@@ -84,24 +84,25 @@ export default function MeetTheTeam({ members }) {
                     className="w-full md:w-1/3"
                     onChange={(selected) => {
                         const flat = flatten(selected);
+                        console.log(flat, members)
                         if(flat.length > 0) {
-                            setMemberItems(memberItems.filter((item) => flat.includes(item?.type?.toLowerCase())))
+                            setMemberItems(members.filter((item) => isInArray(flat, item.type)))
                         } else {
-                            setMemberItems(memberItems);
+                            setMemberItems(members);
                         }
                     }}
                     isMulti
                     />
                 </div>
 
-                <div className="flex space-y-3 flex-col lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-1 lg:gap-y-3">
+                <div className="flex space-y-3 flex-col sm:space-y-0 sm:grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 sm:gap-1 sm:gap-y-3">
                     {sortedMemberItems && sortedMemberItems?.map((member,i) =>
                         <div key={i}>
                         <Card
                             image={member?.thumbnail?.fields?.file?.url}
                             title={member?.name}
                             border={false}
-                            height="h-20 md:h-20"
+                            height="h-28 md:h-20"
                             width={400}
                             key={member?.name}>
                                 <p>{member.jobTitle}</p>
@@ -137,3 +138,6 @@ function flatten(obj) {
     return arr;
 }
 
+function isInArray(ids, string) {
+    return ids.includes(string);
+}
