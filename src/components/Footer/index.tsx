@@ -57,9 +57,8 @@ export const Footer: React.FC<Props> = ({
                 <div>© Copyright {currentYear} Mumford & Wood Timber Windows and Doors</div>
 
                 <nav className="m-0 p-0 list-none flex space-x-1">
-                    <li><Link href="/terms">Terms</Link></li>
+                    <li><Link href="terms">Terms</Link></li>
                     <li><Link href="policies">Policies</Link></li>
-                    <li><Link href="site-map">Site map</Link></li>
                 </nav>
             </div>
             </div>
