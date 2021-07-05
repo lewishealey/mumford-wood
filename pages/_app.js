@@ -4,6 +4,7 @@ import { useApollo } from "@lib/ApolloClient";
 import { Router } from "next/router";
 import { useEffect, useRef } from "react";
 import LoadingBar from "react-top-loading-bar";
+import TagManager from 'react-gtm-module';
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 import "../styles/slider.css";
@@ -13,12 +14,7 @@ function MyApp({ Component, pageProps, router }) {
   const loadingRef = useRef(null);
 
   useEffect(() => {
-    //   setTimeout(() => {
-    //     import('react-gtm-module').then((module) => {
-    //       let TagManager = module;
-    //       TagManager.initialize(tagManagerArgs);
-    //     });
-    //   }, 250);
+    TagManager.initialize({ gtmId: 'GTM-M7WL3P3' });
 
     const startLoading = () => {
       // Start the loading bar

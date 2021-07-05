@@ -2,7 +2,10 @@ const colors = require("tailwindcss/colors");
 const { inset } = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  purge: [],
+  purge: [
+    './pages/**/*.tsx',
+    './src/**/*.tsx',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     spacing: {

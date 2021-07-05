@@ -21,7 +21,7 @@ import { Link, animateScroll as scroll } from "react-scroll";
 
 export default function CaseStudy({ page, caseStudies, salesTeam, brochures }) {
   const data = page[0];
-  const [waypointItem, setWaypointItem] = useState("about");
+  const [waypointItem, setWaypointItem] = useState("gallery");
 
   const breadcrumbs = [
     {
@@ -46,67 +46,20 @@ export default function CaseStudy({ page, caseStudies, salesTeam, brochures }) {
             image={data?.thumbnail?.fields?.file?.url}
             breadcrumbs={breadcrumbs}
           >
-            <nav
-              className="sticky z-10 bg-white flex m-0 space-x-1.5 mb-2 top-mobile md:top-desktop">
-              <Link
-                to="about"
-                className={`list-none border-b-4 py-1 ${
-                  waypointItem === "about" ? "border-black" : "border-white"
-                } py-1`}
-                activeClass="border-black"
-                spy={true}
-                smooth={true}
-                offset={-100}
-                duration={500}
-              >
-                About
-              </Link>
-              <Link
-                to="gallery"
-                className={`list-none border-b-4 py-1 ${
-                  waypointItem === "gallery" ? "border-black" : "border-white"
-                } py-1`}
-                activeClass="border-black"
-                spy={true}
-                smooth={true}
-                offset={-100}
-                duration={500}
-              >
-                Gallery
-              </Link>
-              <Link
-                to="featured-products"
-                className={`list-none border-b-4 py-1 ${
-                  waypointItem === "feature-products" ? "border-black" : "border-white"
-                } py-1`}
-                activeClass="border-black"
-                spy={true}
-                smooth={true}
-                offset={-100}
-                duration={500}
-              >
-                Featured products
-              </Link>{" "}
-            </nav>
-
-            {data?.content && (
-                <Waypoint
-                onLeave={() => setWaypointItem("about")}
-                {...waypointOptions}
-              >
-              <section className="mb-4">
-                <h2 className={sectionClasses}>About</h2>
-                {documentToReactComponents(data?.content, options)}
-              </section>
-              </Waypoint>
-            )}
+            <div className="sticky z-20 bg-white flex w-full top-mobile md:top-desktop pt-1">
+                <nav className="space-x-1.5 mb-1 md:pl-2 md:-ml-2 -mr-4 w-full overflow-x-auto md:overflow-visible bg-white">
+                    <Link to="gallery" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Gallery</Link>
+                    {data?.products && <Link to="featured-products" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Products</Link>}
+                    <Link to="related" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Related case studies</Link>
+                </nav>
+                </div>
 
             {data?.gallery && (
               <Waypoint
-                onLeave={() => setWaypointItem("gallery")}
+              onEnter={() => setWaypointItem("gallery")}
                 {...waypointOptions}
               >
-                <section className="mb-4">
+                <section className="mb-4" id="gallery">
                   <h2 className={sectionClasses}>Gallery</h2>
                   <Gallery items={data?.gallery} />
                 </section>
@@ -115,16 +68,16 @@ export default function CaseStudy({ page, caseStudies, salesTeam, brochures }) {
 
             {data?.products && (
                 <Waypoint
-                onLeave={() => setWaypointItem("featured-products")}
+                onEnter={() => setWaypointItem("featured-products")}
                 {...waypointOptions}
               >
-              <section className="mb-4">
+              <section className="mb-4" id="featured-products">
                 <h2 className={sectionClasses}>Featured products</h2>
                 <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
                   {data?.products &&
                     data?.products?.map((post, i) => (
                       <Tile
-                        href={`/product-ranges/${post?.fields?.slug}`}
+                        href={`/product/${post?.fields?.range}/${post?.fields?.slug}`}
                         title={post?.fields?.title}
                         size="compact"
                         border={false}
@@ -138,7 +91,7 @@ export default function CaseStudy({ page, caseStudies, salesTeam, brochures }) {
             )}
 
             {caseStudies && (
-              <section className="mb-4">
+              <section className="mb-4" id="related">
                 <h2 className={sectionClasses}>Related case studies</h2>
                 <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-2 lg:gap-y-4">
                   {caseStudies?.map((post, i) => (

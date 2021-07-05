@@ -42,11 +42,17 @@ export default function (req, res) {
       },
       recipients: [
         {
+            address: {
+              email: "586ed0d4.pwgtrading.onmicrosoft.com@emea.teams.ms",
+              name: `${data.fName} ${data.lName}`,
+            },
+        }, // Channel
+        {
           address: {
             email: data.email,
             name: `${data.fName} ${data.lName}`,
           },
-        },
+        }, // Customer
         {
           address: {
             email: data.repEmail ? data.repEmail : adminEmail,
@@ -56,7 +62,7 @@ export default function (req, res) {
             from: `Admin @ Mumford & Wood`,
           }
         },
-      ],
+      ],  // Admin
     })
     .then((data) => {
       res.status(200).json(true);

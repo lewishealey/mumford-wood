@@ -12,7 +12,7 @@ export default function ProductRanges({ posts, brochures }) {
       sidebarType="none"
         title="Product Ranges">
             <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
-                {posts && posts.sort(function(a, b){ return b.order - a.order }).reverse()?.map((post,i) =>
+                {posts && posts.sort((a,b) => a.order < b.order)?.map((post,i) =>
                     <Tile
                         href={`/product-ranges/${post?.slug}`}
                         title={post?.title}
