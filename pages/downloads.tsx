@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Layout from 'src/layouts/Layout';
 import { PageProvider } from '@utils/contexts.js';
-import LoggedIn from '@components/LoggedIn';
-import Download from '@components/Download';
 import fire from '@lib/firebase';
+import dynamic from 'next/dynamic';
 import { fetchBrochures, fetchProducts } from '@utils/contentfulPosts';
 import { sectionClasses } from '@utils/helpers';
+const LoggedIn = dynamic(() => import('@components/LoggedIn'));
+const Download = dynamic(() => import('@components/Download'));
 
 export default function Downloads({ brochures, products }) {
     const [downloadSearch, setDownloadSearch] = useState("");

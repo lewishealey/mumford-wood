@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { NextSeo } from "next-seo";
 import {
   fetchRanges,
   fetchProducts,
@@ -13,9 +14,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { options } from "@utils/contentfulOptions";
 
 export default function Home({ ranges, caseStudies, homepage }) {
-
-
-const sortedPosts = ranges.sort((a, b) => {
+  const sortedPosts = ranges.sort((a, b) => {
     if (a.order > b.order) {
       return 1;
     }
@@ -26,7 +25,36 @@ const sortedPosts = ranges.sort((a, b) => {
   });
 
   return (
-    <Layout video="mumford-main.webm" poster="http://www.mumfordwood.com/images/case-studies/New-Bond-Street-London/Brook-Bond-London.jpg" border={false} sidebarType="none">
+    <Layout
+      video="mumford-main.webm"
+      poster="http://www.mumfordwood.com/images/case-studies/New-Bond-Street-London/Brook-Bond-London.jpg"
+      border={false}
+      sidebarType="none"
+    >
+      <NextSeo
+        title="Britain's Finest Timber Windows & Doors | Mumford & Wood"
+        description="Established in 1954 Mumford & Wood has since become the UK’s premier manufacturer of high quality timber windows and doors."
+        canonical="https://www.canonical.ie/"
+        openGraph={{
+          url: "https://mumfordwood.com",
+          title: "Britain's Finest Timber Windows & Doors | Mumford & Wood",
+          description: "Established in 1954 Mumford & Wood has since become the UK’s premier manufacturer of high quality timber windows and doors.",
+          images: [
+            {
+              url: "https://images.ctfassets.net/uefpddncbaai/6nb6xKrk4jeTz7ThgTVlcf/c9731874c290545e3f51541aa3e414ab/Brook-Bond-Londo",
+              width: 900,
+              height: 600,
+              alt: "Bond Street",
+            },
+          ],
+          site_name: "Mumford & Wood",
+        }}
+        twitter={{
+          handle: "@MumfordWood",
+          site: "@site",
+          cardType: "summary_large_image",
+        }}
+      />
       <section className="mb-4">
         <div
           className={`container m-auto max-w-4xl z-10 relative px-1 py-1.5 md:p-2 -mt-2 md:-mt-4 rounded bg-white border-t-4 border-primary-base border-solid`}
