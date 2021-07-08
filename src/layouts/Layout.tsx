@@ -161,7 +161,7 @@ export const Layout: React.FC<LayoutProps> = ({
               <Slider {...settings} ref={sliderRef}>
                 {image && <img
                   src={image}
-                  className="w-full h-full object-cover z-auto max-h-16 md:max-h-32"
+                  className="w-full h-full object-cover z-auto max-h-16 md:max-h-32 object-top"
                 />}
                 {gallery?.map((item, i) => (
                   <img

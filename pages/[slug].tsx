@@ -66,9 +66,9 @@ export default function Page(props) {
     `font-body`,
     `text-base`,
     `md:text-xl`,
-    `mb-3`,
+    `mb-2`,
     {
-      "text-center": sidebarType == "none",
+      "text-left": sidebarType == "none",
     }
   );
 
@@ -96,14 +96,14 @@ export default function Page(props) {
           sidebarType={sidebarType}
           preview={preview}
         >
-          <div>
+          <div className={`flex flex-col m-auto mb-2 ${sidebarType == "none" ? "w-full md:w-4/5" : "w-full"}`}>
             {subtitle && <h2 className={sectionClasses}>{subtitle}</h2>}
             {summary && <div className={summaryClasses}>{summary}</div>}
             {content && <RichText content={content} />}
           </div>
 
           {data && sectionsCollection && (
-            <div className="flex space-y-2 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1 px-1">
+            <div className="flex space-y-2 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-1">
               {sectionsCollection.items?.map((section, i) => (
                 <Tile
                   key={i}

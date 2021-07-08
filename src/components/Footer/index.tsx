@@ -16,14 +16,14 @@ export const Footer: React.FC<Props> = ({
                 <div className="w-full md:w-1/3">
                     <h5 className="font-heading text-xl mb-1">Pages</h5>
                     <div className="grid grid-cols-2 gap-1">
-                        <a href="/" target="blank">Home</a>
-                        <a href="/about-us">About us</a>
-                        <a href="/product-ranges/conservation-range">Conservation Range</a>
-                        <a href="/product-ranges/classic-range">Classic Range</a>
-                        <a href="/product-ranges/heritage-range">Heritage Range</a>
-                        <a href="/professional">Professional</a>
-                        <a href="/case-studies">Case studies</a>
-                        <a href="/contact-us">Contact us</a>
+                        <Link href="/">Home</Link>
+                        <Link href="/about-us">About us</Link>
+                        <Link href="/product-ranges/conservation-range">Conservation Range</Link>
+                        <Link href="/product-ranges/classic-range">Classic Range</Link>
+                        <Link href="/product-ranges/heritage-range">Heritage Range</Link>
+                        <Link href="/professional">Professional</Link>
+                        <Link href="/case-studies">Case studies</Link>
+                        <Link href="/contact-us">Contact us</Link>
                     </div>
                 </div>
                 <div className="w-full md:w-1/3">
@@ -57,8 +57,8 @@ export const Footer: React.FC<Props> = ({
                 <div>© Copyright {currentYear} Mumford & Wood Timber Windows and Doors</div>
 
                 <nav className="m-0 p-0 list-none flex space-x-1">
-                    <li><Link href="terms">Terms</Link></li>
-                    <li><Link href="policies">Policies</Link></li>
+                    <li><Link href="/terms">Terms</Link></li>
+                    <li><Link href="/policies">Policies</Link></li>
                 </nav>
             </div>
             </div>

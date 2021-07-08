@@ -56,7 +56,7 @@ export const Gallery: React.FC<Props> = ({ items, columns }) => {
           )}
           <span
             className="flex items-center space-x-0.25 text-sm md:text-base font-heading cursor-pointer hover:opacity-80"
-            onClick={() => handleChange(0)}
+            onClick={() => handleChange(2)}
           >
             <Image src="/img/icon-eye.svg" height={16} width={16} />{" "}
             <span>View slideshow</span>
