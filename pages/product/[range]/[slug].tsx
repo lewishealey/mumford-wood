@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchProduct, fetchProducts, fetchRangeProducts, fetchBrochures, fetchSalesTeam } from '@utils/contentfulPosts';
+import { fetchProduct, fetchProducts, fetchRangeProducts, fetchBrochures, fetchSalesTeam, fetchRelatedProducts } from '@utils/contentfulPosts';
 import { Waypoint } from 'react-waypoint';
 import Layout from 'src/layouts/Layout';
 import { PageProvider } from '@utils/contexts.js';
@@ -24,7 +24,7 @@ const waypointOptions = {
     fireOnRapidScroll: false
 }
 
-export default function Product({ product, ranges, salesTeam, brochures }) {
+export default function Product({ product, relatedProducts, salesTeam, brochures }) {
     const data = product[0];
 
     const [glassItems, setGlassItems] = useState(data?.glazing);
@@ -297,36 +297,17 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
                 </section>
                 </Waypoint>}
 
-                {/* {data?.cadComplianceContent &&
-                    <section className="mb-4" id="compliance">
-                        <h2 className={sectionClasses}>CAD Compliance</h2>
-                        <div className="mb-1">{documentToReactComponents(data?.cadComplianceContent,options)}</div>
-
-                        {data?.cadFiles &&
-                            <div className="flex space-y-0.5 flex-col">
-                                {data?.cadFiles && data?.cadFiles.map((file, i) =>
-                                    <File
-                                        name={file?.fields?.file?.fileName}
-                                        size={file?.fields?.file?.details?.size}
-                                        href={file?.fields?.file?.url}
-                                        title={file?.fields?.title}
-                                        key={`file_${i}`}
-                                    />
-                                )}
-                            </div>
-                        }
-                    </section>
-                } */}
-
                 <h2 className={sectionClasses}>Related products</h2>
+
                 <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-1 m-auto">
-                {ranges && ranges?.map((post,i) =>
-                    post.slug !== data.slug && <Tile
-                        href={`/product/${data?.range}/${post?.slug}`}
+                {relatedProducts && relatedProducts?.map((post,i) =>
+                    post.range !== data.range && <Tile
+                        href={`/product/${post?.range}/${post?.slug}`}
                         title={post?.title}
                         size="default"
+                        style={post?.range.replace('-range','')}
                         border={false}
-                        highlight={data?.range.replace('-',' ')}
+                        highlight={post?.range.replace('-',' ')}
                         image={post?.thumbnail?.fields?.file?.url}
                         key={i} />
                 )}
@@ -353,6 +334,7 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
     const { range, slug } = context.params;
     const res = await fetchProduct(range, slug);
     const resP = await fetchRangeProducts(range);
+    const resRel = await fetchRelatedProducts(slug);
     const sales = await fetchSalesTeam();
     const salesT = await sales.map((p) => {
         return p.fields
@@ -371,12 +353,17 @@ export default function Product({ product, ranges, salesTeam, brochures }) {
         return p.fields
     });
 
+    const relatedProducts = await resRel.map((p) => {
+        return p.fields
+    });
+
     return {
       props: {
         product,
         ranges,
         salesTeam: salesT,
-        brochures
+        brochures,
+        relatedProducts
       },
     }
   }

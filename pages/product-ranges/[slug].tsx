@@ -41,7 +41,7 @@ export default function ProductRange({ ranges, products, brochures }) {
                     href={`/product/${data?.slug}/${post?.slug}`}
                     title={`${post?.title}`}
                     size="default"
-                    style="conservation"
+                    style={post?.range?.replace('-range','')}
                     border={false}
                     highlight={data?.title}
                     image={post?.thumbnail?.fields?.file?.url}

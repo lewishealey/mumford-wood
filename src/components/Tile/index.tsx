@@ -21,7 +21,7 @@ export const Tile: React.FC<Props> = ({
     href,
     title,
     size,
-    style = 'conservation',
+    style,
     highlight,
     summary,
     image,
@@ -32,7 +32,13 @@ export const Tile: React.FC<Props> = ({
     const defineSize = (size === 'default' ? 'h-32' : 'h-24');
 
     const classes = classNames(`bg-white text-center py-0.75 px-1`, {
-        'bg-primary-fade' : style === 'conservation'
+        'bg-primary-fade' : style === 'conservation',
+    });
+
+    const textClasses = classNames({
+        'text-primary-base' : style === 'conservation',
+        'text-royal-base' : style === 'classic',
+        'text-blood-base' : style === 'heritage'
     });
 
     return (
@@ -42,7 +48,7 @@ export const Tile: React.FC<Props> = ({
                 {image && <Image src={`${image.includes('https') ? image : 'https:' + image}`} className={classes} layout="fill" objectPosition="top" objectFit="cover"/>}
                 <div className="absolute bottom-0 w-full z-10">
                     <div className={classes}>
-                        {highlight && <h3 className="font-heading text-primary-base text-sm md:text-base uppercase font-bold tracking-widest md:mb-0.5">{highlight}</h3>}
+                        {highlight && <h3 className={`font-heading ${textClasses} text-sm md:text-base uppercase font-bold tracking-widest md:mb-0.5`}>{highlight}</h3>}
                         {title && <h4 className="font-heading text-neutral-0 text-xl m-0">{title}</h4>}
                         {summary && <p className="font-body m-0 text-neutral-0 text-center">{summary}</p>}
                     </div>
@@ -53,3 +59,7 @@ export const Tile: React.FC<Props> = ({
   }
 
   export default Tile;
+
+  Tile.defaultProps = {
+      style: 'conservation'
+  }
