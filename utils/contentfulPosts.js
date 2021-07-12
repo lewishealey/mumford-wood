@@ -84,6 +84,7 @@ export async function fetchArticle(slug) {
 export async function fetchRanges() {
     const entries = await client.getEntries({
         content_type: 'productRange',
+        order: 'fields.order',
     })
     if (entries.items) return entries.items
     console.log(`Error getting Entries for ${contentType.name}.`)

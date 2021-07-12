@@ -1,5 +1,6 @@
 import React from "react";
 import { NextSeo } from "next-seo";
+import Link from "next/link";
 import {
   fetchRanges,
   fetchProducts,
@@ -64,9 +65,8 @@ export default function Home({ ranges, caseStudies, homepage }) {
               {documentToReactComponents(homepage?.summary, options)}
             </div>
           )}
-
-          {homepage?.announcementTitle && (
-            <div className="flex flex-col md:flex-row justify-center mt-2 md:space-x-2 items-center hover:bg-gray-50 rounded-md transition-all duration-100 ease-in-out pt-2 md:cursor-pointer md:w-2/3 m-auto">
+          {homepage?.announcementPage?.fields?.slug && (
+            <Link href={homepage?.announcementPage?.fields?.slug}><div className="flex flex-col md:flex-row justify-center mt-2 md:space-x-2 items-center hover:bg-gray-50 rounded-md transition-all duration-100 ease-in-out pt-2 md:cursor-pointer md:w-2/3 m-auto">
               {homepage?.announcementThumbnail && (
                 <img
                   src={`${homepage?.announcementThumbnail?.fields?.file?.url}?w=400`}
@@ -82,6 +82,7 @@ export default function Home({ ranges, caseStudies, homepage }) {
                 </p>
               </div>
             </div>
+            </Link>
           )}
         </div>
       </section>

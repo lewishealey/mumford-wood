@@ -14,11 +14,9 @@ import fire from '@lib/firebase';
 import Download from '@components/Download';
 import Card from '@components/Card';
 import Checklist from '@components/Checklist';
-import File from '@components/File';
 import { sectionClasses, subSectionClasses, getTags, isSelectionInTags } from '@utils/helpers';
 import { Link, animateScroll as scroll } from "react-scroll";
 import { renderTechTable } from "@utils/renderers/renderTechTable";
-import Slider from "@components/Slider";
 
 const waypointOptions = {
     fireOnRapidScroll: false
@@ -289,7 +287,38 @@ export default function Product({ product, relatedProducts, salesTeam, brochures
                                 title={profile?.fields?.title}
                                 entity={downloadPageDefinition}
                                 user={fire.auth()}
-                                files={profile?.fields?.files}
+                                files={[
+                                    {
+                                      fields: {
+                                        title: "PDF",
+                                        file: {
+                                          details: {
+                                            size:
+                                              profile?.fields?.pdf?.fields?.file?.details
+                                                ?.size,
+                                          },
+                                          contentType:
+                                            profile?.fields?.pdf?.fields?.file?.contentType,
+                                          url: profile?.fields?.pdf?.fields?.file?.url,
+                                        },
+                                      },
+                                    },
+                                    {
+                                      fields: {
+                                        title: "DWG",
+                                        file: {
+                                          details: {
+                                            size:
+                                              profile?.fields?.dwg?.fields?.file?.details
+                                                ?.size,
+                                          },
+                                          contentType:
+                                            profile?.fields?.dwg?.fields?.file?.contentType,
+                                          url: profile?.fields?.dwg?.fields?.file?.url,
+                                        },
+                                      },
+                                    },
+                                  ]}
                             />)}
                         </div>
 

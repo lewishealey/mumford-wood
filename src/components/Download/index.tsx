@@ -57,11 +57,11 @@ export const Download: React.FC<DownloadProps> = ({ entity, title, files }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-between md:px-1 md:py-1 border-b border-gray-300 border-solid w-full">
-      <span className="text-lg md:text-base px-1 py-0.5 md:py-0 md:px-0 bg-primary-neutral md:bg-white">
+    <div className="flex flex-col md:flex-row justify-between md:px-1 md:py-0.75 border-b border-gray-300 border-solid w-full">
+      <span className="text-base md:text-sm px-1 py-0.5 md:py-0 md:px-0 bg-primary-neutral md:bg-white font-body">
         {title}
       </span>
-      <div className="flex flex-col md:flex-row md:space-x-1 px-1 py-0.5 md:py-0 md:px-0 items-start border-t md:border-0">
+      <div className={`grid grid-cols-${files.length} flex-col md:flex-row md:space-x-1 px-1 py-0.5 md:py-0 md:px-0 items-start border-t md:border-0`}>
         {files &&
           files.map((item, i) => (
             <button
@@ -73,13 +73,13 @@ export const Download: React.FC<DownloadProps> = ({ entity, title, files }) => {
                   item?.fields?.file?.url
                 )
               }
-              className="flex justify-start py-0.5 md:py-0 hover:underline space-x-0.5 items-center"
+              className="flex justify-start py-0.5 md:py-0 hover:underline space-x-0.5 items-center text-sm"
             >
               <Image
                 src="/img/file.svg"
                 alt="Download file"
-                height={20}
-                width={20}
+                height={16}
+                width={16}
               />
               <span>{item?.fields?.title}</span>
               <span className="text-gray-400 ml-0.5">
