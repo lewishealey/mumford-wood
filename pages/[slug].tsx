@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Layout from "src/layouts/Layout";
 import { fetchPages } from "@utils/contentfulPosts";
+import { NextSeo } from "next-seo";
 import Tile from "@components/Tile";
 import Timeline from "@components/Timeline";
 import classNames from "classnames";
@@ -12,8 +13,6 @@ import GetApolloState from "@lib/GetApolloState";
 import Link from "next/link";
 import RichText from "@utils/renderers/RichText";
 import { useRouter } from "next/router";
-import { route } from "next/dist/next-server/server/router";
-import Image from "next/image";
 import VideoThumbnail from "@components/VideoThumbnail";
 
 export default function Page(props) {
@@ -56,7 +55,7 @@ export default function Page(props) {
     .slice()
     .sort((a, b) => (a.year > b.year ? 1 : b.year > a.year ? -1 : 0));
   const sortedVideos = storyVideos.slice().sort((a, b) => {
-    if(a.order > b.order) {
+    if (a.order > b.order) {
       return -1;
     }
   });
@@ -92,11 +91,42 @@ export default function Page(props) {
           breadcrumbs={breadcrumbs}
           border={border}
           image={thumbnail?.url}
+          imagePosition="center"
           video={videoBackground?.url}
           sidebarType={sidebarType}
           preview={preview}
         >
-          <div className={`flex flex-col m-auto mb-2 ${sidebarType == "none" ? "w-full md:w-4/5" : "w-full"}`}>
+          <NextSeo
+            title="About us | Mumford & Wood"
+            description="Learn about their story, factory, teams and apprenticeship opportunities"
+            canonical="https://www.canonical.ie/"
+            openGraph={{
+              url: "https://mumfordwood.com/about-us",
+              title: "About us | Mumford & Wood",
+              description:
+                "Learn about their story, factory, teams and apprenticeship opportunities",
+              images: [
+                {
+                  url:
+                    "https://mumford-wood.vercel.app/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fuefpddncbaai%2FDHf2HSpGEVxFquJYHtkMe%2Fc5695545e638cdf37882de5dc886fb7f%2FMMFC0004.jpeg&w=1920&q=75",
+                  width: 1920,
+                  height: 1444,
+                  alt: "Sliding sashes for period renovation",
+                },
+              ],
+              site_name: "Mumford & Wood",
+            }}
+            twitter={{
+              handle: "@MumfordWood",
+              site: "@site",
+              cardType: "summary_large_image",
+            }}
+          />
+          <div
+            className={`flex flex-col m-auto mb-2 ${
+              sidebarType == "none" ? "w-full md:w-4/5" : "w-full"
+            }`}
+          >
             {subtitle && <h2 className={sectionClasses}>{subtitle}</h2>}
             {summary && <div className={summaryClasses}>{summary}</div>}
             {content && <RichText content={content} />}
@@ -136,9 +166,15 @@ export default function Page(props) {
           {router.asPath === "/the-factory" && (
             <div className="flex flex-col space-y-4">
               {sortedVideos &&
-                sortedVideos.reverse()?.map((video, i) => (
-                  <VideoThumbnail image={video?.thumbnail?.url} video={video?.youtubeId} title={video?.title} />
-                ))}
+                sortedVideos
+                  .reverse()
+                  ?.map((video, i) => (
+                    <VideoThumbnail
+                      image={video?.thumbnail?.url}
+                      video={video?.youtubeId}
+                      title={video?.title}
+                    />
+                  ))}
             </div>
           )}
         </Layout>

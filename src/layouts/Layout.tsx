@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Head from "next/head";
+import Image from "next/image";
 import { Header } from "@components/Header";
 import { SubheaderRange } from "@components/SubHeaderRange";
 import { SubheaderContact } from "@components/SubheaderContact";
@@ -42,6 +43,7 @@ export interface LayoutProps {
   title?: string;
   sidebarType?: Sidebar;
   image?: any;
+  imagePosition?: "top" | "center" | "bottom";
   video?: string;
   poster?: string;
   breadcrumbs?: CrumbItem[];
@@ -54,6 +56,7 @@ export const Layout: React.FC<LayoutProps> = ({
   header,
   title,
   image,
+  imagePosition = "top",
   video,
   poster,
   gallery,
@@ -148,7 +151,7 @@ export const Layout: React.FC<LayoutProps> = ({
         )}
 
         {image && !video && (
-          <div className="relative md:mb-2">
+          <div className="relative h-16 md:h-40 overflow-hidden bg-primary-fade">
             {gallery && (
               <div className="absolute w-full bottom-1 md:bottom-3 z-10">
                 <div className="container m-auto max-w-6xl">
@@ -156,18 +159,25 @@ export const Layout: React.FC<LayoutProps> = ({
                 </div>
               </div>
             )}
-            {/* {image && <img src={image} className="w-full h-full object-cover z-auto" />} */}
             {(gallery || image) && (
               <Slider {...settings} ref={sliderRef}>
-                {image && <img
-                  src={image}
-                  className="w-full h-full object-cover z-auto max-h-16 md:max-h-32 object-top"
-                />}
+                {image && (
+                  <div className="h-16 md:h-40 relative">
+                    <Image
+                      src={`https:${image}`}
+                      className={`w-full h-full`}
+                      layout="fill"
+                      key={`${Math.random()}`}
+                      objectFit="cover"
+                      objectPosition={imagePosition}
+                    />
+                  </div>
+                )}
                 {gallery?.map((item, i) => (
                   <img
                     src={item?.fields?.file?.url}
                     key={i}
-                    className="h-full object-cover z-auto max-h-16 md:max-h-32 w-auto"
+                    className="object-cover z-auto h-16 md:h-40 w-auto"
                   />
                 ))}
               </Slider>
@@ -248,12 +258,13 @@ export const Layout: React.FC<LayoutProps> = ({
                       />
                     )}
                   </div>
-                  {(!asPath.includes("contact")) && (
-                  <Link href="/contact-us">
-                    <Button size="default" style="tertiary">
-                      Contact us
-                    </Button>
-                  </Link>)}
+                  {!asPath.includes("contact") && (
+                    <Link href="/contact-us">
+                      <Button size="default" style="tertiary">
+                        Contact us
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

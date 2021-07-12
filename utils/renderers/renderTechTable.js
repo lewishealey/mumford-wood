@@ -1,6 +1,6 @@
 export function renderTechTable(object) {
   return (
-    <table className="table-auto w-full border rounded-md">
+    <table className="table-fixed w-full border rounded-md">
       {object.map((row) => {
         return (
           <tr className={`${row.type === "header" ? "bg-neutral-4" : ""}`}>

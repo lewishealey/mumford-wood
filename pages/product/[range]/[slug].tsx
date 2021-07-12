@@ -158,6 +158,7 @@ export default function Product({ product, relatedProducts, salesTeam, brochures
             <Layout
             title={data?.title}
             image={data?.hero?.fields?.file?.url}
+            imagePosition="center"
             breadcrumbs={breadcrumbs}
             gallery={data?.gallery}
             border>
