@@ -86,7 +86,7 @@ export const Footer: React.FC<Props> = ({}) => {
                   alt="Houzz"
                 />
               </a>
-              <a href="https://www.youtube.com/c/mumfordwood/" target="blank">
+              <a href="https://www.youtube.com/channel/UCzvnLQXahVZPeIoSYv9_4Og" target="blank">
                 <Image
                   src="/img/youtube.svg"
                   height={40}

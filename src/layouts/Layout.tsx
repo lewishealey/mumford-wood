@@ -116,7 +116,7 @@ export const Layout: React.FC<LayoutProps> = ({
           isOpen={isVideoShowing}
           onOverlayClick={() => setVideoShowing(false)}
         >
-          <YouTube videoId={"ljrFq_PkugU"} />
+          <YouTube videoId={"tvzrF-lyPlQ"} />
         </Modal>
 
         {preview && (

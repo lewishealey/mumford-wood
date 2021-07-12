@@ -1,12 +1,11 @@
 const path = require("path");
 const withImages = require("next-images");
-const withPWA = require('next-pwa')
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
-module.exports = withBundleAnalyzer(withPWA({
+module.exports = withBundleAnalyzer(withImages({
     images: {
       domains: ["images.ctfassets.net"],
     },
