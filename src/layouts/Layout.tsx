@@ -164,7 +164,7 @@ export const Layout: React.FC<LayoutProps> = ({
                 {image && (
                   <div className="h-16 md:h-40 relative">
                     <Image
-                      src={`https:${image}`}
+                      src={`${image.includes('https') ? image : 'https:' + image}`}
                       className={`w-full h-full`}
                       layout="fill"
                       key={`${Math.random()}`}
