@@ -48,7 +48,7 @@ export const Tile: React.FC<Props> = ({
                 {image && <Image src={`${image.includes('https') ? image : 'https:' + image}`} className={classes} layout="fill" objectPosition="top" objectFit="cover"/>}
                 <div className="absolute bottom-0 w-full z-10">
                     <div className={classes}>
-                        {highlight && <h3 className={`font-heading ${textClasses} text-sm md:text-base uppercase font-bold tracking-widest md:mb-0.5`}>{highlight}</h3>}
+                        {highlight && <h3 className={`font-heading ${textClasses} text-sm md:text-base uppercase font-bold tracking-widest`}>{highlight}</h3>}
                         {title && <h4 className="font-heading text-neutral-0 text-2xl md:text-xl m-0">{title}</h4>}
                         {summary && <p className="font-body m-0 text-neutral-0 text-center">{summary}</p>}
                     </div>
