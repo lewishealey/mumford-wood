@@ -57,13 +57,13 @@ export const Card: React.FC<Props> = ({
         </div>
       )}
       {highlight && (
-        <h5 className="font-heading text-primary-base text-sm uppercase font-bold tracking-widest mt-0.75 mb-0.25">
+        <h5 className="font-heading text-primary-base text-sm uppercase tracking-widest mt-0.75 mb-0.25">
           {highlight}
         </h5>
       )}
       {title && (
         <h4
-          className={`font-heading font-bold text-xl m-0 md:mb-0.5 ${
+          className={`font-heading text-xl m-0 md:mb-0.5 ${
             !highlight && "mt-0.75 md:mt-1"
           }`}
         >
