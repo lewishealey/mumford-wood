@@ -29,7 +29,7 @@ export default function Home({ ranges, caseStudies, homepage }) {
     <Layout
       video="mumford-main.webm"
       videoId={homepage?.videoId}
-      poster="http://www.mumfordwood.com/images/case-studies/New-Bond-Street-London/Brook-Bond-London.jpg"
+      poster="https://images.ctfassets.net/uefpddncbaai/Hv44juHBLS9gnMS1AZmd0/d702baf580794a737312c56b5483a7b4/Brook-Bond-London1.jpg?h=250"
       border={false}
       sidebarType="none"
     >

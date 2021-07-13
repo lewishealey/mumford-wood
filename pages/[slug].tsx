@@ -38,6 +38,7 @@ export default function Page(props) {
     slug,
     summary,
     thumbnail,
+    metaDescription,
     videoBackground,
     sidebarType,
     border,
@@ -97,21 +98,20 @@ export default function Page(props) {
           preview={preview}
         >
           <NextSeo
-            title="About us | Mumford & Wood"
-            description="Learn about their story, factory, teams and apprenticeship opportunities"
+            title={`${title} | Mumford & Wood`}
+            description={metaDescription}
             canonical="https://www.canonical.ie/"
             openGraph={{
-              url: "https://mumfordwood.com/about-us",
-              title: "About us | Mumford & Wood",
+              url: `https://mumfordwood.com${router.asPath}`,
+              title: `${title} | Mumford & Wood`,
               description:
-                "Learn about their story, factory, teams and apprenticeship opportunities",
+              metaDescription,
               images: [
                 {
-                  url:
-                    "https://mumford-wood.vercel.app/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fuefpddncbaai%2FDHf2HSpGEVxFquJYHtkMe%2Fc5695545e638cdf37882de5dc886fb7f%2FMMFC0004.jpeg&w=1920&q=75",
+                  url: thumbnail?.url,
                   width: 1920,
                   height: 1444,
-                  alt: "Sliding sashes for period renovation",
+                  alt: thumbnail?.title,
                 },
               ],
               site_name: "Mumford & Wood",
@@ -184,7 +184,6 @@ export default function Page(props) {
 }
 
 export async function getStaticPaths() {
-  //   return GetPaths("page", true);
   const pages = await fetchPages();
   const paths = pages.map(({ fields: { slug } }) => ({ params: { slug } }));
   return {
@@ -196,27 +195,4 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { slug } = context.params;
   return GetApolloState(GET_SIMPLE_PAGE, slug, context.preview);
-  // const { slug } = context.params;
-  // const res = await fetchPage(slug);
-  // const sales = await fetchSalesTeam();
-  // const salesT = await sales.map((p) => {
-  //   return p.fields;
-  // });
-
-  // const page = await res.map((p) => {
-  //   return p.fields;
-  // });
-
-  // const b = await fetchBrochures();
-  // const brochures = await b.map((p) => {
-  //   return p.fields;
-  // });
-
-  // return {
-  //   props: {
-  //     page,
-  //     salesTeam: salesT,
-  //     brochures,
-  //   },
-  // };
 }
