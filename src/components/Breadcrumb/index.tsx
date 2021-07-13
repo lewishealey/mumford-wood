@@ -17,8 +17,8 @@ export const Breadcrumb: React.FC<Props> = ({
         <div className="space-x-0.5 items-center justify-center mt-0.5 md:mt-1 flex">
             {crumbs?.map((crumb,i)=>
             <span key={i} className="flex items-center">
-               {crumbs.length == i+1 ? <div className="text-sm font-body capitalize items-center leading-none">{crumb.label}</div> : <Link href={crumb.link}>
-                    <a className="hover:underline text-gray-600 text-sm font-body capitalize leading-none">
+               {crumbs.length == i+1 ? <div className="text-sm font-body capitalize items-center leading-none truncate">{crumb.label}</div> : <Link href={crumb.link}>
+                    <a className="hover:underline text-gray-600 text-sm font-body capitalize leading-none truncate">
                         {crumb.label}
                     </a>
                 </Link>}
