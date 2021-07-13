@@ -81,7 +81,6 @@ export default function Downloads({ brochures, products }) {
                       (downloadSearch.length == 0 ||
                         profile?.fields?.title.toLowerCase().includes(downloadSearch.toLowerCase())) && (
                         <>
-                          {console.log(profile)}
                           <Download
                             key={i}
                             title={profile?.fields?.title}
