@@ -28,6 +28,7 @@ export default function Home({ ranges, caseStudies, homepage }) {
   return (
     <Layout
       video="mumford-main.webm"
+      videoId={homepage?.videoId}
       poster="http://www.mumfordwood.com/images/case-studies/New-Bond-Street-London/Brook-Bond-London.jpg"
       border={false}
       sidebarType="none"

@@ -46,6 +46,7 @@ export interface LayoutProps {
   imagePosition?: "top" | "center" | "bottom";
   video?: string;
   poster?: string;
+  videoId?: string;
   breadcrumbs?: CrumbItem[];
   children: any;
   id?: string;
@@ -62,6 +63,7 @@ export const Layout: React.FC<LayoutProps> = ({
   gallery,
   sidebarType,
   breadcrumbs,
+  videoId,
   border = false,
   children,
   preview,
@@ -116,7 +118,7 @@ export const Layout: React.FC<LayoutProps> = ({
           isOpen={isVideoShowing}
           onOverlayClick={() => setVideoShowing(false)}
         >
-          <YouTube videoId={"tvzrF-lyPlQ"} />
+          <YouTube videoId={videoId} />
         </Modal>
 
         {preview && (
