@@ -346,7 +346,7 @@ export default function Product({
                   <div className="grid md:grid-cols-2 gap-y-0.5">
                     {glassItems &&
                       glassItems.map((glass, i) => (
-                        <Card
+                        glass?.fields && <Card
                           title={glass?.fields?.title}
                           highlight={glass?.fields?.thickness}
                           summary={glass?.fields?.content}
@@ -373,7 +373,7 @@ export default function Product({
                       onChecked={onIronFilter}
                     />
                   </div>
-                  <div className="flex flex-col md:space-y-0 md:grid lg:grid-cols-3 gap-x-1 gap-y-2">
+                  <div className="flex flex-col md:space-y-0 md:grid lg:grid-cols-3 gap-x-1 gap-y-1 md:gap-y-2">
                     {ironItems &&
                       ironItems.map((iron, i) => (
                         <>

@@ -44,7 +44,7 @@ export const Card: React.FC<Props> = ({
   );
 
   const contents = (
-    <div className={`text-${align}`}>
+    <div className={`text-${align} border rounded-lg p-1 md:p-0 md:rounded-none md:border-0`}>
       {image && (
         <div className={`w-full ${height} relative`}>
           <Image

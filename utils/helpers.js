@@ -11,7 +11,7 @@ export function formatBytes(a, b = 2) {
 
 export const sectionClasses =
   "text-2xl mb-1 md:mb-1.5 md:text-3xl font-heading";
-export const subSectionClasses = "text-xl md:text-2xl mt-1 font-heading";
+export const subSectionClasses = "text-2xl mt-1 font-heading";
 export const amazonBucket =
   "https://hellocdkstack-myfirstbucketb8884501-1vscfhu8t4rbn.s3.eu-west-2.amazonaws.com/";
 
