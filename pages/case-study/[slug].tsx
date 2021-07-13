@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 import Layout from "src/layouts/Layout";
+import RichText from "@utils/renderers/RichText";
 import {
   fetchCaseStudies,
   fetchCaseStudy,
@@ -21,6 +23,7 @@ import { Link, animateScroll as scroll } from "react-scroll";
 
 export default function CaseStudy({ page, caseStudies, salesTeam, brochures }) {
   const data = page[0];
+  const router = useRouter();
   const [waypointItem, setWaypointItem] = useState("gallery");
 
   const breadcrumbs = [
@@ -46,17 +49,70 @@ export default function CaseStudy({ page, caseStudies, salesTeam, brochures }) {
             image={data?.thumbnail?.fields?.file?.url}
             breadcrumbs={breadcrumbs}
           >
-            <div className="sticky z-20 bg-white flex w-full top-mobile md:top-desktop pt-1">
-                <nav className="space-x-1.5 mb-1 md:pl-2 md:-ml-2 -mr-4 w-full overflow-x-auto md:overflow-visible bg-white">
-                    <Link to="gallery" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Gallery</Link>
-                    {data?.products && <Link to="featured-products" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Products</Link>}
-                    <Link to="related" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Related case studies</Link>
-                </nav>
-                </div>
+            <NextSeo
+              title={`${data?.title} | Mumford & Wood`}
+              description="Mumford & Wood windows and doors product ranges"
+              canonical="https://www.canonical.ie/"
+              openGraph={{
+                url: `https://mumfordwood.com/case-study${router.asPath}`,
+                title: `${data?.title} | Mumford & Wood`,
+                description: "Mumford & Wood windows and doors product ranges",
+                site_name: "Mumford & Wood",
+              }}
+              twitter={{
+                handle: "@MumfordWood",
+                site: "@site",
+                cardType: "summary_large_image",
+              }}
+            />
+
+            <div className="mt-2">
+              {documentToReactComponents(data?.content, options)}
+            </div>
+
+            <div className="sticky z-20 bg-white flex w-full top-mobile md:top-desktop pt-1 mb-2">
+              <nav className="space-x-1.5 mb-1 md:pl-2 md:-ml-2 -mr-4 w-full overflow-x-auto md:overflow-visible bg-white">
+                <Link
+                  to="gallery"
+                  className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`}
+                  activeClass="border-dark"
+                  spy={true}
+                  smooth={true}
+                  offset={-200}
+                  duration={500}
+                >
+                  Gallery
+                </Link>
+                {data?.products && (
+                  <Link
+                    to="featured-products"
+                    className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`}
+                    activeClass="border-dark"
+                    spy={true}
+                    smooth={true}
+                    offset={-200}
+                    duration={500}
+                  >
+                    Products
+                  </Link>
+                )}
+                <Link
+                  to="related"
+                  className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`}
+                  activeClass="border-dark"
+                  spy={true}
+                  smooth={true}
+                  offset={-200}
+                  duration={500}
+                >
+                  Related case studies
+                </Link>
+              </nav>
+            </div>
 
             {data?.gallery && (
               <Waypoint
-              onEnter={() => setWaypointItem("gallery")}
+                onEnter={() => setWaypointItem("gallery")}
                 {...waypointOptions}
               >
                 <section className="mb-4" id="gallery">
@@ -67,26 +123,26 @@ export default function CaseStudy({ page, caseStudies, salesTeam, brochures }) {
             )}
 
             {data?.products && (
-                <Waypoint
+              <Waypoint
                 onEnter={() => setWaypointItem("featured-products")}
                 {...waypointOptions}
               >
-              <section className="mb-4" id="featured-products">
-                <h2 className={sectionClasses}>Featured products</h2>
-                <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
-                  {data?.products &&
-                    data?.products?.map((post, i) => (
-                      <Tile
-                        href={`/product/${post?.fields?.range}/${post?.fields?.slug}`}
-                        title={post?.fields?.title}
-                        size="compact"
-                        border={false}
-                        image={post?.fields?.thumbnail?.fields?.file?.url}
-                        key={i}
-                      />
-                    ))}
-                </div>
-              </section>
+                <section className="mb-4" id="featured-products">
+                  <h2 className={sectionClasses}>Featured products</h2>
+                  <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1">
+                    {data?.products &&
+                      data?.products?.map((post, i) => (
+                        <Tile
+                          href={`/product/${post?.fields?.range}/${post?.fields?.slug}`}
+                          title={post?.fields?.title}
+                          size="compact"
+                          border={false}
+                          image={post?.fields?.thumbnail?.fields?.file?.url}
+                          key={i}
+                        />
+                      ))}
+                  </div>
+                </section>
               </Waypoint>
             )}
 

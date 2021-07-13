@@ -37,10 +37,12 @@ export default function ProductRange({ ranges, products, brochures }) {
         >
           <NextSeo
             title={`${data?.title} | Mumford & Wood`}
+            description={`View product ranges for the ${data?.title} range at Mumford & Wood`}
             canonical="https://www.canonical.ie/"
             openGraph={{
               url: `https://mumfordwood.com${router.asPath}`,
               title: `${data?.title} | Mumford & Wood`,
+              description: `View product ranges for the ${data?.title} range at Mumford & Wood`,
               site_name: "Mumford & Wood",
             }}
             twitter={{

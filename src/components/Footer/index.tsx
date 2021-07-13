@@ -84,6 +84,7 @@ export const Footer: React.FC<Props> = ({}) => {
                   height={40}
                   width={40}
                   alt="Houzz"
+                  title="Houzz"
                 />
               </a>
               <a href="https://www.youtube.com/channel/UCzvnLQXahVZPeIoSYv9_4Og" target="blank">
@@ -92,6 +93,7 @@ export const Footer: React.FC<Props> = ({}) => {
                   height={40}
                   width={40}
                   alt="YouTube"
+                  title="YouTube"
                 />
               </a>
             </div>
@@ -107,6 +109,7 @@ export const Footer: React.FC<Props> = ({}) => {
               height={50}
               width={80}
               alt="ISO 9001"
+              title="ISO 9001"
             />
           </div>
           <div className="flex items-center justify-center">
@@ -115,6 +118,7 @@ export const Footer: React.FC<Props> = ({}) => {
               height={50}
               width={80}
               alt="ISO 14001"
+              title="ISO 14001"
             />
           </div>
           <div className="flex items-center justify-center">
@@ -123,19 +127,20 @@ export const Footer: React.FC<Props> = ({}) => {
               height={50}
               width={80}
               alt="ISO 50001"
+              title="ISO 50001"
             />
           </div>
           <div className="flex items-center justify-center">
-            <Image src="/img/fsc.svg" height={50} width={69} alt="FSC" />
+            <Image src="/img/fsc.svg" height={50} width={69} alt="FSC" title="FSC" />
           </div>
           <div className="flex items-center justify-center">
-            <Image src="/img/ukca.svg" height={50} width={50} alt="UKCA" />
+            <Image src="/img/ukca.svg" height={50} width={50} alt="UKCA" title="UKCA"/>
           </div>
           <div className="flex items-center justify-center">
-            <Image src="/img/bsi.svg" height={50} width={50} alt="BSI" />
+            <Image src="/img/bsi.svg" height={50} width={50} alt="BSI" title="UKCA"/>
           </div>
           <div className="flex items-center justify-center">
-            <Image src="/img/energy.svg" height={60} width={60} alt="Energy" />
+            <Image src="/img/energy.svg" height={60} width={60} alt="Energy" title="UKCA"/>
           </div>
           <div className="flex items-center justify-center px-0.5">
             <Image
@@ -143,10 +148,11 @@ export const Footer: React.FC<Props> = ({}) => {
               height={70}
               width={100}
               alt="Made in Britain"
+              title="Made in Britain"
             />
           </div>
           <div className="flex items-center justify-center px-0.5">
-            <Image src="/img/bwf.svg" height={74} width={103} alt="BWF" />
+            <Image src="/img/bwf.svg" height={74} width={103} alt="BWF" title="BWF"/>
           </div>
           <div className="flex items-center justify-center px-0.5">
             <Image
@@ -154,6 +160,7 @@ export const Footer: React.FC<Props> = ({}) => {
               height={74}
               width={103}
               alt="constructiononline"
+              title="constructiononline"
             />
           </div>
         </div>

@@ -45,11 +45,11 @@ export const Tile: React.FC<Props> = ({
         <Link href={href}>
             <a className={`relative flex ${border && 'border-primary-base hover:border-neutral-2 border-solid border-t-2'} shadow-md hover:shadow-lg font-heading text-base transition-all duration-500 ease-in-out w-full overflow-hidden rounded ${defineSize}`}>
                 {children}
-                {image && <Image src={`${image.includes('https') ? image : 'https:' + image}`} className={classes} layout="fill" objectPosition="top" objectFit="cover"/>}
+                {image && <Image src={`${image.includes('https') ? image : 'https:' + image}`} className={classes} layout="fill" objectPosition="top" objectFit="cover" alt={title} title={title}/>}
                 <div className="absolute bottom-0 w-full z-10">
                     <div className={classes}>
                         {highlight && <h3 className={`font-heading ${textClasses} text-sm md:text-base uppercase font-bold tracking-widest`}>{highlight}</h3>}
-                        {title && <h4 className="font-heading text-neutral-0 text-2xl md:text-xl m-0">{title}</h4>}
+                        {title && <h2 className="font-heading text-neutral-0 text-2xl md:text-xl m-0">{title}</h2>}
                         {summary && <p className="font-body m-0 text-neutral-0 text-center">{summary}</p>}
                     </div>
                 </div>

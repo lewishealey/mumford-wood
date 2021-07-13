@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   fetchProduct,
   fetchProducts,
@@ -7,6 +7,8 @@ import {
   fetchSalesTeam,
   fetchRelatedProducts,
 } from "@utils/contentfulPosts";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
 import { Waypoint } from "react-waypoint";
 import Layout from "src/layouts/Layout";
 import { PageProvider } from "@utils/contexts.js";
@@ -41,6 +43,7 @@ export default function Product({
   brochures,
 }) {
   const data = product[0];
+  const router = useRouter();
 
   const [glassItems, setGlassItems] = useState(data?.glazing);
   const [ironItems, setIronItems] = useState(data?.ironmongery);
@@ -189,6 +192,22 @@ export default function Product({
             gallery={data?.gallery}
             border
           >
+            <NextSeo
+              title={`${data?.title} | Mumford & Wood`}
+              description="Mumford & Wood windows and doors product ranges"
+              canonical="https://www.canonical.ie/"
+              openGraph={{
+                url: `https://mumfordwood.com/product-ranges/${data?.range}${router.asPath}`,
+                title: `${data?.title} | Mumford & Wood`,
+                description: "Mumford & Wood windows and doors product ranges",
+                site_name: "Mumford & Wood",
+              }}
+              twitter={{
+                handle: "@MumfordWood",
+                site: "@site",
+                cardType: "summary_large_image",
+              }}
+            />
             <section className="mb-4 md:mb-2">
               <h2 className={sectionClasses}>Introduction</h2>
               {documentToReactComponents(data?.content, options)}

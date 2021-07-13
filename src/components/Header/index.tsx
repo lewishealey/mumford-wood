@@ -20,6 +20,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                 width={64}
                 height={71}
                 alt="Emblem"
+                title="Emblem"
               />
             </div>
           </a>
@@ -35,6 +36,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
             <img
               src="/img/made-in-britain-white.svg"
               alt="Made in Britain"
+              title="Made in Britain"
               className="h-2.5 hidden md:block"
             />
             <span
@@ -45,8 +47,8 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                 src={
                   mobileMenu ? "/img/times-solid.svg" : "/img/bars-solid.svg"
                 }
-                alt="Menu"
                 className="h-1 cursor-pointer"
+                alt="Mobile menu" title="Mobile menu"
               />
             </span>
           </div>
@@ -64,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
           </div>
           <div className="md:flex-1 cursor-pointer">
             <Link href="/contact-us">
-                <img src="/img/envelope.svg" alt="Enquire" className="h-1 md:hidden" />
+                <img src="/img/envelope.svg" className="h-1 md:hidden" alt="Enquire" title="Enquire"/>
             </Link>
           </div>
         </div>
@@ -73,27 +75,6 @@ export const Header: React.FC<HeaderProps> = ({}) => {
           <NavList />
         </div>
       </div>
-
-      {/* <span
-            className="pl-1 md:hidden"
-            onClick={() => setMobileMenu(!mobileMenu)}
-          >
-            <img
-              src={mobileMenu ? "/img/times-solid.svg" : "/img/bars-solid.svg"}
-              alt="Menu"
-              className="h-1"
-            />
-          </span> */}
-      {/* <Link href="/">
-            <a title="Back to homepage">
-              <span className="font-title text-white uppercase tracking-wider text-lg font-normal">
-                Mumford & Wood
-              </span>
-            </a>
-          </Link> */}
-      {/* <span className="pr-1 md:hidden">
-            <img src="/img/envelope.svg" alt="Enquire" className="h-1" />
-          </span> */}
 
       {mobileMenu && (
         <div className="top-4 fixed bg-primary-neutral h-full w-full z-50">
