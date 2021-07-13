@@ -167,7 +167,7 @@ export default function Product({ product, relatedProducts, salesTeam, brochures
                     {documentToReactComponents(data?.content,options)}
                 </section>
 
-                <div className="sticky z-20 bg-white flex w-full top-mobile md:top-desktop pt-1 mb-2 md:mb-0">
+                <div className="sticky z-20 bg-white flex w-full top-mobile md:top-desktop pt-1 mb-2">
                 <nav className="space-x-1.5 mb-1 md:pl-2 md:-ml-2 -mr-4 w-full overflow-x-auto md:overflow-visible bg-white">
                     <Link to="gallery" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Gallery</Link>
                     <Link to="finish" className={`list-none border-b-4 h-4 border-white py-1 cursor-pointer hover:opacity-70 font-heading`} activeClass="border-dark" spy={true} smooth={true} offset={-200} duration={500}>Finish</Link>

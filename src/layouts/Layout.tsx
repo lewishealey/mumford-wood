@@ -151,7 +151,7 @@ export const Layout: React.FC<LayoutProps> = ({
         )}
 
         {image && !video && (
-          <div className="relative h-16 md:h-40 overflow-hidden bg-primary-fade">
+          <div className="relative h-16 md:h-40 overflow-hidden bg-primary-neutral">
             {gallery && (
               <div className="absolute w-full bottom-1 md:bottom-3 z-10">
                 <div className="container m-auto max-w-6xl ml-1 md:ml-0">
