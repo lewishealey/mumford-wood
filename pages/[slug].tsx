@@ -123,7 +123,7 @@ export default function Page(props) {
             }}
           />
           <div
-            className={`flex flex-col m-auto mb-2 ${
+            className={`flex flex-col m-auto my-2 ${
               sidebarType == "none" ? "w-full md:w-4/5" : "w-full"
             }`}
           >
