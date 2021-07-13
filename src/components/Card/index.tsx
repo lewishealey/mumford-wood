@@ -10,6 +10,8 @@ export interface Props {
   href?: string;
   summary?: any;
   height?: string;
+  objectFit?: "contain" | "cover";
+  objectPosition?: "top" | "center" | "bottom";
   width?: number;
   image?: string;
   align?: string;
@@ -25,6 +27,8 @@ export const Card: React.FC<Props> = ({
   href,
   summary,
   width = 300,
+  objectFit = "cover",
+  objectPosition = "top",
   height,
   image,
   align,
@@ -34,25 +38,27 @@ export const Card: React.FC<Props> = ({
   children,
 }) => {
   const classes = classNames(
-    `mb-0.5 object-${thumbnail} ${
+    `mb-0.5 relative ${
       !circle && `${height} w-full`
     } m-auto rounded-sm flex-shrink-0`,
     {
       "border border-solid border border-neutral-3": border,
-      "rounded-full h-4 w-4": circle,
+      "h-8 w-8 flex-shrink-0 flex-grow-0 rounded-full overflow-hidden": circle,
     }
   );
 
   const contents = (
-    <div className={`text-${align} border rounded-lg p-1 md:p-0 md:rounded-none md:border-0`}>
+    <div
+      className={`text-${align} border rounded-lg p-1 md:p-0 md:rounded-none md:border-0`}
+    >
       {image && (
-        <div className={`w-full ${height} relative`}>
+        <div className={classes}>
           <Image
             src={`https:${image}?w=${width}`}
-            className={classes}
+            className="h-full w-full"
             layout="fill"
-            objectPosition="top"
-            objectFit="contain"
+            objectPosition={objectPosition}
+            objectFit={objectFit}
           />
         </div>
       )}

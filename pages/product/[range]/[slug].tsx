@@ -345,16 +345,19 @@ export default function Product({
                             </div> */}
                   <div className="grid md:grid-cols-2 gap-y-0.5">
                     {glassItems &&
-                      glassItems.map((glass, i) => (
-                        glass?.fields && <Card
-                          title={glass?.fields?.title}
-                          highlight={glass?.fields?.thickness}
-                          summary={glass?.fields?.content}
-                          border={true}
-                          thumbnail="cover"
-                          key={i}
-                        />
-                      ))}
+                      glassItems.map(
+                        (glass, i) =>
+                          glass?.fields && (
+                            <Card
+                              title={glass?.fields?.title}
+                              highlight={glass?.fields?.thickness}
+                              summary={glass?.fields?.content}
+                              border={true}
+                              thumbnail="cover"
+                              key={i}
+                            />
+                          )
+                      )}
                   </div>
                 </section>
               </Waypoint>
@@ -395,7 +398,7 @@ export default function Product({
                             summary={iron?.fields?.content}
                             border={true}
                             height="h-10"
-                            thumbnail="contain"
+                            objectFit="contain"
                             key={i}
                           />
                         </>

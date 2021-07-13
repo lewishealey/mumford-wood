@@ -1,5 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
 import Layout from "src/layouts/Layout";
 import Tile from "@components/Tile/";
 import {
@@ -13,6 +14,7 @@ import { PageProvider } from "@utils/contexts.js";
 
 export default function ProductRange({ ranges, products, brochures }) {
   const data = ranges[0];
+  const router = useRouter();
 
   const breadcrumbs = [
     {
@@ -25,33 +27,47 @@ export default function ProductRange({ ranges, products, brochures }) {
   ];
 
   return (
-      <PageProvider value="product-ranges">
-        <BrochureProvider value={brochures}>
-          <Layout
-            id={data?.slug}
-            sidebarType="none"
-            breadcrumbs={breadcrumbs}
-            title={data?.title}
-          >
-            {false && <p>{data?.content}</p>}
-            <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1 m-auto">
-              {products &&
-                products?.map((post, i) => (
-                  <Tile
-                    href={`/product/${data?.slug}/${post?.slug}`}
-                    title={`${post?.title}`}
-                    size="default"
-                    style={post?.range?.replace('-range','')}
-                    border={false}
-                    highlight={data?.title}
-                    image={post?.thumbnail?.fields?.file?.url}
-                    key={`${post?.slug}- ${Math.random()}`}
-                  />
-                ))}
-            </div>
-          </Layout>
-        </BrochureProvider>
-      </PageProvider>
+    <PageProvider value="product-ranges">
+      <BrochureProvider value={brochures}>
+        <Layout
+          id={data?.slug}
+          sidebarType="none"
+          breadcrumbs={breadcrumbs}
+          title={data?.title}
+        >
+          <NextSeo
+            title={`${data?.title} | Mumford & Wood`}
+            canonical="https://www.canonical.ie/"
+            openGraph={{
+              url: `https://mumfordwood.com${router.asPath}`,
+              title: `${data?.title} | Mumford & Wood`,
+              site_name: "Mumford & Wood",
+            }}
+            twitter={{
+              handle: "@MumfordWood",
+              site: "@site",
+              cardType: "summary_large_image",
+            }}
+          />
+          {false && <p>{data?.content}</p>}
+          <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-3 lg:gap-1 m-auto">
+            {products &&
+              products?.map((post, i) => (
+                <Tile
+                  href={`/product/${data?.slug}/${post?.slug}`}
+                  title={`${post?.title}`}
+                  size="default"
+                  style={post?.range?.replace("-range", "")}
+                  border={false}
+                  highlight={data?.title}
+                  image={post?.thumbnail?.fields?.file?.url}
+                  key={`${post?.slug}- ${Math.random()}`}
+                />
+              ))}
+          </div>
+        </Layout>
+      </BrochureProvider>
+    </PageProvider>
   );
 }
 
