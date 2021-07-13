@@ -148,10 +148,10 @@ export async function fetchRangeProducts(range) {
 }
 
 
-export async function fetchRelatedProducts(type) {
+export async function fetchRelatedProducts(range) {
     const product = await client.getEntries({
         content_type: 'product',
-        'fields.slug[in]': type,
+        'fields.range[in]': range,
     })
     if (product.items) return product.items
 }

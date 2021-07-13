@@ -24,6 +24,7 @@ const waypointOptions = {
 
 export default function Product({ product, relatedProducts, salesTeam, brochures }) {
     const data = product[0];
+    console.log(relatedProducts)
 
     const [glassItems, setGlassItems] = useState(data?.glazing);
     const [ironItems, setIronItems] = useState(data?.ironmongery);
@@ -331,7 +332,7 @@ export default function Product({ product, relatedProducts, salesTeam, brochures
 
                 <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-1 m-auto">
                 {relatedProducts && relatedProducts?.map((post,i) =>
-                    post.range !== data.range && <Tile
+                    post.slug !== data.slug && <Tile
                         href={`/product/${post?.range}/${post?.slug}`}
                         title={post?.title}
                         size="default"
@@ -364,7 +365,7 @@ export default function Product({ product, relatedProducts, salesTeam, brochures
     const { range, slug } = context.params;
     const res = await fetchProduct(range, slug);
     const resP = await fetchRangeProducts(range);
-    const resRel = await fetchRelatedProducts(slug);
+    const resRel = await fetchRelatedProducts(range);
     const sales = await fetchSalesTeam();
     const salesT = await sales.map((p) => {
         return p.fields
