@@ -42,4 +42,23 @@ module.exports = withBundleAnalyzer(withImages({
       config.resolve.alias["@utils"] = path.join(__dirname, "utils");
       return config;
     },
+    async redirects() {
+        return [
+          {
+            source: '/Product-Range.html',
+            destination: '/product-ranges',
+            permanent: true,
+          },
+          {
+            source: '/technical/CAD-drawing-register.html',
+            destination: '/downloads',
+            permanent: true,
+          },
+          {
+            source: '/spring-sash-windows/drawing-register.html',
+            destination: '/downloads',
+            permanent: true,
+          }
+        ]
+      },
   }));

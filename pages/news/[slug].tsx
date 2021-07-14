@@ -1,4 +1,5 @@
 import React from "react";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import Layout from "src/layouts/Layout";
 import Card from "@components/Card";
@@ -24,6 +25,7 @@ export default function Article({
   otherNews,
 }) {
   const data = page[0];
+  const router = useRouter();
   const breadcrumbs = [
     {
       label: "News",
@@ -39,6 +41,22 @@ export default function Article({
       <SalesProvider value={salesTeam}>
         <BrochureProvider value={brochures}>
           <Layout title={data?.title} breadcrumbs={breadcrumbs}>
+            <NextSeo
+              title={`${data?.title} | Mumford & Wood`}
+              description={`News article for Mumford & Wood`}
+              canonical="https://www.canonical.ie/"
+              openGraph={{
+                url: `https://mumfordwood.com/news${router.asPath}`,
+                title: `${data?.title} | Mumford & Wood`,
+                description: `News article for Mumford & Wood`,
+                site_name: "Mumford & Wood",
+              }}
+              twitter={{
+                handle: "@MumfordWood",
+                site: "@site",
+                cardType: "summary_large_image",
+              }}
+            />
             <section className="mb-4">
               <article>
                 {documentToReactComponents(data?.content, options)}
@@ -49,16 +67,19 @@ export default function Article({
               <section className="mb-4">
                 <h2 className={sectionClasses}>More news</h2>
                 <div className="flex space-y-1 md:space-y-0 flex-col lg:grid lg:grid-cols-2 lg:gap-2 lg:gap-y-4">
-                  {otherNews?.map((post, i) => (
-                    post?.slug !== data?.slug && <Card
-                      href={`/news/${post?.slug}`}
-                      title={post?.title}
-                      border={false}
-                      highlight={post?.area}
-                      image={post?.thumbnail?.fields?.file?.url}
-                      key={i}
-                    />
-                  ))}
+                  {otherNews?.map(
+                    (post, i) =>
+                      post?.slug !== data?.slug && (
+                        <Card
+                          href={`/news/${post?.slug}`}
+                          title={post?.title}
+                          border={false}
+                          highlight={post?.area}
+                          image={post?.thumbnail?.fields?.file?.url}
+                          key={i}
+                        />
+                      )
+                  )}
                 </div>
               </section>
             )}
