@@ -418,7 +418,7 @@ export default function Product({
                             border={true}
                             height="h-10"
                             objectFit="contain"
-                            key={i}
+                            key={`iron_${data?.range}_${iron?.fields?.title}_${i}`}
                           />
                         </>
                       ))}
