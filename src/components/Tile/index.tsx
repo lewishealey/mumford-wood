@@ -42,8 +42,7 @@ export const Tile: React.FC<Props> = ({
     });
 
     return (
-        <Link href={href}>
-            <a className={`relative flex ${border && 'border-primary-base hover:border-neutral-2 border-solid border-t-2'} shadow-md hover:shadow-lg font-heading text-base transition-all duration-500 ease-in-out w-full overflow-hidden rounded ${defineSize}`}>
+            <a href={href} className={`relative flex ${border && 'border-primary-base hover:border-neutral-2 border-solid border-t-2'} shadow-md hover:shadow-lg font-heading text-base transition-all duration-500 ease-in-out w-full overflow-hidden rounded ${defineSize}`}>
                 {children}
                 {image && <Image src={`${image.includes('https') ? image : 'https:' + image}`} className={classes} layout="fill" objectPosition="top" objectFit="cover" alt={title} title={title}/>}
                 <div className="absolute bottom-0 w-full z-10">
@@ -54,7 +53,6 @@ export const Tile: React.FC<Props> = ({
                     </div>
                 </div>
             </a>
-      </Link>
     )
   }
 
